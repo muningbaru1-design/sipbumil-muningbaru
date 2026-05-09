@@ -3,347 +3,549 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SiMUNBAR - Pelayanan Desa</title>
+
+<title>SIP BUMIL - Desa Muning Baru</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
 body{
-    margin:0;
-    font-family:'Segoe UI',sans-serif;
-    background:#0b0b0b;
-    color:white;
+background:#050505;
+color:white;
+overflow-x:hidden;
 }
 
-/* NAVBAR */
-.navbar{
-    display:flex;
-    justify-content:space-between;
-    padding:15px 30px;
-    background:#111;
+/* ======================= */
+/* HEADER */
+/* ======================= */
+
+.header{
+width:100%;
+padding:20px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#0b0b0b;
+border-bottom:1px solid rgba(0,255,255,0.15);
+position:sticky;
+top:0;
+z-index:1000;
 }
-.logo-box img{height:60px}
 
-/* JAM */
-.clock-time{font-size:26px;color:#00ffd5}
-.clock-date{font-size:14px}
+.logo{
+display:flex;
+align-items:center;
+gap:15px;
+}
 
+.logo-circle{
+width:55px;
+height:55px;
+border-radius:50%;
+background:linear-gradient(135deg,#00ffd5,#00a2ff);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+box-shadow:0 0 20px rgba(0,255,213,0.5);
+}
+
+.logo-text h1{
+font-size:24px;
+color:#00ffd5;
+}
+
+.logo-text p{
+font-size:12px;
+color:#aaa;
+}
+
+.header-btn{
+padding:10px 18px;
+background:#00ffd5;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+.header-btn:hover{
+transform:scale(1.05);
+}
+
+/* ======================= */
 /* HERO */
-.hero-wrap{
-    position:relative;
-    max-width:1200px;
-    margin:auto;
-}
-.hero-img{
-    width:100%;
-    display:block;
+/* ======================= */
+
+.hero{
+padding:70px 30px;
+max-width:1300px;
+margin:auto;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:center;
 }
 
-/* HOTSPOT */
-.icon-area{
-    position:absolute;
-    cursor:pointer;
-    border-radius:28px;
-    transform:translate(-50%, -50%);
+.hero h2{
+font-size:58px;
+line-height:1.1;
+margin-bottom:20px;
 }
 
-/* POSISI UTAMA */
-.tamu{ top:64%; left:21%; width:22%; height:26%; }
-.surat{ top:64%; left:50%; width:22%; height:26%; }
-.aduan{ top:64%; left:79%; width:22%; height:26%; }
-
-/* BERITA DESA (SUPER PRESISI AREA GEDUNG) */
-.berita{
-    top:25%;
-    left:87%;
-    width:13%;
-    height:17%;
+.hero h2 span{
+color:#00ffd5;
 }
 
-/* LABEL BERITA */
-.berita::after{
-    content:"📰 BERITA DESA";
-    position:absolute;
-    bottom:8px;
-    left:50%;
-    transform:translateX(-50%);
-    font-size:13px;
-    font-weight:bold;
-    color:#00ffd5;
-    text-shadow:0 0 8px rgba(0,255,213,0.8);
+.hero p{
+color:#aaa;
+line-height:1.8;
+font-size:18px;
+margin-bottom:30px;
 }
 
-/* GLOW */
-.icon-area::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    border-radius:28px;
-    background:rgba(0,255,213,0.10);
-    box-shadow:
-        0 0 12px rgba(0,255,213,0.35),
-        0 0 22px rgba(0,255,213,0.15);
-    opacity:0.6;
-    transition:0.3s;
-}
-.icon-area:hover::before{
-    box-shadow:
-        0 0 20px rgba(0,255,213,0.6),
-        0 0 35px rgba(0,255,213,0.25);
-    opacity:1;
-}
-.icon-area:active{
-    transform:translate(-50%, -50%) scale(0.97);
+.hero-buttons{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
 }
 
-/* CEK STATUS */
-.cek-status{
-    text-align:center;
-    padding:20px;
-}
-.cek-status input{
-    padding:10px;
-    width:260px;
-    border-radius:8px;
-    border:none;
-}
-.cek-status button{
-    padding:10px 15px;
-    border:none;
-    border-radius:8px;
-    background:#00ffd5;
-    cursor:pointer;
-    font-weight:bold;
-}
-#hasilStatus{
-    margin-top:10px;
-    font-weight:bold;
+.btn-primary{
+padding:14px 24px;
+background:#00ffd5;
+border:none;
+border-radius:14px;
+font-weight:bold;
+cursor:pointer;
+font-size:15px;
+transition:0.3s;
 }
 
-/* MARQUEE */
-.marquee{
-    background:#111;
-    padding:10px;
-    text-align:center;
-    color:#00ffd5;
+.btn-primary:hover{
+transform:translateY(-3px);
 }
 
+.btn-outline{
+padding:14px 24px;
+border:1px solid #00ffd5;
+background:transparent;
+color:#00ffd5;
+border-radius:14px;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* ======================= */
+/* DASHBOARD CARD */
+/* ======================= */
+
+.dashboard{
+background:#111;
+border-radius:30px;
+padding:30px;
+border:1px solid rgba(0,255,213,0.15);
+box-shadow:0 0 40px rgba(0,255,213,0.08);
+}
+
+.stats{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.stat-box{
+background:#191919;
+padding:25px;
+border-radius:20px;
+transition:0.3s;
+}
+
+.stat-box:hover{
+transform:translateY(-5px);
+}
+
+.stat-box h3{
+font-size:38px;
+color:#00ffd5;
+margin-top:10px;
+}
+
+.stat-box p{
+font-size:14px;
+color:#aaa;
+}
+
+.stat-icon{
+font-size:42px;
+}
+
+/* ======================= */
 /* MENU */
-.menu{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:20px;
-    padding:30px;
-}
-.card{
-    width:300px;
-    border-radius:20px;
-    overflow:hidden;
-    cursor:pointer;
-    transition:0.3s;
-}
-.card:hover{transform:scale(1.05)}
-.card img{width:100%}
-.card h3{text-align:center;padding:15px}
+/* ======================= */
 
-/* MODAL */
-.modal{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.9);
+.menu-section{
+max-width:1300px;
+margin:auto;
+padding:30px;
 }
-.modal iframe{
-    width:90%;
-    height:90%;
-    margin:3% auto;
-    display:block;
+
+.section-title{
+margin-bottom:40px;
 }
-.close{
-    position:absolute;
-    right:20px;
-    top:10px;
-    font-size:30px;
-    cursor:pointer;
+
+.section-title h2{
+font-size:42px;
+margin-bottom:10px;
 }
+
+.section-title p{
+color:#aaa;
+}
+
+.menu-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.menu-card{
+background:#111;
+padding:30px;
+border-radius:28px;
+border:1px solid rgba(0,255,213,0.08);
+transition:0.3s;
+cursor:pointer;
+}
+
+.menu-card:hover{
+transform:translateY(-8px);
+border-color:#00ffd5;
+}
+
+.menu-card .icon{
+font-size:55px;
+margin-bottom:20px;
+}
+
+.menu-card h3{
+margin-bottom:12px;
+font-size:22px;
+color:#00ffd5;
+}
+
+.menu-card p{
+color:#aaa;
+line-height:1.7;
+font-size:14px;
+margin-bottom:20px;
+}
+
+.menu-card button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+background:#00ffd5;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* ======================= */
+/* INFO */
+/* ======================= */
+
+.info{
+max-width:1300px;
+margin:auto;
+padding:30px;
+}
+
+.info-box{
+background:#111;
+padding:40px;
+border-radius:30px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.info-item h3{
+margin:15px 0;
+color:#00ffd5;
+}
+
+/* ======================= */
+/* FOOTER */
+/* ======================= */
 
 .footer{
-    text-align:center;
-    padding:20px;
-    background:#111;
+margin-top:60px;
+padding:30px;
+text-align:center;
+background:#0b0b0b;
+border-top:1px solid rgba(0,255,213,0.1);
 }
+
+.footer h3{
+color:#00ffd5;
+margin-bottom:10px;
+}
+
+.footer p{
+color:#777;
+font-size:14px;
+}
+
+/* ======================= */
+/* RESPONSIVE */
+/* ======================= */
+
+@media(max-width:900px){
+
+.hero{
+grid-template-columns:1fr;
+}
+
+.hero h2{
+font-size:42px;
+}
+
+.header{
+padding:15px;
+}
+
+.logo-text h1{
+font-size:20px;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="navbar">
-<div class="logo-box">
-<img src="https://muningbaru1-design.github.io/pelayanan-desa/logo-simunbar.png">
-</div>
-<div>
-<div class="clock-time" id="jam"></div>
-<div class="clock-date" id="tanggal"></div>
+<!-- HEADER -->
+<div class="header">
 
-<button onclick="openAdmin()" style="
-margin-top:5px;
-padding:5px 10px;
-border:none;
-border-radius:6px;
-background:#00ffd5;
-font-weight:bold;
-cursor:pointer;">
-Admin
+<div class="logo">
+
+<div class="logo-circle">
+🤰
+</div>
+
+<div class="logo-text">
+<h1>SIP BUMIL</h1>
+<p>Sistem Informasi Persiapan Ibu Hamil dan Bayinya</p>
+</div>
+
+</div>
+
+<button class="header-btn">
+Login Admin
 </button>
 
 </div>
-</div>
 
 <!-- HERO -->
-<div class="hero-wrap">
-<img src="template-pelayanan.png" class="hero-img">
+<section class="hero">
 
-<div class="icon-area tamu" onclick="openModal('https://forms.gle/8ipvJkeh76VHPsAW8')"></div>
-<div class="icon-area surat" onclick="openModal('https://docs.google.com/forms/d/e/1FAIpQLScJu578Dd6od4C4VFW0JGOAGXkk9lDIgeb5TDE0qj6FBRWgNQ/viewform')"></div>
-<div class="icon-area aduan" onclick="openModal('https://forms.gle/o864Q2Jdh42QEXRB7')"></div>
+<div>
 
-<!-- BERITA -->
-<div class="icon-area berita" onclick="openBerita()"></div>
+<h2>
+Monitoring
+<span>Ibu Hamil</span>
+dan Bayi Desa
+</h2>
+
+<p>
+Platform digital kesehatan desa untuk pendataan ibu hamil,
+pemantauan bayi, jadwal posyandu, monitoring stunting,
+serta dashboard kesehatan terpadu.
+</p>
+
+<div class="hero-buttons">
+
+<button class="btn-primary"
+onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeNF72miW4m7Y4iRNvPY21pOj8SvDLtIqDbdBD60cylcL_AnQ/viewform','_blank')">
+Input Data Bumil
+</button>
+
+<button class="btn-outline">
+Dashboard Posyandu
+</button>
 
 </div>
 
-<div class="cek-status">
-<input type="text" id="cari" placeholder="Masukkan Nama / NIK">
-<button onclick="cekStatus()">Cek Status Surat</button>
-<div id="hasilStatus"></div>
 </div>
 
-<div class="marquee">
-<marquee>SELAMAT DATANG DI PELAYANAN DESA MUNING BARU</marquee>
+<!-- DASHBOARD -->
+<div class="dashboard">
+
+<div class="stats">
+
+<div class="stat-box">
+<div class="stat-icon">🤰</div>
+<h3>128</h3>
+<p>Ibu Hamil Aktif</p>
 </div>
 
-<div class="menu">
-<div class="card" onclick="openModal('https://forms.gle/8ipvJkeh76VHPsAW8')">
-<img src="template-pelayanan.png">
-<h3>Buku Tamu 🔵 <span id="notifTamu">0</span></h3>
+<div class="stat-box">
+<div class="stat-icon">👶</div>
+<h3>94</h3>
+<p>Bayi Terdata</p>
 </div>
 
-<div class="card" onclick="openModal('https://docs.google.com/forms/d/e/1FAIpQLScJu578Dd6od4C4VFW0JGOAGXkk9lDIgeb5TDE0qj6FBRWgNQ/viewform')">
-<img src="template-pelayanan.png">
-<h3>Pelayanan Surat 🔴 <span id="notifSurat">0</span></h3>
+<div class="stat-box">
+<div class="stat-icon">📅</div>
+<h3>12</h3>
+<p>Jadwal Posyandu</p>
 </div>
 
-<div class="card" onclick="openModal('https://forms.gle/o864Q2Jdh42QEXRB7')">
-<img src="template-pelayanan.png">
-<h3>Aduan 🔴 <span id="notifAduan">0</span></h3>
-</div>
-</div>
-
-<div id="modal" class="modal">
-<span class="close" onclick="closeModal()">✖</span>
-<iframe id="frame"></iframe>
+<div class="stat-box">
+<div class="stat-icon">🚨</div>
+<h3 style="color:#ff5252;">5</h3>
+<p>Risiko Tinggi</p>
 </div>
 
-<!-- ADMIN PANEL -->
-<div id="adminPanel" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;">
-<div style="background:#111;width:300px;padding:20px;border-radius:12px;text-align:center;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">
-<h3>Login Admin</h3>
-<input type="password" id="adminPin" placeholder="Masukkan PIN" style="width:100%;padding:10px;border-radius:8px;border:none;">
-<button onclick="cekLogin()" style="margin-top:10px;width:100%;padding:10px;border:none;border-radius:8px;background:#00ffd5;font-weight:bold;">Masuk</button>
-<div id="menuAdmin" style="display:none;margin-top:10px;">
-<button onclick="goAdmin(1)" style="width:100%;margin-top:5px;">Buku Tamu</button>
-<button onclick="goAdmin(2)" style="width:100%;margin-top:5px;">Surat</button>
-<button onclick="goAdmin(3)" style="width:100%;margin-top:5px;">Aduan</button>
-<button onclick="goAdmin(4)" style="width:100%;margin-top:5px;">Semua Data</button>
-</div>
-<div onclick="closeAdmin()" style="margin-top:10px;cursor:pointer;">Tutup</div>
-</div>
 </div>
 
-<div class="footer">© 2026 Desa Muning Baru</div>
+</div>
 
-<script>
+</section>
 
-/* JAM */
-function updateJam(){
-const now=new Date();
-document.getElementById("jam").innerText=now.toLocaleTimeString('id-ID');
-document.getElementById("tanggal").innerText=
-now.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-}
-setInterval(updateJam,1000);
+<!-- MENU -->
+<section class="menu-section">
 
-/* MODAL */
-function openModal(link){
-document.getElementById("modal").style.display="block";
-document.getElementById("frame").src=link;
-}
-function closeModal(){
-document.getElementById("modal").style.display="none";
-}
+<div class="section-title">
+<h2>Menu Utama</h2>
+<p>Sistem layanan kesehatan desa digital</p>
+</div>
 
-/* BERITA */
-function openBerita(){
-window.open("http://muningbaru1.blogspot.com/?m=1","_blank");
-}
+<div class="menu-grid">
 
-/* CEK STATUS */
-async function cekStatus(){
-const keyword=document.getElementById("cari").value.toLowerCase();
+<div class="menu-card">
+<div class="icon">🤰</div>
+<h3>Data Ibu Hamil</h3>
+<p>
+Pendataan lengkap ibu hamil desa beserta riwayat pemeriksaan.
+</p>
 
-const data=await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vSNSqZmr8mhDwdRlNFZUvnKE9MRyT5zFKi4YiNXWukqp6zZuoCRoluLdBtgMBpJEZ84xI0Oc9cuo4Io/pub?gid=595147775&single=true&output=csv")
-.then(r=>r.text());
+<button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeNF72miW4m7Y4iRNvPY21pOj8SvDLtIqDbdBD60cylcL_AnQ/viewform','_blank')">
+Buka Menu
+</button>
+</div>
 
-const rows=data.split("\n");
-let hasil="Data tidak ditemukan";
+<div class="menu-card">
+<div class="icon">👶</div>
+<h3>Data Bayi</h3>
+<p>
+Pemantauan bayi, imunisasi, dan perkembangan balita.
+</p>
 
-for(let i=1;i<rows.length;i++){
-if(rows[i].toLowerCase().includes(keyword)){
-hasil="Status: "+rows[i];
-break;
-}
-}
-document.getElementById("hasilStatus").innerText=hasil;
-}
+<button>Buka Menu</button>
+</div>
 
-/* ADMIN */
-function openAdmin(){
-document.getElementById("adminPanel").style.display="block";
-}
-function closeAdmin(){
-document.getElementById("adminPanel").style.display="none";
-}
-function cekLogin(){
-if(document.getElementById("adminPin").value==="12345"){
-document.getElementById("menuAdmin").style.display="block";
-}else{
-alert("PIN salah!");
-}
-}
-function goAdmin(x){
-if(x==1) window.open("https://docs.google.com/spreadsheets/d/1wXSSNQZdIGYdBOCNST6ec9P7QkmGC0XlsKqNHWF4zkA/edit","_blank");
-if(x==2) window.open("https://docs.google.com/spreadsheets/d/1GimNzY0IiloawXkKdhJsxmI4Z_LpoFJCgYj0icam5TU/edit","_blank");
-if(x==3) window.open("https://docs.google.com/spreadsheets/d/1CSXWRzMxMTvWwyNid3pod8KEgSYJiwhi2BS_bPvY6nc/edit","_blank");
-if(x==4) window.open("https://drive.google.com/drive/my-drive","_blank");
-}
+<div class="menu-card">
+<div class="icon">📅</div>
+<h3>Jadwal Posyandu</h3>
+<p>
+Informasi jadwal pemeriksaan dan kegiatan posyandu desa.
+</p>
 
-/* NOTIF */
-async function ambilData(){
-const [tamu,surat,aduan]=await Promise.all([
-fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vTf0YY597JgnBlEeoq375PxbGMzpq0Eum3qF57iU-HvAG0GviT8x7Feh6pvwm16bVfbtGRVWiHTtln5/pub?gid=53317010&single=true&output=csv").then(r=>r.text()),
-fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vSNSqZmr8mhDwdRlNFZUvnKE9MRyT5zFKi4YiNXWukqp6zZuoCRoluLdBtgMBpJEZ84xI0Oc9cuo4Io/pub?gid=595147775&single=true&output=csv").then(r=>r.text()),
-fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vR_5xLKXz0SzzQgs-CTw7M3A5hiVZ2UyttODKK-vPFVvHup81fE_wLus-FWCXygXVxJ2te9Ni5FqSoD/pub?gid=1837680240&single=true&output=csv").then(r=>r.text())
-]);
+<button>Buka Menu</button>
+</div>
 
-document.getElementById("notifTamu").innerText=tamu.split("\n").length-1;
-document.getElementById("notifSurat").innerText=surat.split("\n").length-1;
-document.getElementById("notifAduan").innerText=aduan.split("\n").length-1;
-}
-ambilData();
+<div class="menu-card">
+<div class="icon">🚨</div>
+<h3>Risiko Tinggi</h3>
+<p>
+Monitoring ibu hamil risiko tinggi dan status kesehatan.
+</p>
 
-</script>
+<button>Buka Menu</button>
+</div>
+
+<div class="menu-card">
+<div class="icon">📊</div>
+<h3>Grafik Stunting</h3>
+<p>
+Monitoring pertumbuhan bayi dan pencegahan stunting.
+</p>
+
+<button>Buka Menu</button>
+</div>
+
+<div class="menu-card">
+<div class="icon">☎️</div>
+<h3>Kontak Bidan</h3>
+<p>
+Hubungi bidan desa atau tenaga kesehatan dengan cepat.
+</p>
+
+<button onclick="window.open('https://wa.me/628xxxxxxxxxx','_blank')">
+Hubungi
+</button>
+</div>
+
+</div>
+
+</section>
+
+<!-- INFO -->
+<section class="info">
+
+<div class="info-box">
+
+<div class="info-item">
+<h1>📋</h1>
+<h3>Data Terintegrasi</h3>
+<p>
+Semua data tersimpan otomatis dan terhubung dengan database desa.
+</p>
+</div>
+
+<div class="info-item">
+<h1>🔔</h1>
+<h3>Reminder Otomatis</h3>
+<p>
+Pengingat jadwal kontrol, imunisasi, dan posyandu digital.
+</p>
+</div>
+
+<div class="info-item">
+<h1>📈</h1>
+<h3>Monitoring Stunting</h3>
+<p>
+Grafik pertumbuhan anak dan pemantauan status gizi realtime.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+
+<h3>SIP BUMIL</h3>
+
+<p>
+© 2026 Desa Muning Baru<br>
+Digitalisasi Pelayanan Kesehatan Desa
+</p>
+
+</div>
 
 </body>
 </html>
