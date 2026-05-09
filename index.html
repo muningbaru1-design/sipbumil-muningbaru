@@ -88,6 +88,7 @@ align-items:center;
 
 .hero h2{
 font-size:58px;
+line-height:1.1;
 margin-bottom:20px;
 }
 
@@ -97,6 +98,8 @@ color:#00ffd5;
 
 .hero p{
 color:#aaa;
+line-height:1.8;
+font-size:18px;
 margin-bottom:30px;
 }
 
@@ -145,13 +148,10 @@ padding:25px;
 border-radius:20px;
 }
 
-.stat-icon{
-font-size:42px;
-}
-
 .stat-box h3{
 font-size:38px;
 color:#00ffd5;
+margin-top:10px;
 }
 
 /* MENU */
@@ -165,6 +165,10 @@ padding:30px;
 margin-bottom:40px;
 }
 
+.section-title h2{
+font-size:42px;
+}
+
 .menu-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -175,22 +179,10 @@ gap:25px;
 background:#111;
 padding:30px;
 border-radius:28px;
-border:1px solid rgba(0,255,213,0.08);
-}
-
-.menu-card .icon{
-font-size:55px;
-margin-bottom:20px;
 }
 
 .menu-card h3{
 color:#00ffd5;
-margin-bottom:10px;
-}
-
-.menu-card p{
-color:#aaa;
-margin-bottom:15px;
 }
 
 .menu-card button{
@@ -235,24 +227,34 @@ background:#0b0b0b;
 
 <h2>Monitoring <span>Ibu Hamil</span> dan Bayi Desa</h2>
 
-<p>Platform digital kesehatan desa untuk pendataan ibu hamil dan bayi.</p>
+<p>
+Platform digital kesehatan desa untuk pendataan ibu hamil,
+pemantauan bayi, jadwal posyandu, monitoring stunting.
+</p>
 
 <div class="hero-buttons">
-<button class="btn-primary" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeNF72miW4m7Y4iRNvPY21pOj8SvDLtIqDbdBD60cylcL_AnQ/viewform','_blank')">
+
+<button class="btn-primary"
+onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeNF72miW4m7Y4iRNvPY21pOj8SvDLtIqDbdBD60cylcL_AnQ/viewform','_blank')">
 Input Data Bumil
 </button>
 
-<button class="btn-outline">Dashboard Posyandu</button>
+<button class="btn-outline">
+Dashboard Posyandu
+</button>
+
 </div>
 
-<!-- 🔍 FITUR CARI (AMAN) -->
-<div style="margin-top:20px;">
-<input type="text" id="cariNama" placeholder="Ketik Nama / NIK"
+<!-- 🔥 TAMBAHAN FITUR (TIDAK MERUBAH DESAIN) -->
+<div style="margin-top:15px;">
+<input id="cariNama" placeholder="Ketik Nama / NIK"
 style="padding:10px;border-radius:8px;border:none;width:220px;">
+
 <button onclick="cariData()"
 style="padding:10px;border:none;border-radius:8px;background:#00ffd5;font-weight:bold;">
 Cari
 </button>
+
 <div id="hasilCari" style="margin-top:15px;"></div>
 </div>
 
@@ -263,25 +265,21 @@ Cari
 <div class="stats">
 
 <div class="stat-box">
-<div class="stat-icon">🤰</div>
 <h3>128</h3>
 <p>Ibu Hamil Aktif</p>
 </div>
 
 <div class="stat-box">
-<div class="stat-icon">👶</div>
 <h3>94</h3>
 <p>Bayi Terdata</p>
 </div>
 
 <div class="stat-box">
-<div class="stat-icon">📅</div>
 <h3>12</h3>
 <p>Jadwal Posyandu</p>
 </div>
 
 <div class="stat-box">
-<div class="stat-icon">🚨</div>
 <h3 style="color:#ff5252;">5</h3>
 <p>Risiko Tinggi</p>
 </div>
@@ -291,94 +289,95 @@ Cari
 
 </section>
 
-<!-- MENU -->
+<!-- MENU (TETAP ADA) -->
 <section class="menu-section">
 
 <div class="section-title">
 <h2>Menu Utama</h2>
-<p>Sistem layanan kesehatan desa digital</p>
 </div>
 
 <div class="menu-grid">
 
 <div class="menu-card">
-<div class="icon">🤰</div>
 <h3>Data Ibu Hamil</h3>
-<p>Pendataan lengkap ibu hamil desa.</p>
-<button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeNF72miW4m7Y4iRNvPY21pOj8SvDLtIqDbdBD60cylcL_AnQ/viewform','_blank')">Buka Menu</button>
+<button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeNF72miW4m7Y4iRNvPY21pOj8SvDLtIqDbdBD60cylcL_AnQ/viewform','_blank')">
+Buka Menu
+</button>
 </div>
 
 <div class="menu-card">
-<div class="icon">👶</div>
 <h3>Data Bayi</h3>
 <button>Buka Menu</button>
 </div>
 
 <div class="menu-card">
-<div class="icon">📅</div>
 <h3>Jadwal Posyandu</h3>
 <button>Buka Menu</button>
 </div>
 
 <div class="menu-card">
-<div class="icon">🚨</div>
 <h3>Risiko Tinggi</h3>
 <button>Buka Menu</button>
 </div>
 
 <div class="menu-card">
-<div class="icon">📊</div>
 <h3>Grafik Stunting</h3>
 <button>Buka Menu</button>
-</div>
-
-<div class="menu-card">
-<div class="icon">☎️</div>
-<h3>Kontak Bidan</h3>
-<button onclick="window.open('https://wa.me/628xxxxxxxxxx')">Hubungi</button>
 </div>
 
 </div>
 
 </section>
 
+<!-- FOOTER -->
 <div class="footer">
 <h3>SIP BUMIL</h3>
 <p>© 2026 Desa Muning Baru</p>
 </div>
 
+<!-- SCRIPT -->
 <script>
 
 async function cariData(){
 
-const keyword=document.getElementById("cariNama").value.toLowerCase();
+const keyword = document.getElementById("cariNama").value.toLowerCase();
 
-const data=await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv").then(r=>r.text());
+const res = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv");
 
-const rows=data.split("\n");
+const text = await res.text();
+const rows = text.split("\n");
 
-let hasil="Data tidak ditemukan";
+let hasil = "Data tidak ditemukan";
 
 for(let i=1;i<rows.length;i++){
 
-let col=rows[i].split(",");
+let col = rows[i].split(",");
 
-let nama=col[1]||"";
-let nik=col[6]||"";
-let pdf=col[30]||"";
+let nama = col[1] || "";
+let nik  = col[6] || "";
+let pdf  = col[30] || "";
 
-if(nama.toLowerCase().includes(keyword)||nik.toLowerCase().includes(keyword)){
+if(nama.toLowerCase().includes(keyword) || nik.toLowerCase().includes(keyword)){
 
-let link=pdf.replace("/view","/preview");
+if(!pdf){
+hasil = "Link stiker tidak tersedia";
+}else{
+hasil = `
+<h3 style="color:#00ffd5">${nama}</h3>
+<p>NIK: ${nik}</p>
+<button onclick="window.open('${pdf}','_blank')"
+style="padding:12px;border:none;border-radius:10px;background:#00ffd5;font-weight:bold;">
+Lihat / Cetak Stiker
+</button>
+`;
+}
 
-hasil=`<h3 style="color:#00ffd5">${nama}</h3><iframe src="${link}" width="100%" height="300"></iframe>`;
 break;
-
 }
 
 }
 
-document.getElementById("hasilCari").innerHTML=hasil;
+document.getElementById("hasilCari").innerHTML = hasil;
 
 }
 
@@ -386,4 +385,3 @@ document.getElementById("hasilCari").innerHTML=hasil;
 
 </body>
 </html>
-
