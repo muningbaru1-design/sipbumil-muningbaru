@@ -11,6 +11,8 @@
 
 <style>
 
+/* === SEMUA CSS ASLI (TIDAK DIUBAH) === */
+
 *{
 margin:0;
 padding:0;
@@ -24,7 +26,6 @@ color:white;
 overflow-x:hidden;
 }
 
-/* HEADER */
 .header{
 width:100%;
 padding:20px 30px;
@@ -75,7 +76,6 @@ font-weight:bold;
 cursor:pointer;
 }
 
-/* HERO */
 .hero{
 padding:70px 30px;
 max-width:1300px;
@@ -125,7 +125,6 @@ font-weight:bold;
 cursor:pointer;
 }
 
-/* DASHBOARD */
 .dashboard{
 background:#111;
 border-radius:30px;
@@ -154,7 +153,6 @@ font-size:38px;
 color:#00ffd5;
 }
 
-/* MENU */
 .menu-section{
 max-width:1300px;
 margin:auto;
@@ -203,7 +201,6 @@ font-weight:bold;
 cursor:pointer;
 }
 
-/* FOOTER */
 .footer{
 margin-top:60px;
 padding:30px;
@@ -238,14 +235,15 @@ background:#0b0b0b;
 <p>Platform digital kesehatan desa untuk pendataan ibu hamil dan bayi.</p>
 
 <div class="hero-buttons">
-<button class="btn-primary" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeNF72miW4m7Y4iRNvPY21pOj8SvDLtIqDbdBD60cylcL_AnQ/viewform','_blank')">
+<button class="btn-primary"
+onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeNF72miW4m7Y4iRNvPY21pOj8SvDLtIqDbdBD60cylcL_AnQ/viewform','_blank')">
 Input Data Bumil
 </button>
 
 <button class="btn-outline">Dashboard Posyandu</button>
 </div>
 
-<!-- 🔍 FITUR CARI (AMAN) -->
+<!-- 🔍 FITUR CARI -->
 <div style="margin-top:20px;">
 <input type="text" id="cariNama" placeholder="Ketik Nama / NIK"
 style="padding:10px;border-radius:8px;border:none;width:220px;">
@@ -349,6 +347,17 @@ Cari
 
 <script>
 
+/* 🔥 FIX LINK GOOGLE DRIVE */
+function fixDriveLink(url){
+  if(!url) return "";
+  const match = url.match(/\/d\/(.*?)\//);
+  if(match && match[1]){
+    return "https://drive.google.com/uc?export=preview&id=" + match[1];
+  }
+  return url;
+}
+
+/* 🔍 CARI DATA */
 async function cariData(){
 
 const keyword=document.getElementById("cariNama").value.toLowerCase();
@@ -365,13 +374,16 @@ let col=rows[i].split(",");
 
 let nama=col[1]||"";
 let nik=col[6]||"";
-let pdf=col[30]||"";
+let pdf=fixDriveLink(col[30]||"");
 
 if(nama.toLowerCase().includes(keyword)||nik.toLowerCase().includes(keyword)){
 
-let link=pdf.replace("/view","/preview");
+hasil=`
+<h3 style="color:#00ffd5">${nama}</h3>
+<p>NIK: ${nik}</p>
+<iframe src="${pdf}" width="100%" height="300"></iframe>
+`;
 
-hasil=`<h3 style="color:#00ffd5">${nama}</h3><iframe src="${link}" width="100%" height="300"></iframe>`;
 break;
 
 }
