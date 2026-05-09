@@ -407,12 +407,13 @@ document.getElementById("hasilCari").innerHTML=hasil || "Data tidak ditemukan";
 
 }
 
-// parsing CSV biar aman
+<script>
+
+// parser CSV aman
 function parseCSV(row){
 return row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
 }
 
-// HITUNG JUMLAH IBU HAMIL (AKURAT)
 async function hitungBumil(){
 
 const data = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv")
@@ -424,14 +425,23 @@ let jumlah = 0;
 
 for(let i=1;i<rows.length;i++){
 
-if(rows[i].trim() == "") continue;
+let row = rows[i].trim();
 
-let col = parseCSV(rows[i]);
+// skip baris kosong
+if(row == "") continue;
 
-let nama = col[1] || "";
+let col = parseCSV(row);
 
-// hanya hitung jika ada nama
-if(nama.trim() != ""){
+// ambil data penting
+let nama = (col[1] || "").trim();
+let nik = (col[6] || "").trim();
+
+// 🔥 FILTER KETAT
+if(
+nama.length > 3 &&       // nama harus ada
+nik.length >= 10 &&      // NIK valid (biasanya 16 digit)
+!isNaN(nik)              // harus angka
+){
 jumlah++;
 }
 
@@ -441,9 +451,7 @@ document.getElementById("jumlahBumil").innerText = jumlah;
 
 }
 
-// jalankan otomatis
 hitungBumil();
-
 </script>
 </body>
 </html>
