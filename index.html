@@ -1,4 +1,4 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -6,379 +6,199 @@
 
 <title>SIP BUMIL - Desa Muning Baru</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
-
-body{
-background:#050505;
-color:white;
-overflow-x:hidden;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#050505;color:white;overflow-x:hidden;}
 
 /* HEADER */
-.header{
-width:100%;
-padding:20px 30px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:#0b0b0b;
-border-bottom:1px solid rgba(0,255,255,0.15);
-position:sticky;
-top:0;
-z-index:1000;
-}
-
-.logo{
-display:flex;
-align-items:center;
-gap:15px;
-}
-
-.logo-circle{
-width:55px;
-height:55px;
-border-radius:50%;
-background:linear-gradient(135deg,#00ffd5,#00a2ff);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:26px;
-box-shadow:0 0 20px rgba(0,255,213,0.5);
-}
-
-.logo-text h1{
-font-size:24px;
-color:#00ffd5;
-}
-
-.logo-text p{
-font-size:12px;
-color:#aaa;
-}
-
-.header-btn{
-padding:10px 18px;
-background:#00ffd5;
-border:none;
-border-radius:10px;
-font-weight:bold;
-cursor:pointer;
-}
+.header{width:100%;padding:20px 30px;display:flex;justify-content:space-between;align-items:center;background:#0b0b0b;border-bottom:1px solid rgba(0,255,255,0.15);position:sticky;top:0;}
+.logo{display:flex;align-items:center;gap:15px;}
+.logo-circle{width:55px;height:55px;border-radius:50%;background:linear-gradient(135deg,#00ffd5,#00a2ff);display:flex;align-items:center;justify-content:center;font-size:26px;}
+.logo-text h1{font-size:24px;color:#00ffd5;}
+.logo-text p{font-size:12px;color:#aaa;}
+.header-btn{padding:10px 18px;background:#00ffd5;border:none;border-radius:10px;font-weight:bold;cursor:pointer;}
 
 /* HERO */
-.hero{
-padding:70px 30px;
-max-width:1300px;
-margin:auto;
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:50px;
-align-items:center;
-}
-
-.hero h2{
-font-size:58px;
-line-height:1.1;
-margin-bottom:20px;
-}
-
-.hero h2 span{
-color:#00ffd5;
-}
-
-.hero p{
-color:#aaa;
-line-height:1.8;
-font-size:18px;
-margin-bottom:30px;
-}
-
-.hero-buttons{
-display:flex;
-gap:15px;
-flex-wrap:wrap;
-}
-
-.btn-primary{
-padding:14px 24px;
-background:#00ffd5;
-border:none;
-border-radius:14px;
-font-weight:bold;
-cursor:pointer;
-}
-
-.btn-outline{
-padding:14px 24px;
-border:1px solid #00ffd5;
-background:transparent;
-color:#00ffd5;
-border-radius:14px;
-font-weight:bold;
-cursor:pointer;
-}
+.hero{padding:70px 30px;max-width:1300px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:50px;}
+.hero h2{font-size:58px;}
+.hero h2 span{color:#00ffd5;}
+.hero p{color:#aaa;margin-bottom:20px;}
+.hero-buttons{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-primary{padding:14px 24px;background:#00ffd5;border:none;border-radius:14px;font-weight:bold;cursor:pointer;}
+.btn-outline{padding:14px 24px;border:1px solid #00ffd5;background:transparent;color:#00ffd5;border-radius:14px;}
 
 /* DASHBOARD */
-.dashboard{
-background:#111;
-border-radius:30px;
-padding:30px;
-border:1px solid rgba(0,255,213,0.15);
+.dashboard{background:#111;border-radius:30px;padding:30px;}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.stat-box{background:#191919;padding:25px;border-radius:20px;}
+.stat-box h3{font-size:32px;color:#00ffd5;}
+
+/* SEARCH */
+.search-box{
+max-width:1300px;
+margin:auto;
+padding:20px 30px;
+text-align:center;
 }
 
-.stats{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
+.search-box input{
+padding:12px;
+width:260px;
+border-radius:10px;
+border:none;
 }
 
-.stat-box{
-background:#191919;
-padding:25px;
-border-radius:20px;
+.search-box button{
+padding:12px 16px;
+border:none;
+border-radius:10px;
+background:#00ffd5;
+font-weight:bold;
+cursor:pointer;
+margin-left:5px;
 }
 
-.stat-box h3{
-font-size:38px;
-color:#00ffd5;
-margin-top:10px;
+#hasilCari{
+margin-top:15px;
 }
 
 /* MENU */
-.menu-section{
-max-width:1300px;
-margin:auto;
-padding:30px;
-}
-
-.section-title{
-margin-bottom:40px;
-}
-
-.section-title h2{
-font-size:42px;
-}
-
-.menu-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
-}
-
-.menu-card{
-background:#111;
-padding:30px;
-border-radius:28px;
-}
-
-.menu-card h3{
-color:#00ffd5;
-}
-
-.menu-card button{
-width:100%;
-padding:12px;
-border:none;
-border-radius:12px;
-background:#00ffd5;
-font-weight:bold;
-cursor:pointer;
-}
+.menu-section{max-width:1300px;margin:auto;padding:30px;}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;}
+.menu-card{background:#111;padding:30px;border-radius:28px;}
+.menu-card .icon{font-size:50px;margin-bottom:15px;}
+.menu-card h3{color:#00ffd5;}
+.menu-card button{width:100%;padding:10px;margin-top:10px;background:#00ffd5;border:none;border-radius:10px;}
 
 /* FOOTER */
-.footer{
-margin-top:60px;
-padding:30px;
-text-align:center;
-background:#0b0b0b;
-}
-
+.footer{text-align:center;padding:30px;background:#0b0b0b;margin-top:40px;}
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <div class="header">
 <div class="logo">
 <div class="logo-circle">🤰</div>
 <div class="logo-text">
 <h1>SIP BUMIL</h1>
-<p>Sistem Informasi Persiapan Ibu Hamil dan Bayinya</p>
+<p>Sistem Informasi Ibu Hamil</p>
 </div>
 </div>
 <button class="header-btn">Login Admin</button>
 </div>
 
-<!-- HERO -->
 <section class="hero">
-
 <div>
-
-<h2>Monitoring <span>Ibu Hamil</span> dan Bayi Desa</h2>
-
-<p>
-Platform digital kesehatan desa untuk pendataan ibu hamil,
-pemantauan bayi, jadwal posyandu, monitoring stunting.
-</p>
+<h2>Monitoring <span>Ibu Hamil</span></h2>
+<p>Platform digital kesehatan desa</p>
 
 <div class="hero-buttons">
-
 <button class="btn-primary"
 onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeNF72miW4m7Y4iRNvPY21pOj8SvDLtIqDbdBD60cylcL_AnQ/viewform','_blank')">
-Input Data Bumil
+Input Data
 </button>
-
-<button class="btn-outline">
-Dashboard Posyandu
-</button>
-
+</div>
 </div>
 
-<!-- 🔥 TAMBAHAN FITUR (TIDAK MERUBAH DESAIN) -->
-<div style="margin-top:15px;">
-<input id="cariNama" placeholder="Ketik Nama / NIK"
-style="padding:10px;border-radius:8px;border:none;width:220px;">
-
-<button onclick="cariData()"
-style="padding:10px;border:none;border-radius:8px;background:#00ffd5;font-weight:bold;">
-Cari
-</button>
-
-<div id="hasilCari" style="margin-top:15px;"></div>
-</div>
-
-</div>
-
-<!-- DASHBOARD -->
 <div class="dashboard">
 <div class="stats">
-
-<div class="stat-box">
-<h3>128</h3>
-<p>Ibu Hamil Aktif</p>
-</div>
-
-<div class="stat-box">
-<h3>94</h3>
-<p>Bayi Terdata</p>
-</div>
-
-<div class="stat-box">
-<h3>12</h3>
-<p>Jadwal Posyandu</p>
-</div>
-
-<div class="stat-box">
-<h3 style="color:#ff5252;">5</h3>
-<p>Risiko Tinggi</p>
-</div>
-
+<div class="stat-box"><h3>128</h3><p>Ibu Hamil</p></div>
+<div class="stat-box"><h3>94</h3><p>Bayi</p></div>
 </div>
 </div>
-
 </section>
 
-<!-- MENU (TETAP ADA) -->
-<section class="menu-section">
-
-<div class="section-title">
-<h2>Menu Utama</h2>
+<!-- 🔍 SEARCH -->
+<div class="search-box">
+<input type="text" id="cariNama" placeholder="Ketik Nama / NIK">
+<button onclick="cariData()">Cari</button>
+<div id="hasilCari"></div>
 </div>
 
+<!-- MENU -->
+<section class="menu-section">
 <div class="menu-grid">
 
 <div class="menu-card">
-<h3>Data Ibu Hamil</h3>
+<div class="icon">🤰</div>
+<h3>Data Bumil</h3>
 <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeNF72miW4m7Y4iRNvPY21pOj8SvDLtIqDbdBD60cylcL_AnQ/viewform','_blank')">
-Buka Menu
+Buka
 </button>
 </div>
 
 <div class="menu-card">
-<h3>Data Bayi</h3>
-<button>Buka Menu</button>
-</div>
-
-<div class="menu-card">
-<h3>Jadwal Posyandu</h3>
-<button>Buka Menu</button>
-</div>
-
-<div class="menu-card">
-<h3>Risiko Tinggi</h3>
-<button>Buka Menu</button>
-</div>
-
-<div class="menu-card">
-<h3>Grafik Stunting</h3>
-<button>Buka Menu</button>
+<div class="icon">☎️</div>
+<h3>Kontak Bidan</h3>
+<button onclick="window.open('https://wa.me/628xxxxxxxxxx')">
+Hubungi
+</button>
 </div>
 
 </div>
-
 </section>
 
-<!-- FOOTER -->
 <div class="footer">
-<h3>SIP BUMIL</h3>
-<p>© 2026 Desa Muning Baru</p>
+© 2026 Desa Muning Baru
 </div>
 
-<!-- SCRIPT -->
 <script>
+
+// parser CSV aman (biar koma tidak rusak)
+function parseCSV(row){
+let result=[],cur="",inside=false;
+for(let c of row){
+if(c=='"') inside=!inside;
+else if(c==',' && !inside){ result.push(cur); cur=""; }
+else cur+=c;
+}
+result.push(cur);
+return result;
+}
+
+// ubah link drive jadi aman
+function fixDrive(url){
+let id = url.match(/[-\w]{25,}/);
+return id ? "https://drive.google.com/uc?export=view&id="+id[0] : url;
+}
 
 async function cariData(){
 
-const keyword = document.getElementById("cariNama").value.toLowerCase();
+const keyword=document.getElementById("cariNama").value.toLowerCase();
 
-const res = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv");
+const res=await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv");
+const text=await res.text();
+const rows=text.split("\n");
 
-const text = await res.text();
-const rows = text.split("\n");
-
-let hasil = "Data tidak ditemukan";
+let hasil="Data tidak ditemukan";
 
 for(let i=1;i<rows.length;i++){
 
-let col = rows[i].split(",");
+let col=parseCSV(rows[i]);
 
-let nama = col[1] || "";
-let nik  = col[6] || "";
-let pdf  = col[30] || "";
+let nama=col[1]||"";
+let nik=col[6]||"";
+let pdf=fixDrive(col[30]||"");
 
-if(nama.toLowerCase().includes(keyword) || nik.toLowerCase().includes(keyword)){
+if(nama.toLowerCase().includes(keyword)||nik.includes(keyword)){
 
-if(!pdf){
-hasil = "Link stiker tidak tersedia";
-}else{
-hasil = `
+hasil=`
 <h3 style="color:#00ffd5">${nama}</h3>
 <p>NIK: ${nik}</p>
 <button onclick="window.open('${pdf}','_blank')"
-style="padding:12px;border:none;border-radius:10px;background:#00ffd5;font-weight:bold;">
-Lihat / Cetak Stiker
+style="padding:10px;background:#00ffd5;border:none;border-radius:8px;">
+Lihat Stiker
 </button>
 `;
-}
 
 break;
 }
-
 }
 
-document.getElementById("hasilCari").innerHTML = hasil;
-
+document.getElementById("hasilCari").innerHTML=hasil;
 }
 
 </script>
