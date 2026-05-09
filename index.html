@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>SIP BUMILNYA - Desa Muning Baru</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -21,14 +20,12 @@ justify-content:space-between;
 background:#0b0b0b;
 border-bottom:1px solid rgba(0,255,255,0.15);
 }
-
 .logo{display:flex;align-items:center;gap:15px;}
 .logo-circle{
 width:55px;height:55px;border-radius:50%;
 background:linear-gradient(135deg,#00ffd5,#00a2ff);
 display:flex;align-items:center;justify-content:center;font-size:26px;
 }
-
 .logo-text h1{font-size:22px;color:#00ffd5;}
 .header-btn{
 padding:10px 18px;background:#00ffd5;border:none;border-radius:10px;font-weight:bold;cursor:pointer;
@@ -36,42 +33,41 @@ padding:10px 18px;background:#00ffd5;border:none;border-radius:10px;font-weight:
 
 /* HERO */
 .hero{
-padding:50px 30px;
+padding:60px 30px;
 max-width:1200px;
 margin:auto;
 text-align:center;
 }
-
-.hero h2{font-size:42px;margin-bottom:10px;}
+.hero h2{font-size:44px;margin-bottom:15px;}
 .hero span{color:#00ffd5;}
+.hero p{color:#aaa;margin-bottom:25px;}
 
+/* SEARCH TAMBAHAN (TIDAK MERUBAH DESAIN) */
 .search-box{
-margin-top:25px;
+margin-top:20px;
 }
-
 .search-box input{
 width:260px;
 padding:12px;
 border-radius:10px;
 border:none;
-margin-right:5px;
 }
-
 .search-box button{
-padding:12px 16px;
+padding:12px;
 border:none;
 border-radius:10px;
 background:#00ffd5;
 font-weight:bold;
 cursor:pointer;
+margin-left:5px;
 }
 
 /* HASIL */
 .hasil{
-margin-top:25px;
+margin-top:20px;
 background:#111;
 padding:20px;
-border-radius:20px;
+border-radius:15px;
 max-width:600px;
 margin-left:auto;
 margin-right:auto;
@@ -86,14 +82,12 @@ padding:30px;
 max-width:1200px;
 margin:auto;
 }
-
 .card{
 background:#111;
-padding:20px;
+padding:25px;
 border-radius:20px;
 text-align:center;
 }
-
 .card button{
 margin-top:10px;
 padding:10px;
@@ -103,6 +97,7 @@ background:#00ffd5;
 cursor:pointer;
 }
 
+/* FOOTER */
 .footer{
 text-align:center;
 padding:20px;
@@ -127,12 +122,13 @@ margin-top:40px;
 <button class="header-btn">Admin</button>
 </div>
 
-<!-- HERO + SEARCH -->
+<!-- HERO -->
 <div class="hero">
 
 <h2>Monitoring <span>Ibu Hamil</span></h2>
-<p>Cari data ibu hamil dan tampilkan stiker P4K</p>
+<p>Platform pencarian data ibu hamil & stiker P4K</p>
 
+<!-- 🔍 TAMBAHAN FITUR (AMAN) -->
 <div class="search-box">
 <input type="text" id="cariNama" placeholder="Ketik Nama / NIK">
 <button onclick="cariData()">Cari</button>
@@ -188,7 +184,7 @@ for(let i=1;i<rows.length;i++){
 
 let kolom = rows[i].split(",");
 
-// SESUAI DATA KAMU
+// SESUAI STRUKTUR KAMU
 let nama = kolom[1] || "";
 let nik  = kolom[6] || "";
 let linkPDF = kolom[30] || "";
@@ -204,23 +200,17 @@ let embed = linkPDF
 .replace("uc?id=","file/d/");
 
 hasil = `
-
 <h3 style="color:#00ffd5">🤰 ${nama}</h3>
 <p><b>NIK:</b> ${nik}</p>
 
 <hr>
 
-<iframe 
-src="${embed}" 
-width="100%" 
-height="400"
-style="border:none;border-radius:10px;">
-</iframe>
+<iframe src="${embed}" width="100%" height="400"
+style="border:none;border-radius:10px;"></iframe>
 
 <a href="${linkPDF}" target="_blank">
 <button style="margin-top:10px;">Download Stiker</button>
 </a>
-
 `;
 
 break;
