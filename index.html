@@ -267,7 +267,7 @@ Cari
 
 <div class="stat-box">
 <div class="stat-icon">🤰</div>
-<h3>128</h3>
+<h3 id="jumlahBumil">0</h3>
 <p>Ibu Hamil Aktif</p>
 </div>
 
@@ -406,7 +406,26 @@ break;
 document.getElementById("hasilCari").innerHTML=hasil || "Data tidak ditemukan";
 
 }
+// HITUNG JUMLAH IBU HAMIL
+async function hitungBumil(){
 
+const data = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv")
+.then(r => r.text());
+
+const rows = data.split("\n");
+
+// kurangi header
+let jumlah = rows.length - 1;
+
+// kalau ada baris kosong di bawah
+if(rows[rows.length-1] == "") jumlah--;
+
+document.getElementById("jumlahBumil").innerText = jumlah;
+
+}
+
+// jalankan otomatis saat halaman dibuka
+hitungBumil();
 </script>
 
 </body>
