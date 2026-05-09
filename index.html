@@ -246,7 +246,17 @@ background:#0b0b0b;
 
 <!-- HERO -->
 <section class="hero">
+<div style="max-width:1300px;margin:auto;padding:20px 30px;text-align:center;">
 
+<input type="text" id="cariNama" placeholder="Ketik Nama / NIK"
+style="padding:12px;width:260px;border-radius:10px;border:none;">
+
+<button onclick="cariData()"
+style="padding:12px 16px;border:none;border-radius:10px;background:#00ffd5;font-weight:bold;">
+Cari
+</button>
+
+<div id="hasilCari" style="margin-top:15px;"></div>
 <div>
 <h2>Monitoring <span>Ibu Hamil</span></h2>
 <p>Platform digital kesehatan desa</p>
@@ -365,6 +375,66 @@ document.getElementById("hasilCari").innerHTML=hasil;
 }
 
 </script>
+<script>
 
+function parseCSV(row){
+let result=[],cur="",inside=false;
+for(let c of row){
+if(c=='"') inside=!inside;
+else if(c==',' && !inside){ result.push(cur); cur=""; }
+else cur+=c;
+}
+result.push(cur);
+return result;
+}
+
+function fixDrive(url){
+let id=url.match(/[-\w]{25,}/);
+return id ? "https://drive.google.com/uc?export=view&id="+id[0] : "";
+}
+
+async function cariData(){
+
+const keyword=document.getElementById("cariNama").value.toLowerCase();
+
+const res=await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv");
+
+const text=await res.text();
+const rows=text.split("\n");
+
+let hasil="Data tidak ditemukan";
+
+for(let i=1;i<rows.length;i++){
+
+let col=parseCSV(rows[i]);
+
+let nama=col[1]||"";
+let nik=col[6]||"";
+let pdf=fixDrive(col[30]||"");
+
+if(nama.toLowerCase().includes(keyword)||nik.includes(keyword)){
+
+if(!pdf){
+hasil="Link stiker tidak tersedia";
+}else{
+hasil=`
+<h3 style="color:#00ffd5">${nama}</h3>
+<p>NIK: ${nik}</p>
+<button onclick="window.open('${pdf}','_blank')"
+style="padding:10px;border:none;border-radius:10px;background:#00ffd5;">
+Lihat Stiker
+</button>
+`;
+}
+
+break;
+}
+}
+
+document.getElementById("hasilCari").innerHTML=hasil;
+
+}
+
+</script>
 </body>
 </html>
