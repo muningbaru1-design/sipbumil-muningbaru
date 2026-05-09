@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,6 +11,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
+/* =========================
+   RESET
+========================= */
 
 *{
 margin:0;
@@ -28,7 +33,10 @@ color:white;
 overflow-x:hidden;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
+
 .header{
 width:100%;
 padding:20px 30px;
@@ -72,7 +80,7 @@ color:#aaa;
 }
 
 .header-btn{
-padding:12px 18px;
+padding:12px 20px;
 background:#00ffd5;
 border:none;
 border-radius:12px;
@@ -85,7 +93,10 @@ transition:0.3s;
 transform:translateY(-2px);
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
+
 .hero{
 padding:70px 30px;
 max-width:1300px;
@@ -108,8 +119,8 @@ color:#00ffd5;
 
 .hero p{
 color:#aaa;
-margin-bottom:30px;
 line-height:1.7;
+margin-bottom:30px;
 }
 
 .hero-buttons{
@@ -134,8 +145,8 @@ color:black;
 }
 
 .btn-outline{
-border:1px solid #00ffd5;
 background:transparent;
+border:1px solid #00ffd5;
 color:#00ffd5;
 }
 
@@ -144,7 +155,10 @@ color:#00ffd5;
 transform:translateY(-3px);
 }
 
-/* SEARCH */
+/* =========================
+   SEARCH BOX
+========================= */
+
 .search-box{
 margin-top:25px;
 background:#111;
@@ -184,11 +198,10 @@ font-weight:bold;
 cursor:pointer;
 }
 
-#hasilCari{
-margin-top:20px;
-}
+/* =========================
+   DASHBOARD
+========================= */
 
-/* DASHBOARD */
 .dashboard{
 background:#111;
 border-radius:30px;
@@ -229,7 +242,10 @@ color:#aaa;
 margin-top:5px;
 }
 
-/* MENU */
+/* =========================
+   MENU
+========================= */
+
 .menu-section{
 max-width:1300px;
 margin:auto;
@@ -299,13 +315,16 @@ transition:0.3s;
 transform:scale(1.02);
 }
 
-/* RESULT CARD */
+/* =========================
+   RESULT CARD
+========================= */
+
 .result-card{
 background:#111;
 padding:20px;
 border-radius:18px;
 border:1px solid rgba(0,255,213,0.1);
-margin-top:10px;
+margin-top:15px;
 }
 
 .result-card h3{
@@ -314,17 +333,73 @@ margin-bottom:10px;
 }
 
 .result-card p{
-margin-bottom:5px;
 color:#ddd;
+margin-bottom:5px;
 }
 
-/* LOADING */
-.loading{
+/* =========================
+   MODAL LOGIN
+========================= */
+
+#loginModal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+z-index:9999;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.login-box{
+background:#111;
+padding:30px;
+border-radius:20px;
+width:100%;
+max-width:400px;
+border:1px solid rgba(0,255,213,0.2);
+}
+
+.login-box h2{
 color:#00ffd5;
-padding:15px 0;
+margin-bottom:20px;
 }
 
-/* FOOTER */
+.login-box input{
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+background:#1a1a1a;
+color:white;
+margin-bottom:15px;
+outline:none;
+}
+
+.login-box button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+background:#00ffd5;
+font-weight:bold;
+cursor:pointer;
+}
+
+#loginError{
+color:#ff5252;
+margin-top:15px;
+display:none;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
 .footer{
 margin-top:60px;
 padding:30px;
@@ -342,7 +417,10 @@ margin-bottom:10px;
 color:#888;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
+
 @media(max-width:900px){
 
 .hero{
@@ -366,11 +444,15 @@ text-align:center;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<!-- HEADER -->
+<!-- =========================
+     HEADER
+========================= -->
+
 <div class="header">
 
 <div class="logo">
@@ -390,7 +472,10 @@ Login Admin
 
 </div>
 
-<!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero">
 
 <!-- LEFT -->
@@ -409,12 +494,14 @@ bayi, risiko tinggi, dan pelayanan posyandu modern berbasis data.
 
 <div class="hero-buttons">
 
-<button class="btn-primary"
+<button
+class="btn-primary"
 onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeNF72miW4m7Y4iRNvPY21pOj8SvDLtIqDbdBD60cylcL_AnQ/viewform','_blank')">
 Input Data Bumil
 </button>
 
-<button class="btn-outline"
+<button
+class="btn-outline"
 onclick="document.getElementById('menuUtama').scrollIntoView()">
 Dashboard Posyandu
 </button>
@@ -432,7 +519,6 @@ Dashboard Posyandu
 type="text"
 id="cariNama"
 placeholder="Ketik Nama / NIK"
-onkeyup="cariData()"
 >
 
 <button onclick="cariData()">
@@ -482,7 +568,10 @@ Cari
 
 </section>
 
-<!-- MENU -->
+<!-- =========================
+     MENU
+========================= -->
+
 <section class="menu-section" id="menuUtama">
 
 <div class="section-title">
@@ -492,7 +581,6 @@ Cari
 
 <div class="menu-grid">
 
-<!-- CARD -->
 <div class="menu-card">
 <div class="icon">🤰</div>
 <h3>Data Ibu Hamil</h3>
@@ -503,7 +591,6 @@ Buka Menu
 </button>
 </div>
 
-<!-- CARD -->
 <div class="menu-card">
 <div class="icon">👶</div>
 <h3>Data Bayi</h3>
@@ -514,7 +601,6 @@ Buka Menu
 </button>
 </div>
 
-<!-- CARD -->
 <div class="menu-card">
 <div class="icon">📅</div>
 <h3>Jadwal Posyandu</h3>
@@ -525,7 +611,6 @@ Buka Menu
 </button>
 </div>
 
-<!-- CARD -->
 <div class="menu-card">
 <div class="icon">🚨</div>
 <h3>Risiko Tinggi</h3>
@@ -536,7 +621,6 @@ Buka Menu
 </button>
 </div>
 
-<!-- CARD -->
 <div class="menu-card">
 <div class="icon">📊</div>
 <h3>Grafik Stunting</h3>
@@ -547,7 +631,6 @@ Buka Menu
 </button>
 </div>
 
-<!-- CARD -->
 <div class="menu-card">
 <div class="icon">☎️</div>
 <h3>Kontak Bidan</h3>
@@ -562,16 +645,49 @@ Hubungi
 
 </section>
 
-<!-- FOOTER -->
+<!-- =========================
+     FOOTER
+========================= -->
+
 <div class="footer">
 
 <h3>SIP BUMILNYA</h3>
 
-<p>
-© 2026 Desa Muning Baru
+<p>© 2026 Desa Muning Baru</p>
+
+</div>
+
+<!-- =========================
+     LOGIN MODAL
+========================= -->
+
+<div id="loginModal">
+
+<div class="login-box">
+
+<h2>Login Admin</h2>
+
+<input
+type="password"
+id="adminPassword"
+placeholder="Masukkan Password"
+>
+
+<button onclick="loginAdmin()">
+Login
+</button>
+
+<p id="loginError">
+Password salah
 </p>
 
 </div>
+
+</div>
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
 
 <script>
 
@@ -581,6 +697,11 @@ Hubungi
 
 const CSV_URL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv";
+
+const ADMIN_PASSWORD = "muningbaru2026";
+
+const SPREADSHEET_URL =
+"https://docs.google.com/spreadsheets/d/1ubTT7jy8hCH6kTUstf92wzYaLumyEHe0ue28ZnrecBg/edit?usp=sharing";
 
 /* =========================
    CSV PARSER
@@ -616,7 +737,7 @@ return result;
 }
 
 /* =========================
-   FIX GOOGLE DRIVE LINK
+   FIX GOOGLE DRIVE
 ========================= */
 
 function fixDrive(url){
@@ -632,10 +753,10 @@ return id
 }
 
 /* =========================
-   COUNTER ANIMATION
+   COUNTER
 ========================= */
 
-function animateValue(id, start, end, duration){
+function animateValue(id,start,end,duration){
 
 let range = end - start;
 
@@ -667,7 +788,7 @@ clearInterval(timer);
 }
 
 /* =========================
-   HITUNG DATA BUMIL
+   HITUNG BUMIL
 ========================= */
 
 async function hitungBumil(){
@@ -716,18 +837,19 @@ document.getElementById("jumlahBumil").innerText = "0";
 }
 
 /* =========================
-   SEARCH DATA
+   CARI DATA
 ========================= */
 
 async function cariData(){
 
-const keyword = document
-.getElementById("cariNama")
+const keyword =
+document.getElementById("cariNama")
 .value
 .toLowerCase()
 .trim();
 
-const hasilCari = document.getElementById("hasilCari");
+const hasilCari =
+document.getElementById("hasilCari");
 
 if(keyword === ""){
 
@@ -737,7 +859,7 @@ return;
 }
 
 hasilCari.innerHTML =
-'<div class="loading">Mencari data...</div>';
+"<p style='color:#00ffd5;'>Mencari data...</p>";
 
 try{
 
@@ -836,137 +958,100 @@ Terjadi kesalahan saat mengambil data
 }
 
 /* =========================
-   INIT
-========================= */
-
-hitungBumil();
-/* =========================
-   LOGIN ADMIN
+   LOGIN MODAL
 ========================= */
 
 function bukaLogin(){
 
-document.getElementById("loginModal").style.display = "flex";
+document.getElementById("loginModal")
+.style.display = "flex";
+
+document.getElementById("adminPassword").focus();
 
 }
 
 /* =========================
-   VALIDASI LOGIN
+   LOGIN ADMIN
 ========================= */
 
 function loginAdmin(){
 
 const password =
-document.getElementById("12345").value;
+document.getElementById("adminPassword").value;
 
-const benar = "muningbaru2026";
+if(password === ADMIN_PASSWORD){
 
-/* PASSWORD BENAR */
-if(password === benar){
+window.open(SPREADSHEET_URL,"_blank");
 
-window.open(
-"https://docs.google.com/spreadsheets/d/1ubTT7jy8hCH6kTUstf92wzYaLumyEHe0ue28ZnrecBg/edit?usp=sharing",
-"_blank"
-);
+document.getElementById("loginModal")
+.style.display = "none";
 
-document.getElementById("loginModal").style.display = "none";
+document.getElementById("loginError")
+.style.display = "none";
 
 document.getElementById("adminPassword").value = "";
 
-document.getElementById("loginError").style.display = "none";
+}else{
 
-}
-
-/* PASSWORD SALAH */
-else{
-
-document.getElementById("loginError").style.display = "block";
+document.getElementById("loginError")
+.style.display = "block";
 
 }
 
 }
 
 /* =========================
-   TUTUP MODAL KLIK LUAR
+   CLOSE MODAL
 ========================= */
 
-window.onclick = function(e){
+window.onclick = function(event){
 
-const modal = document.getElementById("loginModal");
+const modal =
+document.getElementById("loginModal");
 
-if(e.target == modal){
+if(event.target === modal){
 
 modal.style.display = "none";
 
 }
 
 }
+
+/* =========================
+   ENTER LOGIN
+========================= */
+
+document
+.getElementById("adminPassword")
+.addEventListener("keypress", function(event){
+
+if(event.key === "Enter"){
+loginAdmin();
+}
+
+});
+
+/* =========================
+   ENTER SEARCH
+========================= */
+
+document
+.getElementById("cariNama")
+.addEventListener("keypress", function(event){
+
+if(event.key === "Enter"){
+cariData();
+}
+
+});
+
+/* =========================
+   INIT
+========================= */
+
+hitungBumil();
+
 </script>
-<!-- MODAL LOGIN ADMIN -->
-<div id="loginModal" style="
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.8);
-z-index:9999;
-justify-content:center;
-align-items:center;
-">
 
-<div style="
-background:#111;
-padding:30px;
-border-radius:20px;
-width:90%;
-max-width:400px;
-border:1px solid rgba(0,255,213,0.2);
-">
-
-<h2 style="color:#00ffd5;margin-bottom:20px;">
-Login Admin
-</h2>
-
-<input
-type="password"
-id="adminPassword"
-placeholder="Masukkan Password"
-style="
-width:100%;
-padding:14px;
-border:none;
-border-radius:10px;
-background:#1a1a1a;
-color:white;
-margin-bottom:15px;
-outline:none;
-"
->
-
-<button onclick="loginAdmin()" style="
-width:100%;
-padding:14px;
-border:none;
-border-radius:10px;
-background:#00ffd5;
-font-weight:bold;
-cursor:pointer;
-">
-Login
-</button>
-
-<p id="loginError" style="
-color:#ff5252;
-margin-top:15px;
-display:none;
-">
-Password salah
-</p>
-
-</div>
-
-</div>
 </body>
 </html>
