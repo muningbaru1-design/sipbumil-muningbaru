@@ -18,6 +18,10 @@ box-sizing:border-box;
 font-family:'Poppins',sans-serif;
 }
 
+html{
+scroll-behavior:smooth;
+}
+
 body{
 background:#050505;
 color:white;
@@ -36,6 +40,7 @@ border-bottom:1px solid rgba(0,255,255,0.15);
 position:sticky;
 top:0;
 z-index:1000;
+backdrop-filter:blur(10px);
 }
 
 .logo{
@@ -67,12 +72,17 @@ color:#aaa;
 }
 
 .header-btn{
-padding:10px 18px;
+padding:12px 18px;
 background:#00ffd5;
 border:none;
-border-radius:10px;
+border-radius:12px;
 font-weight:bold;
 cursor:pointer;
+transition:0.3s;
+}
+
+.header-btn:hover{
+transform:translateY(-2px);
 }
 
 /* HERO */
@@ -88,6 +98,7 @@ align-items:center;
 
 .hero h2{
 font-size:58px;
+line-height:1.1;
 margin-bottom:20px;
 }
 
@@ -98,6 +109,7 @@ color:#00ffd5;
 .hero p{
 color:#aaa;
 margin-bottom:30px;
+line-height:1.7;
 }
 
 .hero-buttons{
@@ -106,23 +118,74 @@ gap:15px;
 flex-wrap:wrap;
 }
 
-.btn-primary{
+.btn-primary,
+.btn-outline{
 padding:14px 24px;
+border-radius:14px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+.btn-primary{
 background:#00ffd5;
 border:none;
-border-radius:14px;
+color:black;
+}
+
+.btn-outline{
+border:1px solid #00ffd5;
+background:transparent;
+color:#00ffd5;
+}
+
+.btn-primary:hover,
+.btn-outline:hover{
+transform:translateY(-3px);
+}
+
+/* SEARCH */
+.search-box{
+margin-top:25px;
+background:#111;
+padding:20px;
+border-radius:20px;
+border:1px solid rgba(0,255,213,0.1);
+}
+
+.search-box h3{
+margin-bottom:15px;
+color:#00ffd5;
+}
+
+.search-flex{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.search-flex input{
+flex:1;
+min-width:220px;
+padding:12px;
+border:none;
+border-radius:10px;
+background:#1a1a1a;
+color:white;
+outline:none;
+}
+
+.search-flex button{
+padding:12px 20px;
+border:none;
+border-radius:10px;
+background:#00ffd5;
 font-weight:bold;
 cursor:pointer;
 }
 
-.btn-outline{
-padding:14px 24px;
-border:1px solid #00ffd5;
-background:transparent;
-color:#00ffd5;
-border-radius:14px;
-font-weight:bold;
-cursor:pointer;
+#hasilCari{
+margin-top:20px;
 }
 
 /* DASHBOARD */
@@ -143,15 +206,27 @@ gap:20px;
 background:#191919;
 padding:25px;
 border-radius:20px;
+transition:0.3s;
+}
+
+.stat-box:hover{
+transform:translateY(-5px);
+box-shadow:0 0 20px rgba(0,255,213,0.15);
 }
 
 .stat-icon{
 font-size:42px;
+margin-bottom:10px;
 }
 
 .stat-box h3{
 font-size:38px;
 color:#00ffd5;
+}
+
+.stat-box p{
+color:#aaa;
+margin-top:5px;
 }
 
 /* MENU */
@@ -165,6 +240,15 @@ padding:30px;
 margin-bottom:40px;
 }
 
+.section-title h2{
+font-size:38px;
+margin-bottom:10px;
+}
+
+.section-title p{
+color:#aaa;
+}
+
 .menu-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -176,6 +260,12 @@ background:#111;
 padding:30px;
 border-radius:28px;
 border:1px solid rgba(0,255,213,0.08);
+transition:0.3s;
+}
+
+.menu-card:hover{
+transform:translateY(-8px);
+box-shadow:0 0 25px rgba(0,255,213,0.15);
 }
 
 .menu-card .icon{
@@ -191,6 +281,7 @@ margin-bottom:10px;
 .menu-card p{
 color:#aaa;
 margin-bottom:15px;
+line-height:1.6;
 }
 
 .menu-card button{
@@ -201,6 +292,36 @@ border-radius:12px;
 background:#00ffd5;
 font-weight:bold;
 cursor:pointer;
+transition:0.3s;
+}
+
+.menu-card button:hover{
+transform:scale(1.02);
+}
+
+/* RESULT CARD */
+.result-card{
+background:#111;
+padding:20px;
+border-radius:18px;
+border:1px solid rgba(0,255,213,0.1);
+margin-top:10px;
+}
+
+.result-card h3{
+color:#00ffd5;
+margin-bottom:10px;
+}
+
+.result-card p{
+margin-bottom:5px;
+color:#ddd;
+}
+
+/* LOADING */
+.loading{
+color:#00ffd5;
+padding:15px 0;
 }
 
 /* FOOTER */
@@ -209,6 +330,39 @@ margin-top:60px;
 padding:30px;
 text-align:center;
 background:#0b0b0b;
+border-top:1px solid rgba(0,255,213,0.1);
+}
+
+.footer h3{
+color:#00ffd5;
+margin-bottom:10px;
+}
+
+.footer p{
+color:#888;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+.hero{
+grid-template-columns:1fr;
+}
+
+.hero h2{
+font-size:40px;
+}
+
+.stats{
+grid-template-columns:1fr;
+}
+
+.header{
+flex-direction:column;
+gap:20px;
+text-align:center;
+}
+
 }
 
 </style>
@@ -218,51 +372,84 @@ background:#0b0b0b;
 
 <!-- HEADER -->
 <div class="header">
+
 <div class="logo">
+
 <div class="logo-circle">🤰</div>
+
 <div class="logo-text">
 <h1>SIP BUMILNYA</h1>
 <p>Sistem Informasi Persiapan Ibu Hamil dan Bayinya</p>
 </div>
+
 </div>
-<button class="header-btn">Login Admin</button>
+
+<button class="header-btn">
+Login Admin
+</button>
+
 </div>
 
 <!-- HERO -->
 <section class="hero">
 
+<!-- LEFT -->
 <div>
 
-<h2>Monitoring <span>Ibu Hamil</span> dan Bayi Desa</h2>
+<h2>
+Monitoring
+<span>Ibu Hamil</span>
+dan Bayi Desa
+</h2>
 
-<p>Platform digital kesehatan desa untuk pendataan ibu hamil dan bayi.</p>
+<p>
+Platform digital kesehatan desa untuk pendataan ibu hamil,
+bayi, risiko tinggi, dan pelayanan posyandu modern berbasis data.
+</p>
 
 <div class="hero-buttons">
-<button class="btn-primary" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeNF72miW4m7Y4iRNvPY21pOj8SvDLtIqDbdBD60cylcL_AnQ/viewform','_blank')">
+
+<button class="btn-primary"
+onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeNF72miW4m7Y4iRNvPY21pOj8SvDLtIqDbdBD60cylcL_AnQ/viewform','_blank')">
 Input Data Bumil
 </button>
 
-<button class="btn-outline">Dashboard Posyandu</button>
+<button class="btn-outline"
+onclick="document.getElementById('menuUtama').scrollIntoView()">
+Dashboard Posyandu
+</button>
+
 </div>
 
 <!-- SEARCH -->
-<div style="margin-top:20px;">
-<input type="text" id="cariNama" placeholder="Ketik Nama / NIK"
-style="padding:10px;border-radius:8px;border:none;width:220px;"
-onkeyup="cariData()">
+<div class="search-box">
 
-<button onclick="cariData()"
-style="padding:10px;border:none;border-radius:8px;background:#00ffd5;font-weight:bold;">
+<h3>🔍 Cari Data Bumil</h3>
+
+<div class="search-flex">
+
+<input
+type="text"
+id="cariNama"
+placeholder="Ketik Nama / NIK"
+onkeyup="cariData()"
+>
+
+<button onclick="cariData()">
 Cari
 </button>
 
-<div id="hasilCari" style="margin-top:15px;"></div>
 </div>
+
+<div id="hasilCari"></div>
 
 </div>
 
-<!-- DASHBOARD -->
+</div>
+
+<!-- RIGHT -->
 <div class="dashboard">
+
 <div class="stats">
 
 <div class="stat-box">
@@ -290,12 +477,13 @@ Cari
 </div>
 
 </div>
+
 </div>
 
 </section>
 
 <!-- MENU -->
-<section class="menu-section">
+<section class="menu-section" id="menuUtama">
 
 <div class="section-title">
 <h2>Menu Utama</h2>
@@ -304,154 +492,356 @@ Cari
 
 <div class="menu-grid">
 
+<!-- CARD -->
 <div class="menu-card">
 <div class="icon">🤰</div>
 <h3>Data Ibu Hamil</h3>
 <p>Pendataan lengkap ibu hamil desa.</p>
-<button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeNF72miW4m7Y4iRNvPY21pOj8SvDLtIqDbdBD60cylcL_AnQ/viewform','_blank')">Buka Menu</button>
+
+<button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeNF72miW4m7Y4iRNvPY21pOj8SvDLtIqDbdBD60cylcL_AnQ/viewform','_blank')">
+Buka Menu
+</button>
 </div>
 
+<!-- CARD -->
 <div class="menu-card">
 <div class="icon">👶</div>
 <h3>Data Bayi</h3>
-<button>Buka Menu</button>
+<p>Informasi data bayi dan balita desa.</p>
+
+<button onclick="alert('Menu Data Bayi segera tersedia')">
+Buka Menu
+</button>
 </div>
 
+<!-- CARD -->
 <div class="menu-card">
 <div class="icon">📅</div>
 <h3>Jadwal Posyandu</h3>
-<button>Buka Menu</button>
+<p>Informasi jadwal pelayanan kesehatan desa.</p>
+
+<button onclick="alert('Menu Jadwal Posyandu segera tersedia')">
+Buka Menu
+</button>
 </div>
 
+<!-- CARD -->
 <div class="menu-card">
 <div class="icon">🚨</div>
 <h3>Risiko Tinggi</h3>
-<button>Buka Menu</button>
+<p>Monitoring ibu hamil risiko tinggi.</p>
+
+<button onclick="alert('Menu Risiko Tinggi segera tersedia')">
+Buka Menu
+</button>
 </div>
 
+<!-- CARD -->
 <div class="menu-card">
 <div class="icon">📊</div>
 <h3>Grafik Stunting</h3>
-<button>Buka Menu</button>
+<p>Grafik dan statistik kesehatan desa.</p>
+
+<button onclick="alert('Menu Grafik segera tersedia')">
+Buka Menu
+</button>
 </div>
 
+<!-- CARD -->
 <div class="menu-card">
 <div class="icon">☎️</div>
 <h3>Kontak Bidan</h3>
-<button onclick="window.open('https://wa.me/6285246320106')">Hubungi</button>
+<p>Hubungi bidan desa secara langsung.</p>
+
+<button onclick="window.open('https://wa.me/6285246320106')">
+Hubungi
+</button>
 </div>
 
 </div>
 
 </section>
 
+<!-- FOOTER -->
 <div class="footer">
+
 <h3>SIP BUMILNYA</h3>
-<p>© 2026 Desa Muning Baru</p>
+
+<p>
+© 2026 Desa Muning Baru
+</p>
+
 </div>
 
 <script>
 
-// PARSE CSV AMAN
+/* =========================
+   CONFIG
+========================= */
+
+const CSV_URL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv";
+
+/* =========================
+   CSV PARSER
+========================= */
+
 function parseCSV(row){
-let result=[],cur="",inside=false;
-for(let c of row){
-if(c=='"') inside=!inside;
-else if(c==',' && !inside){ result.push(cur); cur=""; }
-else cur+=c;
+
+let result = [];
+let current = "";
+let insideQuotes = false;
+
+for(let char of row){
+
+if(char === '"'){
+insideQuotes = !insideQuotes;
 }
-result.push(cur);
+
+else if(char === ',' && !insideQuotes){
+result.push(current);
+current = "";
+}
+
+else{
+current += char;
+}
+
+}
+
+result.push(current);
+
 return result;
+
 }
 
-// FIX LINK DRIVE
+/* =========================
+   FIX GOOGLE DRIVE LINK
+========================= */
+
 function fixDrive(url){
-let id=url.match(/[-\w]{25,}/);
-return id ? "https://drive.google.com/file/d/"+id[0]+"/preview" : "";
-}
 
-// CARI DATA
-async function cariData(){
+if(!url) return "";
 
-const keyword=document.getElementById("cariNama").value.toLowerCase();
+const id = url.match(/[-\w]{25,}/);
 
-const data=await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv").then(r=>r.text());
-
-const rows=data.split("\n");
-
-let hasil="";
-
-for(let i=1;i<rows.length;i++){
-
-let col=parseCSV(rows[i]);
-
-let nama=col[1]||"";
-let nik=col[6]||"";
-let pdf=col[30]||"";
-
-if(nama.toLowerCase().includes(keyword)||nik.includes(keyword)){
-
-let link=fixDrive(pdf);
-
-hasil=`
-<h3 style="color:#00ffd5">${nama}</h3>
-<p>NIK: ${nik}</p>
-<iframe src="${link}" width="100%" height="320" style="border:none;border-radius:12px;margin-top:10px;"></iframe>
-`;
-
-break;
-}
-}
-
-document.getElementById("hasilCari").innerHTML=hasil || "Data tidak ditemukan";
+return id
+? `https://drive.google.com/file/d/${id[0]}/preview`
+: "";
 
 }
 
-<script>
+/* =========================
+   COUNTER ANIMATION
+========================= */
 
-// parser CSV aman
-function parseCSV(row){
-return row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
+function animateValue(id, start, end, duration){
+
+let range = end - start;
+
+if(range === 0){
+document.getElementById(id).innerText = end;
+return;
 }
+
+let current = start;
+
+let increment = end > start ? 1 : -1;
+
+let stepTime = Math.abs(Math.floor(duration / range));
+
+let obj = document.getElementById(id);
+
+let timer = setInterval(function(){
+
+current += increment;
+
+obj.innerText = current;
+
+if(current === end){
+clearInterval(timer);
+}
+
+}, stepTime);
+
+}
+
+/* =========================
+   HITUNG DATA BUMIL
+========================= */
 
 async function hitungBumil(){
 
-const data = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv")
-.then(r => r.text());
+try{
+
+const data = await fetch(CSV_URL)
+.then(res => res.text());
 
 const rows = data.split("\n");
 
 let jumlah = 0;
 
-for(let i=1;i<rows.length;i++){
+for(let i=1; i<rows.length; i++){
 
-let row = rows[i].trim();
+const row = rows[i].trim();
 
-// skip baris kosong
-if(row == "") continue;
+if(row === "") continue;
 
-let col = parseCSV(row);
+const col = parseCSV(row);
 
-// ambil data penting
-let nama = (col[1] || "").trim();
-let nik = (col[6] || "").trim();
+const nama = (col[1] || "").trim();
 
-// 🔥 FILTER KETAT
+const nik = (col[6] || "").trim();
+
 if(
-nama.length > 3 &&       // nama harus ada
-nik.length >= 10 &&      // NIK valid (biasanya 16 digit)
-!isNaN(nik)              // harus angka
+nama.length > 3 &&
+nik.length >= 10 &&
+!isNaN(nik)
 ){
 jumlah++;
 }
 
 }
 
-document.getElementById("jumlahBumil").innerText = jumlah;
+animateValue("jumlahBumil",0,jumlah,1000);
+
+}catch(error){
+
+console.error(error);
+
+document.getElementById("jumlahBumil").innerText = "0";
 
 }
 
+}
+
+/* =========================
+   SEARCH DATA
+========================= */
+
+async function cariData(){
+
+const keyword = document
+.getElementById("cariNama")
+.value
+.toLowerCase()
+.trim();
+
+const hasilCari = document.getElementById("hasilCari");
+
+if(keyword === ""){
+
+hasilCari.innerHTML = "";
+return;
+
+}
+
+hasilCari.innerHTML =
+'<div class="loading">Mencari data...</div>';
+
+try{
+
+const data = await fetch(CSV_URL)
+.then(res => res.text());
+
+const rows = data.split("\n");
+
+let ditemukan = false;
+
+for(let i=1; i<rows.length; i++){
+
+const col = parseCSV(rows[i]);
+
+const nama = (col[1] || "").trim();
+
+const nik = (col[6] || "").trim();
+
+const pdf = (col[30] || "").trim();
+
+if(
+nama.toLowerCase().includes(keyword) ||
+nik.includes(keyword)
+){
+
+const link = fixDrive(pdf);
+
+hasilCari.innerHTML = `
+
+<div class="result-card">
+
+<h3>${nama}</h3>
+
+<p><strong>NIK:</strong> ${nik}</p>
+
+${
+link
+? `
+<iframe
+src="${link}"
+width="100%"
+height="350"
+style="
+border:none;
+border-radius:12px;
+margin-top:15px;
+background:white;
+">
+</iframe>
+`
+: `
+<p style="margin-top:10px;color:#ffcc70;">
+File belum tersedia
+</p>
+`
+}
+
+</div>
+
+`;
+
+ditemukan = true;
+
+break;
+
+}
+
+}
+
+if(!ditemukan){
+
+hasilCari.innerHTML = `
+<div class="result-card">
+<p style="color:#ff7070;">
+Data tidak ditemukan
+</p>
+</div>
+`;
+
+}
+
+}catch(error){
+
+console.error(error);
+
+hasilCari.innerHTML = `
+<div class="result-card">
+<p style="color:#ff7070;">
+Terjadi kesalahan saat mengambil data
+</p>
+</div>
+`;
+
+}
+
+}
+
+/* =========================
+   INIT
+========================= */
+
 hitungBumil();
+
 </script>
+
 </body>
 </html>
