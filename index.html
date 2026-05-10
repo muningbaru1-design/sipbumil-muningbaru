@@ -546,7 +546,7 @@ Cari
 
 <div class="stat-box">
 <div class="stat-icon">👶</div>
-<h3>94</h3>
+<h3 id="jumlahBayi">0</h3>
 <p>Bayi Terdata</p>
 </div>
 
@@ -707,7 +707,8 @@ Password salah
    CONFIG
 ========================= */
 
-const CSV_URL =
+const CSV_BAYI =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=716234537&single=true&output=csv";
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv";
 
 const ADMIN_PASSWORD = "muningbaru2026";
@@ -847,7 +848,53 @@ document.getElementById("jumlahBumil").innerText = "0";
 }
 
 }
+/* =========================
+   HITUNG BAYI
+========================= */
 
+async function hitungBayi(){
+
+try{
+
+const data = await fetch(CSV_BAYI)
+.then(res => res.text());
+
+const rows = data.split("\n");
+
+let jumlah = 0;
+
+for(let i=1; i<rows.length; i++){
+
+const row = rows[i].trim();
+
+if(row === "") continue;
+
+const col = parseCSV(row);
+
+const namaIbu = (col[1] || "").trim();
+
+const namaAnak = (col[2] || "").trim();
+
+if(
+namaIbu.length > 2 &&
+namaAnak.length > 1
+){
+jumlah++;
+}
+
+}
+
+animateValue("jumlahBayi",0,jumlah,1000);
+
+}catch(error){
+
+console.error(error);
+
+document.getElementById("jumlahBayi").innerText = "0";
+
+}
+
+}
 /* =========================
    CARI DATA
 ========================= */
@@ -1062,6 +1109,7 @@ cariData();
 ========================= */
 
 hitungBumil();
+hitungBayi();
 /* =========================
    DATA BAYI
 ========================= */
