@@ -558,7 +558,7 @@ Cari
 
 <div class="stat-box">
 <div class="stat-icon">🚨</div>
-<h3 style="color:#ff5252;">5</h3>
+<h3 id="jumlahResiko" style="color:#ff5252;">0</h3>
 <p>Risiko Tinggi</p>
 </div>
 
@@ -711,6 +711,8 @@ const CSV_URL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv";
 const CSV_BAYI =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=716234537&single=true&output=csv";
+const CSV_RESIKO =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=788870762&single=true&output=csv";
 const ADMIN_PASSWORD = "muningbaru2026";
 
 const SPREADSHEET_URL =
@@ -893,6 +895,52 @@ animateValue("jumlahBayi",0,jumlah,1000);
 console.error(error);
 
 document.getElementById("jumlahBayi").innerText = "0";
+
+}
+
+}
+/* =========================
+   HITUNG RESIKO TINGGI
+========================= */
+
+async function hitungResiko(){
+
+try{
+
+const data = await fetch(CSV_RESIKO)
+.then(res => res.text());
+
+const rows = data.split("\n");
+
+let jumlah = 0;
+
+for(let i=2; i<rows.length; i++){
+
+const row = rows[i].trim();
+
+if(row === "") continue;
+
+const col = parseCSV(row);
+
+const nama = (col[0] || "").trim();
+const resiko = (col[1] || "").trim();
+
+if(
+nama.length > 2 &&
+resiko.length > 2
+){
+jumlah++;
+}
+
+}
+
+animateValue("jumlahResiko",0,jumlah,1000);
+
+}catch(error){
+
+console.error(error);
+
+document.getElementById("jumlahResiko").innerText = "0";
 
 }
 
@@ -1112,6 +1160,7 @@ cariData();
 
 hitungBumil();
 hitungBayi();
+hitungResiko();
 /* =========================
    DATA BAYI
 ========================= */
