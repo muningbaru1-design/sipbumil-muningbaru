@@ -592,13 +592,19 @@ Buka Menu
 </div>
 
 <div class="menu-card">
-<div class="icon">👶</div>
-<h3>Data Bayi</h3>
-<p>Informasi data bayi dan balita desa.</p>
 
-<button onclick="alert('Menu Data Bayi segera tersedia')">
+<div class="icon">👶</div>
+
+<h3>Data Bayi</h3>
+
+<p>
+Informasi data bayi dan identitas anak desa.
+</p>
+
+<button onclick="bukaDataBayi()">
 Buka Menu
 </button>
+
 </div>
 
 <div class="menu-card">
@@ -1050,8 +1056,84 @@ cariData();
 ========================= */
 
 hitungBumil();
+/* =========================
+   DATA BAYI
+========================= */
 
+function bukaDataBayi(){
+
+document.getElementById("modalDataBayi")
+.style.display = "block";
+
+}
+
+function tutupDataBayi(){
+
+document.getElementById("modalDataBayi")
+.style.display = "none";
+
+}
 </script>
+<!-- MODAL DATA BAYI -->
+<div id="modalDataBayi" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+z-index:99999;
+padding:20px;
+">
 
+<div style="
+width:100%;
+height:100%;
+background:#111;
+border-radius:20px;
+overflow:hidden;
+position:relative;
+">
+
+<!-- HEADER -->
+<div style="
+padding:15px 20px;
+background:#00ffd5;
+display:flex;
+justify-content:space-between;
+align-items:center;
+">
+
+<h2 style="color:black;">
+👶 Data Bayi Desa
+</h2>
+
+<button onclick="tutupDataBayi()" style="
+padding:10px 15px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+">
+Tutup
+</button>
+
+</div>
+
+<!-- IFRAME -->
+<iframe
+src="https://docs.google.com/spreadsheets/d/1ubTT7jy8hCH6kTUstf92wzYaLumyEHe0ue28ZnrecBg/edit#gid=716234537"
+style="
+width:100%;
+height:calc(100% - 70px);
+border:none;
+background:white;
+">
+</iframe>
+
+</div>
+
+</div>
 </body>
 </html>
