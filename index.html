@@ -449,6 +449,10 @@ text-align:center;
 
 <body>
 
+<!-- =========================
+     HEADER
+========================= -->
+
 <div class="header">
 
 <div class="logo">
@@ -468,8 +472,13 @@ Login Admin
 
 </div>
 
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero">
 
+<!-- LEFT -->
 <div>
 
 <h2>
@@ -499,6 +508,7 @@ Dashboard Posyandu
 
 </div>
 
+<!-- SEARCH -->
 <div class="search-box">
 
 <h3>🔍 Cari Data Bumil</h3>
@@ -523,6 +533,7 @@ Cari
 
 </div>
 
+<!-- RIGHT -->
 <div class="dashboard">
 
 <div class="stats">
@@ -535,7 +546,7 @@ Cari
 
 <div class="stat-box">
 <div class="stat-icon">👶</div>
-<h3 id="jumlahBayi">0</h3>
+<h3>94</h3>
 <p>Bayi Terdata</p>
 </div>
 
@@ -557,6 +568,139 @@ Cari
 
 </section>
 
+<!-- =========================
+     MENU
+========================= -->
+
+<section class="menu-section" id="menuUtama">
+
+<div class="section-title">
+<h2>Menu Utama</h2>
+<p>Sistem layanan kesehatan desa digital</p>
+</div>
+
+<div class="menu-grid">
+
+<div class="menu-card">
+
+<div class="icon">🤰</div>
+
+<h3>Data Ibu Hamil</h3>
+
+<p>
+Pendataan lengkap ibu hamil desa.
+</p>
+
+<button onclick="bukaDataIbuHamil()">
+Buka Menu
+</button>
+
+</div>
+
+<div class="menu-card">
+
+<div class="icon">👶</div>
+
+<h3>Data Bayi</h3>
+
+<p>
+Informasi Hak Identitas Anak Setelah Lahir.
+</p>
+
+<button onclick="bukaDataBayi()">
+Buka Menu
+</button>
+
+</div>
+
+<div class="menu-card">
+<div class="icon">📅</div>
+<h3>Jadwal Posyandu</h3>
+<p>Informasi jadwal pelayanan kesehatan desa.</p>
+
+<button onclick="alert('Menu Jadwal Posyandu segera tersedia')">
+Buka Menu
+</button>
+</div>
+
+<div class="menu-card">
+<div class="icon">🚨</div>
+<h3>Risiko Tinggi</h3>
+<p>Monitoring ibu hamil risiko tinggi.</p>
+
+<button onclick="alert('Menu Risiko Tinggi segera tersedia')">
+Buka Menu
+</button>
+</div>
+
+<div class="menu-card">
+<div class="icon">📊</div>
+<h3>Grafik Stunting</h3>
+<p>Grafik dan statistik kesehatan desa.</p>
+
+<button onclick="alert('Menu Grafik segera tersedia')">
+Buka Menu
+</button>
+</div>
+
+<div class="menu-card">
+<div class="icon">☎️</div>
+<h3>Kontak Bidan</h3>
+<p>Hubungi bidan desa secara langsung.</p>
+
+<button onclick="window.open('https://wa.me/6285246320106')">
+Hubungi
+</button>
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<div class="footer">
+
+<h3>SIP BUMILNYA</h3>
+
+<p>© 2026 Desa Muning Baru</p>
+
+</div>
+
+<!-- =========================
+     LOGIN MODAL
+========================= -->
+
+<div id="loginModal">
+
+<div class="login-box">
+
+<h2>Login Admin</h2>
+
+<input
+type="password"
+id="adminPassword"
+placeholder="Masukkan Password"
+>
+
+<button onclick="loginAdmin()">
+Login
+</button>
+
+<p id="loginError">
+Password salah
+</p>
+
+</div>
+
+</div>
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
 <script>
 
 /* =========================
@@ -565,9 +709,6 @@ Cari
 
 const CSV_URL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv";
-
-const CSV_BAYI =
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=716234537&single=true&output=csv";
 
 const ADMIN_PASSWORD = "muningbaru2026";
 
@@ -604,6 +745,22 @@ current += char;
 result.push(current);
 
 return result;
+
+}
+
+/* =========================
+   FIX GOOGLE DRIVE
+========================= */
+
+function fixDrive(url){
+
+if(!url) return "";
+
+const id = url.match(/[-\w]{25,}/);
+
+return id
+? `https://drive.google.com/file/d/${id[0]}/preview`
+: "";
 
 }
 
@@ -666,6 +823,7 @@ if(row === "") continue;
 const col = parseCSV(row);
 
 const nama = (col[1] || "").trim();
+
 const nik = (col[6] || "").trim();
 
 if(
@@ -691,60 +849,374 @@ document.getElementById("jumlahBumil").innerText = "0";
 }
 
 /* =========================
-   HITUNG BAYI
+   CARI DATA
 ========================= */
 
-async function hitungBayi(){
+async function cariData(){
+
+const keyword =
+document.getElementById("cariNama")
+.value
+.toLowerCase()
+.trim();
+
+const hasilCari =
+document.getElementById("hasilCari");
+
+if(keyword === ""){
+
+hasilCari.innerHTML = "";
+return;
+
+}
+
+hasilCari.innerHTML =
+"<p style='color:#00ffd5;'>Mencari data...</p>";
 
 try{
 
-const data = await fetch(CSV_BAYI)
+const data = await fetch(CSV_URL)
 .then(res => res.text());
 
 const rows = data.split("\n");
 
-let jumlah = 0;
+let ditemukan = false;
 
 for(let i=1; i<rows.length; i++){
 
-const row = rows[i].trim();
+const col = parseCSV(rows[i]);
 
-if(row === "") continue;
+const nama = (col[1] || "").trim();
 
-const col = parseCSV(row);
+const nik = (col[6] || "").trim();
 
-const namaIbu = (col[1] || "").trim();
-const namaAnak = (col[2] || "").trim();
+const pdf = (col[30] || "").trim();
 
 if(
-namaIbu.length > 2 &&
-namaAnak.length > 1
+nama.toLowerCase().includes(keyword) ||
+nik.includes(keyword)
 ){
-jumlah++;
+
+const link = fixDrive(pdf);
+
+hasilCari.innerHTML = `
+
+<div class="result-card">
+
+<h3>${nama}</h3>
+
+<p><strong>NIK:</strong> ${nik}</p>
+
+${
+link
+? `
+<iframe
+src="${link}"
+width="100%"
+height="350"
+style="
+border:none;
+border-radius:12px;
+margin-top:15px;
+background:white;
+">
+</iframe>
+`
+: `
+<p style="margin-top:10px;color:#ffcc70;">
+File belum tersedia
+</p>
+`
 }
+
+</div>
+
+`;
+
+ditemukan = true;
+
+break;
 
 }
 
-animateValue("jumlahBayi",0,jumlah,1000);
+}
+
+if(!ditemukan){
+
+hasilCari.innerHTML = `
+<div class="result-card">
+<p style="color:#ff7070;">
+Data tidak ditemukan
+</p>
+</div>
+`;
+
+}
 
 }catch(error){
 
 console.error(error);
 
-document.getElementById("jumlahBayi").innerText = "0";
+hasilCari.innerHTML = `
+<div class="result-card">
+<p style="color:#ff7070;">
+Terjadi kesalahan saat mengambil data
+</p>
+</div>
+`;
 
 }
 
 }
 
 /* =========================
+   LOGIN MODAL
+========================= */
+
+function bukaLogin(){
+
+document.getElementById("loginModal")
+.style.display = "flex";
+
+document.getElementById("adminPassword").focus();
+
+}
+
+/* =========================
+   LOGIN ADMIN
+========================= */
+
+function loginAdmin(){
+
+const password =
+document.getElementById("adminPassword").value;
+
+if(password === ADMIN_PASSWORD){
+
+window.open(SPREADSHEET_URL,"_blank");
+
+document.getElementById("loginModal")
+.style.display = "none";
+
+document.getElementById("loginError")
+.style.display = "none";
+
+document.getElementById("adminPassword").value = "";
+
+}else{
+
+document.getElementById("loginError")
+.style.display = "block";
+
+}
+
+}
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+window.onclick = function(event){
+
+const modal =
+document.getElementById("loginModal");
+
+if(event.target === modal){
+
+modal.style.display = "none";
+
+}
+
+}
+
+/* =========================
+   ENTER LOGIN
+========================= */
+
+document
+.getElementById("adminPassword")
+.addEventListener("keypress", function(event){
+
+if(event.key === "Enter"){
+loginAdmin();
+}
+
+});
+
+/* =========================
+   ENTER SEARCH
+========================= */
+
+document
+.getElementById("cariNama")
+.addEventListener("keypress", function(event){
+
+if(event.key === "Enter"){
+cariData();
+}
+
+});
+
+/* =========================
    INIT
 ========================= */
 
 hitungBumil();
-hitungBayi();
+/* =========================
+   DATA BAYI
+========================= */
 
+function bukaDataBayi(){
+
+document.getElementById("modalDataBayi")
+.style.display = "block";
+
+}
+
+function tutupDataBayi(){
+
+document.getElementById("modalDataBayi")
+.style.display = "none";
+
+}
+/* =========================
+   DATA IBU HAMIL
+========================= */
+
+function bukaDataIbuHamil(){
+
+document.getElementById("modalIbuHamil")
+.style.display = "block";
+
+}
+
+function tutupDataIbuHamil(){
+
+document.getElementById("modalIbuHamil")
+.style.display = "none";
+
+}
 </script>
+<!-- MODAL DATA BAYI -->
+<div id="modalDataBayi" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+z-index:99999;
+padding:20px;
+">
+
+<div style="
+width:100%;
+height:100%;
+background:#111;
+border-radius:20px;
+overflow:hidden;
+position:relative;
+">
+
+<!-- HEADER -->
+<div style="
+padding:15px 20px;
+background:#00ffd5;
+display:flex;
+justify-content:space-between;
+align-items:center;
+">
+
+<h2 style="color:black;">
+👶 Data Bayi Desa
+</h2>
+
+<button onclick="tutupDataBayi()" style="
+padding:10px 15px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+">
+Tutup
+</button>
+
+</div>
+
+<!-- IFRAME -->
+<iframe
+src="https://docs.google.com/spreadsheets/d/1ubTT7jy8hCH6kTUstf92wzYaLumyEHe0ue28ZnrecBg/edit#gid=716234537"
+style="
+width:100%;
+height:calc(100% - 70px);
+border:none;
+background:white;
+">
+</iframe>
+
+</div>
+
+</div>
+   <!-- MODAL DATA IBU HAMIL -->
+<div id="modalIbuHamil" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+z-index:99999;
+padding:20px;
+">
+
+<div style="
+width:100%;
+height:100%;
+background:#111;
+border-radius:20px;
+overflow:hidden;
+position:relative;
+">
+
+<!-- HEADER -->
+<div style="
+padding:15px 20px;
+background:#00ffd5;
+display:flex;
+justify-content:space-between;
+align-items:center;
+">
+
+<h2 style="color:black;">
+🤰 Data Ibu Hamil Desa
+</h2>
+
+<button onclick="tutupDataIbuHamil()" style="
+padding:10px 15px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+">
+Tutup
+</button>
+
+</div>
+
+<!-- IFRAME -->
+<iframe
+src="https://docs.google.com/spreadsheets/d/1ubTT7jy8hCH6kTUstf92wzYaLumyEHe0ue28ZnrecBg/edit#gid=580499086"
+style="
+width:100%;
+height:calc(100% - 70px);
+border:none;
+background:white;
+">
+</iframe>
+
+</div>
 
 </body>
 </html>
