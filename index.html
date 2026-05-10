@@ -582,13 +582,19 @@ Cari
 <div class="menu-grid">
 
 <div class="menu-card">
-<div class="icon">🤰</div>
-<h3>Data Ibu Hamil</h3>
-<p>Pendataan lengkap ibu hamil desa.</p>
 
-<button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeNF72miW4m7Y4iRNvPY21pOj8SvDLtIqDbdBD60cylcL_AnQ/viewform','_blank')">
+<div class="icon">🤰</div>
+
+<h3>Data Ibu Hamil</h3>
+
+<p>
+Pendataan lengkap ibu hamil desa.
+</p>
+
+<button onclick="bukaDataIbuHamil()">
 Buka Menu
 </button>
+
 </div>
 
 <div class="menu-card">
@@ -1073,6 +1079,23 @@ document.getElementById("modalDataBayi")
 .style.display = "none";
 
 }
+/* =========================
+   DATA IBU HAMIL
+========================= */
+
+function bukaDataIbuHamil(){
+
+document.getElementById("modalIbuHamil")
+.style.display = "block";
+
+}
+
+function tutupDataIbuHamil(){
+
+document.getElementById("modalIbuHamil")
+.style.display = "none";
+
+}
 </script>
 <!-- MODAL DATA BAYI -->
 <div id="modalDataBayi" style="
@@ -1135,5 +1158,65 @@ background:white;
 </div>
 
 </div>
+   <!-- MODAL DATA IBU HAMIL -->
+<div id="modalIbuHamil" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+z-index:99999;
+padding:20px;
+">
+
+<div style="
+width:100%;
+height:100%;
+background:#111;
+border-radius:20px;
+overflow:hidden;
+position:relative;
+">
+
+<!-- HEADER -->
+<div style="
+padding:15px 20px;
+background:#00ffd5;
+display:flex;
+justify-content:space-between;
+align-items:center;
+">
+
+<h2 style="color:black;">
+🤰 Data Ibu Hamil Desa
+</h2>
+
+<button onclick="tutupDataIbuHamil()" style="
+padding:10px 15px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+">
+Tutup
+</button>
+
+</div>
+
+<!-- IFRAME -->
+<iframe
+src="https://docs.google.com/spreadsheets/d/1ubTT7jy8hCH6kTUstf92wzYaLumyEHe0ue28ZnrecBg/edit#gid=580499086"
+style="
+width:100%;
+height:calc(100% - 70px);
+border:none;
+background:white;
+">
+</iframe>
+
+</div>
+
 </body>
 </html>
