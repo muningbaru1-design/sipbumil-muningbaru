@@ -1,7 +1,758 @@
-<!-- =========================
-   HITUNG BUMIL
-========================= -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SIP BUMILNYA - Desa Muning Baru</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#050505;
+color:white;
+overflow-x:hidden;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+/* HEADER */
+.header{
+width:100%;
+padding:20px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#0b0b0b;
+border-bottom:1px solid rgba(0,255,213,0.15);
+position:sticky;
+top:0;
+z-index:999;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo-circle{
+width:55px;
+height:55px;
+border-radius:50%;
+background:linear-gradient(135deg,#00ffd5,#00a2ff);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+box-shadow:0 0 20px rgba(0,255,213,0.4);
+}
+
+.logo-text h1{
+font-size:24px;
+color:#00ffd5;
+}
+
+.logo-text p{
+font-size:12px;
+color:#aaa;
+}
+
+.header-btn{
+padding:12px 18px;
+border:none;
+border-radius:12px;
+background:#00ffd5;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* HERO */
+.hero{
+padding:70px 30px;
+max-width:1300px;
+margin:auto;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:center;
+}
+
+.hero h2{
+font-size:56px;
+line-height:1.1;
+margin-bottom:20px;
+}
+
+.hero h2 span{
+color:#00ffd5;
+}
+
+.hero p{
+color:#aaa;
+line-height:1.8;
+margin-bottom:30px;
+}
+
+.hero-buttons{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.btn-primary,
+.btn-outline{
+padding:14px 24px;
+border-radius:14px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+.btn-primary{
+background:#00ffd5;
+border:none;
+color:black;
+}
+
+.btn-outline{
+background:transparent;
+border:1px solid #00ffd5;
+color:#00ffd5;
+}
+
+.btn-primary:hover,
+.btn-outline:hover{
+transform:translateY(-3px);
+}
+
+/* SEARCH */
+.search-box{
+margin-top:25px;
+background:#111;
+padding:20px;
+border-radius:20px;
+border:1px solid rgba(0,255,213,0.1);
+}
+
+.search-box h3{
+margin-bottom:15px;
+color:#00ffd5;
+}
+
+.search-flex{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.search-flex input{
+flex:1;
+padding:12px;
+border:none;
+border-radius:10px;
+background:#1a1a1a;
+color:white;
+outline:none;
+}
+
+.search-flex button{
+padding:12px 20px;
+border:none;
+border-radius:10px;
+background:#00ffd5;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* DASHBOARD */
+.dashboard{
+background:#111;
+padding:30px;
+border-radius:30px;
+border:1px solid rgba(0,255,213,0.15);
+}
+
+.stats{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.stat-box{
+background:#191919;
+padding:25px;
+border-radius:20px;
+transition:0.3s;
+}
+
+.stat-box:hover{
+transform:translateY(-5px);
+}
+
+.stat-icon{
+font-size:42px;
+margin-bottom:10px;
+}
+
+.stat-box h3{
+font-size:38px;
+color:#00ffd5;
+}
+
+.stat-box p{
+color:#aaa;
+}
+
+/* MENU */
+.menu-section{
+max-width:1300px;
+margin:auto;
+padding:30px;
+}
+
+.section-title{
+margin-bottom:40px;
+}
+
+.section-title h2{
+font-size:38px;
+margin-bottom:10px;
+}
+
+.section-title p{
+color:#aaa;
+}
+
+.menu-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.menu-card{
+background:#111;
+padding:30px;
+border-radius:28px;
+border:1px solid rgba(0,255,213,0.08);
+transition:0.3s;
+}
+
+.menu-card:hover{
+transform:translateY(-8px);
+}
+
+.menu-card .icon{
+font-size:55px;
+margin-bottom:20px;
+}
+
+.menu-card h3{
+color:#00ffd5;
+margin-bottom:10px;
+}
+
+.menu-card p{
+color:#aaa;
+margin-bottom:15px;
+}
+
+.menu-card button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+background:#00ffd5;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* RESULT */
+.result-card{
+background:#111;
+padding:20px;
+border-radius:18px;
+margin-top:15px;
+border:1px solid rgba(0,255,213,0.1);
+}
+
+.result-card h3{
+color:#00ffd5;
+margin-bottom:10px;
+}
+
+/* FOOTER */
+.footer{
+margin-top:60px;
+padding:30px;
+text-align:center;
+background:#0b0b0b;
+}
+
+.footer h3{
+color:#00ffd5;
+margin-bottom:10px;
+}
+
+.footer p{
+color:#888;
+}
+
+/* LOGIN MODAL */
+#loginModal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+z-index:9999;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.login-box{
+background:#111;
+padding:30px;
+border-radius:20px;
+width:100%;
+max-width:400px;
+}
+
+.login-box h2{
+color:#00ffd5;
+margin-bottom:20px;
+}
+
+.login-box input{
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+background:#1a1a1a;
+color:white;
+margin-bottom:15px;
+}
+
+.login-box button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+background:#00ffd5;
+font-weight:bold;
+cursor:pointer;
+}
+
+#loginError{
+display:none;
+margin-top:15px;
+color:#ff5252;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+.hero{
+grid-template-columns:1fr;
+}
+
+.hero h2{
+font-size:40px;
+}
+
+.stats{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+
+<div class="logo">
+
+<div class="logo-circle">🤰</div>
+
+<div class="logo-text">
+<h1>SIP BUMILNYA</h1>
+<p>Sistem Informasi Persiapan Ibu Hamil dan Bayinya</p>
+</div>
+
+</div>
+
+<button class="header-btn" onclick="bukaLogin()">
+Login Admin
+</button>
+
+</div>
+
+<!-- HERO -->
+<section class="hero">
+
+<div>
+
+<h2>
+Monitoring
+<span>Ibu Hamil</span>
+dan Bayi Desa
+</h2>
+
+<p>
+Platform digital kesehatan desa berbasis data.
+</p>
+
+<div class="hero-buttons">
+
+<button
+class="btn-primary"
+onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeNF72miW4m7Y4iRNvPY21pOj8SvDLtIqDbdBD60cylcL_AnQ/viewform','_blank')">
+Input Data Bumil
+</button>
+
+<button
+class="btn-outline"
+onclick="document.getElementById('menuUtama').scrollIntoView()">
+Dashboard Posyandu
+</button>
+
+</div>
+
+<!-- SEARCH -->
+<div class="search-box">
+
+<h3>🔍 Cari Data Bumil</h3>
+
+<div class="search-flex">
+
+<input
+type="text"
+id="cariNama"
+placeholder="Ketik Nama / NIK"
+>
+
+<button onclick="cariData()">
+Cari
+</button>
+
+</div>
+
+<div id="hasilCari"></div>
+
+</div>
+
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard">
+
+<div class="stats">
+
+<div class="stat-box">
+<div class="stat-icon">🤰</div>
+<h3 id="jumlahBumil">0</h3>
+<p>Ibu Hamil Aktif</p>
+</div>
+
+<div class="stat-box">
+<div class="stat-icon">👶</div>
+<h3 id="jumlahBayi">0</h3>
+<p>Bayi Terdata</p>
+</div>
+
+<div class="stat-box">
+<div class="stat-icon">📅</div>
+<h3>12</h3>
+<p>Jadwal Posyandu</p>
+</div>
+
+<div class="stat-box">
+<div class="stat-icon">🚨</div>
+<h3 style="color:#ff5252;">5</h3>
+<p>Risiko Tinggi</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menuUtama">
+
+<div class="section-title">
+<h2>Menu Utama</h2>
+<p>Sistem layanan kesehatan desa digital</p>
+</div>
+
+<div class="menu-grid">
+
+<div class="menu-card">
+<div class="icon">🤰</div>
+<h3>Data Ibu Hamil</h3>
+<p>Data lengkap ibu hamil desa.</p>
+
+<button onclick="bukaDataIbuHamil()">
+Buka Menu
+</button>
+</div>
+
+<div class="menu-card">
+<div class="icon">👶</div>
+<h3>Data Bayi</h3>
+<p>Hak identitas anak setelah lahir.</p>
+
+<button onclick="bukaDataBayi()">
+Buka Menu
+</button>
+</div>
+
+<div class="menu-card">
+<div class="icon">☎️</div>
+<h3>Kontak Bidan</h3>
+<p>Hubungi bidan desa.</p>
+
+<button onclick="window.open('https://wa.me/6285246320106')">
+Hubungi
+</button>
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+<h3>SIP BUMILNYA</h3>
+<p>© 2026 Desa Muning Baru</p>
+</div>
+
+<!-- LOGIN MODAL -->
+<div id="loginModal">
+
+<div class="login-box">
+
+<h2>Login Admin</h2>
+
+<input
+type="password"
+id="adminPassword"
+placeholder="Masukkan Password"
+>
+
+<button onclick="loginAdmin()">
+Login
+</button>
+
+<p id="loginError">
+Password salah
+</p>
+
+</div>
+
+</div>
+
+<!-- MODAL DATA BAYI -->
+<div id="modalDataBayi" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+z-index:99999;
+padding:20px;
+">
+
+<div style="
+width:100%;
+height:100%;
+background:#111;
+border-radius:20px;
+overflow:hidden;
+">
+
+<div style="
+padding:15px 20px;
+background:#00ffd5;
+display:flex;
+justify-content:space-between;
+align-items:center;
+">
+
+<h2 style="color:black;">👶 Data Bayi Desa</h2>
+
+<button onclick="tutupDataBayi()">
+Tutup
+</button>
+
+</div>
+
+<iframe
+src="https://docs.google.com/spreadsheets/d/1ubTT7jy8hCH6kTUstf92wzYaLumyEHe0ue28ZnrecBg/preview"
+style="
+width:100%;
+height:calc(100% - 70px);
+border:none;
+background:white;
+">
+</iframe>
+
+</div>
+
+</div>
+
+<!-- MODAL IBU HAMIL -->
+<div id="modalIbuHamil" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+z-index:99999;
+padding:20px;
+">
+
+<div style="
+width:100%;
+height:100%;
+background:#111;
+border-radius:20px;
+overflow:hidden;
+">
+
+<div style="
+padding:15px 20px;
+background:#00ffd5;
+display:flex;
+justify-content:space-between;
+align-items:center;
+">
+
+<h2 style="color:black;">🤰 Data Ibu Hamil Desa</h2>
+
+<button onclick="tutupDataIbuHamil()">
+Tutup
+</button>
+
+</div>
+
+<iframe
+src="https://docs.google.com/spreadsheets/d/1ubTT7jy8hCH6kTUstf92wzYaLumyEHe0ue28ZnrecBg/preview"
+style="
+width:100%;
+height:calc(100% - 70px);
+border:none;
+background:white;
+">
+</iframe>
+
+</div>
+
+</div>
+
+<script>
+
+/* CONFIG */
+const CSV_URL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv";
+
+const CSV_BAYI =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=716234537&single=true&output=csv";
+
+const ADMIN_PASSWORD = "muningbaru2026";
+
+const SPREADSHEET_URL =
+"https://docs.google.com/spreadsheets/d/1ubTT7jy8hCH6kTUstf92wzYaLumyEHe0ue28ZnrecBg/edit?usp=sharing";
+
+/* CSV PARSER */
+function parseCSV(row){
+
+let result = [];
+let current = "";
+let insideQuotes = false;
+
+for(let char of row){
+
+if(char === '"'){
+insideQuotes = !insideQuotes;
+}
+
+else if(char === ',' && !insideQuotes){
+result.push(current);
+current = "";
+}
+
+else{
+current += char;
+}
+
+}
+
+result.push(current);
+
+return result;
+
+}
+
+/* COUNTER */
+function animateValue(id,start,end,duration){
+
+let range = end - start;
+
+if(range === 0){
+document.getElementById(id).innerText = end;
+return;
+}
+
+let current = start;
+
+let increment = end > start ? 1 : -1;
+
+let stepTime = Math.abs(Math.floor(duration / range));
+
+let obj = document.getElementById(id);
+
+let timer = setInterval(function(){
+
+current += increment;
+
+obj.innerText = current;
+
+if(current === end){
+clearInterval(timer);
+}
+
+}, stepTime);
+
+}
+
+/* HITUNG BUMIL */
 async function hitungBumil(){
 
 try{
@@ -13,7 +764,7 @@ const rows = data.split("\n");
 
 let jumlah = 0;
 
-for(let i=1; i<rows.length; i++){
+for(let i = 1; i < rows.length; i++){
 
 const row = rows[i].trim();
 
@@ -22,7 +773,6 @@ if(row === "") continue;
 const col = parseCSV(row);
 
 const nama = (col[1] || "").trim();
-
 const nik = (col[6] || "").trim();
 
 if(
@@ -41,16 +791,11 @@ animateValue("jumlahBumil",0,jumlah,1000);
 
 console.error(error);
 
-document.getElementById("jumlahBumil").innerText = "0";
-
 }
 
 }
 
-/* =========================
-   HITUNG BAYI
-========================= */
-
+/* HITUNG BAYI */
 async function hitungBayi(){
 
 try{
@@ -62,7 +807,7 @@ const rows = data.split("\n");
 
 let jumlah = 0;
 
-for(let i=1; i<rows.length; i++){
+for(let i = 1; i < rows.length; i++){
 
 const row = rows[i].trim();
 
@@ -71,7 +816,6 @@ if(row === "") continue;
 const col = parseCSV(row);
 
 const namaIbu = (col[1] || "").trim();
-
 const namaAnak = (col[2] || "").trim();
 
 if(
@@ -89,51 +833,156 @@ animateValue("jumlahBayi",0,jumlah,1000);
 
 console.error(error);
 
-document.getElementById("jumlahBayi").innerText = "0";
+}
+
+}
+
+/* SEARCH */
+async function cariData(){
+
+const keyword =
+document.getElementById("cariNama")
+.value
+.toLowerCase()
+.trim();
+
+const hasilCari =
+document.getElementById("hasilCari");
+
+if(keyword === ""){
+hasilCari.innerHTML = "";
+return;
+}
+
+hasilCari.innerHTML =
+"<p style='color:#00ffd5;'>Mencari data...</p>";
+
+try{
+
+const data = await fetch(CSV_URL)
+.then(res => res.text());
+
+const rows = data.split("\n");
+
+let ditemukan = false;
+
+for(let i = 1; i < rows.length; i++){
+
+const col = parseCSV(rows[i]);
+
+const nama = (col[1] || "").trim();
+const nik = (col[6] || "").trim();
+
+if(
+nama.toLowerCase().includes(keyword) ||
+nik.includes(keyword)
+){
+
+hasilCari.innerHTML = `
+<div class="result-card">
+<h3>${nama}</h3>
+<p>NIK: ${nik}</p>
+</div>
+`;
+
+ditemukan = true;
+break;
 
 }
 
 }
 
-/* =========================
-   DATA BAYI
-========================= */
+if(!ditemukan){
 
-function bukaDataBayi(){
+hasilCari.innerHTML = `
+<div class="result-card">
+<p>Data tidak ditemukan</p>
+</div>
+`;
 
-document.getElementById("modalDataBayi")
+}
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
+
+/* LOGIN */
+function bukaLogin(){
+
+document.getElementById("loginModal")
+.style.display = "flex";
+
+}
+
+function loginAdmin(){
+
+const password =
+document.getElementById("adminPassword").value;
+
+if(password === ADMIN_PASSWORD){
+
+window.open(SPREADSHEET_URL,"_blank");
+
+document.getElementById("loginModal")
+.style.display = "none";
+
+}else{
+
+document.getElementById("loginError")
 .style.display = "block";
 
+}
+
+}
+
+/* MODAL */
+function bukaDataBayi(){
+document.getElementById("modalDataBayi").style.display = "block";
 }
 
 function tutupDataBayi(){
-
-document.getElementById("modalDataBayi")
-.style.display = "none";
-
+document.getElementById("modalDataBayi").style.display = "none";
 }
 
-/* =========================
-   DATA IBU HAMIL
-========================= */
-
 function bukaDataIbuHamil(){
-
-document.getElementById("modalIbuHamil")
-.style.display = "block";
-
+document.getElementById("modalIbuHamil").style.display = "block";
 }
 
 function tutupDataIbuHamil(){
-
-document.getElementById("modalIbuHamil")
-.style.display = "none";
-
+document.getElementById("modalIbuHamil").style.display = "none";
 }
 
-/* =========================
-   INIT
-========================= */
+/* ENTER SEARCH */
+document
+.getElementById("cariNama")
+.addEventListener("keypress",function(event){
 
+if(event.key === "Enter"){
+cariData();
+}
+
+});
+
+/* ENTER LOGIN */
+document
+.getElementById("adminPassword")
+.addEventListener("keypress",function(event){
+
+if(event.key === "Enter"){
+loginAdmin();
+}
+
+});
+
+/* INIT */
 hitungBumil();
 hitungBayi();
+
+</script>
+
+</body>
+</html>
