@@ -908,11 +908,13 @@ try{
 const data = await fetch(CSV_RESIKO)
 .then(res => res.text());
 
+console.log(data);
+
 const rows = data.split("\n");
 
 let jumlah = 0;
 
-for(let i=2; i<rows.length; i++){
+for(let i=1; i<rows.length; i++){
 
 const row = rows[i].trim();
 
@@ -922,17 +924,18 @@ const col = parseCSV(row);
 
 const nama = (col[0] || "").trim();
 const resiko = (col[1] || "").trim();
+const status = (col[2] || "").trim();
 
 if(
-nama.length > 2 &&
-resiko.length > 2
+nama !== "" &&
+resiko !== ""
 ){
 jumlah++;
 }
 
 }
 
-animateValue("jumlahResiko",0,jumlah,1000);
+document.getElementById("jumlahResiko").innerText = jumlah;
 
 }catch(error){
 
