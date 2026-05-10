@@ -618,7 +618,7 @@ Buka Menu
 <h3>Jadwal Posyandu</h3>
 <p>Informasi jadwal pelayanan kesehatan desa.</p>
 
-<button onclick="alert('Menu Jadwal Posyandu segera tersedia')">
+<button onclick="lihatJadwalPosyandu()">
 Buka Menu
 </button>
 </div>
@@ -799,7 +799,20 @@ clearInterval(timer);
 }, stepTime);
 
 }
+/* =========================
+   JADWAL POSYANDU
+========================= */
 
+function lihatJadwalPosyandu(){
+
+alert(
+"JADWAL POSYANDU DESA MUNING BARU\n\n" +
+"Dilaksanakan setiap awal bulan pada hari Rabu.\n\n" +
+"Waktu : 08.00 WITA - Selesai\n" +
+"Tempat : Posyandu Desa Muning Baru"
+);
+
+}
 /* =========================
    HITUNG BUMIL
 ========================= */
