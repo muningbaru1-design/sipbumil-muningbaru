@@ -628,7 +628,7 @@ Buka Menu
 <h3>Risiko Tinggi</h3>
 <p>Monitoring ibu hamil risiko tinggi.</p>
 
-<button onclick="alert('Menu Risiko Tinggi segera tersedia')">
+<button onclick="bukaResikoTinggi()">
 Buka Menu
 </button>
 </div>
@@ -1146,6 +1146,23 @@ document.getElementById("modalIbuHamil")
 .style.display = "none";
 
 }
+/* =========================
+   RESIKO TINGGI
+========================= */
+
+function bukaResikoTinggi(){
+
+document.getElementById("modalResikoTinggi")
+.style.display = "block";
+
+}
+
+function tutupResikoTinggi(){
+
+document.getElementById("modalResikoTinggi")
+.style.display = "none";
+
+}
 </script>
 <!-- MODAL DATA BAYI -->
 <div id="modalDataBayi" style="
@@ -1267,6 +1284,65 @@ background:white;
 </iframe>
 
 </div>
+<!-- MODAL RESIKO TINGGI -->
+<div id="modalResikoTinggi" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+z-index:99999;
+padding:20px;
+">
 
+<div style="
+width:100%;
+height:100%;
+background:#111;
+border-radius:20px;
+overflow:hidden;
+position:relative;
+">
+
+<!-- HEADER -->
+<div style="
+padding:15px 20px;
+background:#ff5252;
+display:flex;
+justify-content:space-between;
+align-items:center;
+">
+
+<h2 style="color:white;">
+🚨 Data Risiko Tinggi
+</h2>
+
+<button onclick="tutupResikoTinggi()" style="
+padding:10px 15px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+">
+Tutup
+</button>
+
+</div>
+
+<!-- IFRAME -->
+<iframe
+src="https://docs.google.com/spreadsheets/d/1ubTT7jy8hCH6kTUstf92wzYaLumyEHe0ue28ZnrecBg/edit#gid=788870762"
+style="
+width:100%;
+height:calc(100% - 70px);
+border:none;
+background:white;
+">
+</iframe>
+
+</div>
+   
 </body>
 </html>
