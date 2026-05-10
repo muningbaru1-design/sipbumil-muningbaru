@@ -867,17 +867,7 @@ for(let i=1; i<rows.length; i++){
 
 const row = rows[i].trim();
 
-if(row === "") continue;
-
-const col = parseCSV(row);
-
-const namaIbu = (col[1] || "").trim();
-const namaAnak = (col[2] || "").trim();
-
-if(
-namaIbu.length > 2 &&
-namaAnak.length > 1
-){
+if(row !== ""){
 jumlah++;
 }
 
