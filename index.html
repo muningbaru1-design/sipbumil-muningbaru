@@ -830,7 +830,7 @@ const rows = data.split("\n");
 
 let jumlah = 0;
 
-for(let i=2; i<rows.length; i++){
+for(let i=1; i<rows.length; i++){
 
 const row = rows[i].trim();
 
@@ -838,14 +838,12 @@ if(row === "") continue;
 
 const col = parseCSV(row);
 
-const nama = (col[1] || "").trim();
-
-const nik = (col[6] || "").trim();
+const nama = (col[0] || "").trim();
+const resiko = (col[1] || "").trim();
 
 if(
-nama.length > 3 &&
-nik.length >= 10 &&
-!isNaN(nik)
+nama.length > 2 &&
+resiko.length > 2
 ){
 jumlah++;
 }
