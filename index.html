@@ -1246,9 +1246,9 @@ document
 .value
 .trim();
 
-const hp =
+const nik =
 document
-.getElementById("hpBumil")
+.getElementById("nikBumil")
 .value
 .trim();
 
@@ -1277,19 +1277,13 @@ const nikData =
 const hpData =
 (col[7] || "").trim();
 
-if(
-nik === nikData &&
-hp === hpData
-){
+if(nik === nikData){
 
 ditemukan = true;
 
-document
-.getElementById("profilBumil")
-.innerHTML = `
+document.getElementById("profilBumil").innerHTML = `
 <b>Nama :</b> ${nama}<br>
-<b>NIK :</b> ${nikData}<br>
-<b>No HP :</b> ${hpData}
+<b>NIK :</b> ${nikData}
 `;
 
 document
