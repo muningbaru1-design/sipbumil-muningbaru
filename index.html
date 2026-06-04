@@ -682,7 +682,56 @@ Hubungi
 ========================= -->
 
 <div id="loginModal">
+<!-- LOGIN BUMIL -->
 
+<div id="loginBumilModal"
+style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+z-index:99999;
+justify-content:center;
+align-items:center;
+padding:20px;
+">
+
+<div class="login-box">
+
+<h2>🤰 Login Ibu Hamil</h2>
+
+<input
+type="text"
+id="nikBumil"
+placeholder="Masukkan NIK"
+>
+
+<input
+type="text"
+id="hpBumil"
+placeholder="Masukkan Nomor HP"
+>
+
+<button onclick="loginBumil()">
+Masuk
+</button>
+
+<p
+id="loginBumilError"
+style="
+display:none;
+color:#ff5252;
+margin-top:15px;
+">
+NIK atau Nomor HP salah
+</p>
+
+</div>
+
+</div>
 <div class="login-box">
 
 <h2>Login Admin</h2>
@@ -1162,7 +1211,117 @@ cariData();
 }
 
 });
+/* =========================
+   LOGIN BUMIL
+========================= */
 
+function bukaLoginBumil(){
+
+document
+.getElementById("loginBumilModal")
+.style.display = "flex";
+
+}
+
+/* =========================
+   TUTUP DASHBOARD
+========================= */
+
+function tutupDashboardBumil(){
+
+document
+.getElementById("dashboardBumilModal")
+.style.display = "none";
+
+}
+
+/* =========================
+   LOGIN BUMIL
+========================= */
+
+async function loginBumil(){
+
+const nik =
+document
+.getElementById("nikBumil")
+.value
+.trim();
+
+const hp =
+document
+.getElementById("hpBumil")
+.value
+.trim();
+
+try{
+
+const data =
+await fetch(CSV_URL)
+.then(res=>res.text());
+
+const rows =
+data.split("\n");
+
+let ditemukan = false;
+
+for(let i=1;i<rows.length;i++){
+
+const col =
+parseCSV(rows[i]);
+
+const nama =
+(col[1] || "").trim();
+
+const nikData =
+(col[6] || "").trim();
+
+const hpData =
+(col[7] || "").trim();
+
+if(
+nik === nikData &&
+hp === hpData
+){
+
+ditemukan = true;
+
+document
+.getElementById("profilBumil")
+.innerHTML = `
+<b>Nama :</b> ${nama}<br>
+<b>NIK :</b> ${nikData}<br>
+<b>No HP :</b> ${hpData}
+`;
+
+document
+.getElementById("loginBumilModal")
+.style.display = "none";
+
+document
+.getElementById("dashboardBumilModal")
+.style.display = "block";
+
+break;
+
+}
+
+}
+
+if(!ditemukan){
+
+document
+.getElementById("loginBumilError")
+.style.display = "block";
+
+}
+
+}catch(error){
+
+console.log(error);
+
+}
+
+}
 /* =========================
    INIT
 ========================= */
@@ -1406,6 +1565,108 @@ background:white;
 </div>
 
 </div>
+<!-- DASHBOARD BUMIL -->
 
+<div id="dashboardBumilModal"
+style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.95);
+z-index:999999;
+overflow:auto;
+padding:20px;
+">
+
+<div
+style="
+max-width:1000px;
+margin:auto;
+background:#111;
+border-radius:25px;
+padding:30px;
+border:1px solid rgba(0,255,213,0.2);
+">
+
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+">
+
+<h2 style="color:#00ffd5;">
+🤰 Dashboard Saya
+</h2>
+
+<button
+onclick="tutupDashboardBumil()"
+style="
+padding:10px 20px;
+border:none;
+border-radius:10px;
+background:#ff5252;
+color:white;
+cursor:pointer;
+">
+Tutup
+</button>
+
+</div>
+
+<div class="menu-grid">
+
+<div class="menu-card">
+<div class="icon">👩</div>
+<h3>Profil</h3>
+<p id="profilBumil">
+Memuat data...
+</p>
+</div>
+
+<div class="menu-card">
+<div class="icon">📅</div>
+<h3>Jadwal Posyandu</h3>
+<p>
+Awal bulan setiap Hari Rabu
+</p>
+</div>
+
+<div class="menu-card">
+<div class="icon">💊</div>
+<h3>Tablet Tambah Darah</h3>
+<p>
+Konsumsi 1 tablet setiap hari
+</p>
+</div>
+
+<div class="menu-card">
+<div class="icon">📄</div>
+<h3>Hak Bayi</h3>
+<p>
+Akta • KK • KIA • BPJS
+</p>
+</div>
+
+<div class="menu-card">
+<div class="icon">☎️</div>
+<h3>Hubungi Bidan</h3>
+
+<button onclick="
+window.open('https://wa.me/6285246320106')
+">
+Hubungi
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 </body>
 </html>
