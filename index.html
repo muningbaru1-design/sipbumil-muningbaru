@@ -443,6 +443,14 @@ text-align:center;
 
 }
 
+
+.bumil-dashboard{margin-top:20px;display:grid;gap:15px;}
+.bumil-card{background:#191919;padding:20px;border-radius:18px;border:1px solid rgba(0,255,213,0.15);}
+.bumil-card h3{color:#00ffd5;margin-bottom:10px;}
+.bumil-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;}
+.bumil-value{font-size:22px;font-weight:700;color:#00ffd5;}
+.btn-wa{width:100%;padding:14px;border:none;border-radius:12px;background:#00ffd5;font-weight:bold;cursor:pointer;}
+
 </style>
 
 </head>
@@ -466,9 +474,10 @@ text-align:center;
 
 </div>
 
-<button class="header-btn" onclick="bukaLogin()">
-Login Admin
-</button>
+<div style="display:flex;gap:10px;">
+<button class="header-btn" onclick="bukaProfilBumil()">🤰 Profil Saya</button>
+<button class="header-btn" onclick="bukaLogin()">Login Admin</button>
+</div>
 
 </div>
 
@@ -1159,6 +1168,63 @@ cariData();
    INIT
 ========================= */
 
+
+function bukaProfilBumil(){
+document.getElementById("modalProfilBumil").style.display="block";
+}
+
+function tutupProfilBumil(){
+document.getElementById("modalProfilBumil").style.display="none";
+}
+
+async function cariProfilBumil(){
+const nik=document.getElementById("nikProfil").value.trim();
+if(nik==="") return;
+const hasil=document.getElementById("hasilProfil");
+hasil.innerHTML="<p style='margin-top:15px'>Mencari data...</p>";
+
+try{
+const data=await fetch(CSV_URL).then(res=>res.text());
+const rows=data.split("\n");
+
+for(let i=1;i<rows.length;i++){
+const col=parseCSV(rows[i]);
+const nama=(col[1]||"").trim();
+const nikData=(col[6]||"").trim();
+const hp=(col[7]||"").trim();
+
+if(nik===nikData){
+hasil.innerHTML=`
+<div class="bumil-dashboard">
+<div class="bumil-card">
+<h3>🤰 Profil Ibu Hamil</h3>
+<p><b>Nama :</b> ${nama}</p>
+<p><b>NIK :</b> ${nikData}</p>
+<p><b>No HP :</b> ${hp}</p>
+</div>
+
+<div class="bumil-grid">
+<div class="bumil-card"><h3>🩸 Golongan Darah</h3><div class="bumil-value">${col[10]||"-"}</div></div>
+<div class="bumil-card"><h3>🤰 Hamil Ke</h3><div class="bumil-value">${col[11]||"-"}</div></div>
+</div>
+
+<div class="bumil-grid">
+<div class="bumil-card"><h3>📅 HPL</h3><div class="bumil-value">${col[18]||"-"}</div></div>
+<div class="bumil-card"><h3>🏥 Tempat Persalinan</h3><div class="bumil-value">${col[19]||"-"}</div></div>
+</div>
+
+<button class="btn-wa" onclick="window.open('https://wa.me/6285246320106')">☎️ Hubungi Bidan Desa</button>
+</div>`;
+return;
+}
+}
+hasil.innerHTML="<div class='result-card'><p style='color:#ff7070'>Data tidak ditemukan</p></div>";
+}catch(e){
+hasil.innerHTML="<div class='result-card'><p style='color:#ff7070'>Gagal mengambil data</p></div>";
+}
+}
+
+
 hitungBumil();
 hitungBayi();
 hitungResiko();
@@ -1397,6 +1463,17 @@ background:white;
 
 </div>
 
+</div>
+
+
+<div id="modalProfilBumil" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.95);z-index:999999;overflow:auto;padding:20px;">
+<div style="max-width:900px;margin:auto;background:#111;padding:30px;border-radius:25px;">
+<h2 style="color:#00ffd5;">🤰 Dashboard Profil Bumil</h2>
+<input type="text" id="nikProfil" placeholder="Masukkan NIK" style="width:100%;padding:14px;margin:15px 0;background:#1a1a1a;color:white;border:none;border-radius:12px;">
+<button onclick="cariProfilBumil()" class="header-btn">Lihat Profil</button>
+<button onclick="tutupProfilBumil()" style="margin-left:10px" class="header-btn">Tutup</button>
+<div id="hasilProfil"></div>
+</div>
 </div>
 
 </body>
