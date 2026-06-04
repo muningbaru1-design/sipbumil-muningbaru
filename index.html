@@ -440,7 +440,12 @@ flex-direction:column;
 gap:20px;
 text-align:center;
 }
-
+.header > div:last-child{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
+}
 }
 
 </style>
@@ -455,30 +460,33 @@ text-align:center;
 
 <div class="header">
 
-<div class="logo">
+    <div class="logo">
 
-<div class="logo-circle">🤰</div>
+        <div class="logo-circle">🤰</div>
 
-<div class="logo-text">
-<h1>SIP BUMILNYA</h1>
-<p>Sistem Informasi Persiapan Ibu Hamil dan Bayinya</p>
-</div>
+        <div class="logo-text">
+            <h1>SIP BUMILNYA</h1>
+            <p>Sistem Informasi Persiapan Ibu Hamil dan Bayinya</p>
+        </div>
 
-<div style="display:flex;gap:10px;">
+    </div>
 
-<button
-class="header-btn"
-onclick="bukaLoginBumil()">
-🤰 Login Bumil
-</button>
+    <div style="display:flex;gap:10px;">
 
-<button
-class="header-btn"
-onclick="bukaLogin()">
-🔐 Login Admin
-</button>
+        <button
+            class="header-btn"
+            onclick="bukaLoginBumil()">
+            🤰 Login Bumil
+        </button>
 
-</div>
+        <button
+            class="header-btn"
+            onclick="bukaLogin()">
+            🔐 Login Admin
+        </button>
+
+    </div>
+
 </div>
 <!-- =========================
      HERO
@@ -677,11 +685,31 @@ Hubungi
 
 </div>
 
-<!-- =========================
-     LOGIN MODAL
-========================= -->
-
+<!-- LOGIN ADMIN -->
 <div id="loginModal">
+
+<div class="login-box">
+
+<h2>Login Admin</h2>
+
+<input
+type="password"
+id="adminPassword"
+placeholder="Masukkan Password">
+
+<button onclick="loginAdmin()">
+Login
+</button>
+
+<p id="loginError">
+Password salah
+</p>
+
+</div>
+
+</div>
+
+<!-- LOGIN BUMIL -->
 <div id="loginBumilModal"
 style="
 display:none;
@@ -704,57 +732,25 @@ padding:20px;
 <input
 type="text"
 id="nikBumil"
-placeholder="Masukkan NIK"
->
+placeholder="Masukkan NIK">
 
 <input
 type="text"
 id="hpBumil"
-placeholder="Masukkan Nomor HP"
->
+placeholder="Masukkan Nomor HP">
 
 <button onclick="loginBumil()">
 Masuk
 </button>
 
-<p
-id="loginBumilError"
-style="
-display:none;
-color:#ff5252;
-margin-top:15px;
-">
+<p id="loginBumilError"
+style="display:none;color:#ff5252;margin-top:15px;">
 NIK atau Nomor HP salah
 </p>
 
 </div>
 
 </div>
-<div class="login-box">
-
-<h2>Login Admin</h2>
-
-<input
-type="password"
-id="adminPassword"
-placeholder="Masukkan Password"
->
-
-<button onclick="loginAdmin()">
-Login
-</button>
-
-<p id="loginError">
-Password salah
-</p>
-
-</div>
-
-</div>
-<!-- LOGIN BUMIL -->
-
-
-
 <!-- =========================
      JAVASCRIPT
 ========================= -->
@@ -1174,13 +1170,18 @@ document.getElementById("loginError")
 
 window.onclick = function(event){
 
-const modal =
+const admin =
 document.getElementById("loginModal");
 
-if(event.target === modal){
+const bumil =
+document.getElementById("loginBumilModal");
 
-modal.style.display = "none";
+if(event.target === admin){
+admin.style.display = "none";
+}
 
+if(event.target === bumil){
+bumil.style.display = "none";
 }
 
 }
@@ -1188,7 +1189,9 @@ modal.style.display = "none";
 /* =========================
    ENTER LOGIN
 ========================= */
-
+document
+.getElementById("loginBumilError")
+.style.display = "none";
 document
 .getElementById("adminPassword")
 .addEventListener("keypress", function(event){
