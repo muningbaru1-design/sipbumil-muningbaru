@@ -1209,15 +1209,9 @@ if(row === "") continue;
 
 const col = parseCSV(row);
 
-const nikData = (
-(col[6] || col[5] || "")
-.toString()
-.trim()
-);
+const semuaKolom = col.join(" ").replace(/\s/g,'');
 
-if(
-nikData.replace(/\s/g,'').includes(nik.replace(/\s/g,''))
-){
+if(semuaKolom.includes(nik.replace(/\s/g,''))){
 
 hasil.innerHTML = `
 
