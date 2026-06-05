@@ -491,57 +491,50 @@ grid-template-columns:1fr 1fr;
 }
 
 .login-left{
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-padding:50px;
-text-align:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px;
 }
 
-.logo-login{
-width:120px;
-height:120px;
-border-radius:50%;
-background:
-linear-gradient(
-135deg,
-#00ffd5,
-#00a2ff
-);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:55px;
-margin-bottom:20px;
-box-shadow:0 0 40px rgba(0,255,213,.4);
+.logo-area{
+    text-align:center;
+    margin-bottom:20px;
 }
 
-.login-left h1{
-font-size:56px;
-color:#00ffd5;
-margin-bottom:15px;
+.logo-sip{
+    width:100px;
+    height:100px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto 15px;
+}
+
+.logo-area h1{
+    color:#00ffd5;
+    font-size:56px;
+    margin-bottom:10px;
 }
 
 .subtitle{
-font-size:22px;
-color:white;
-margin-bottom:20px;
+    color:#ffffff;
+    font-size:20px;
 }
 
-.desc{
-max-width:550px;
-color:#ccc;
-line-height:1.8;
+.welcome-text{
+    color:#cccccc;
+    max-width:600px;
+    line-height:1.8;
+    margin-bottom:25px;
 }
 
 .bumil-img{
     width:100%;
-    max-width:650px;
+    max-width:500px;
     height:auto;
     display:block;
-    margin:20px auto;
-    border-radius:20px;
 }
 
 .login-right{
@@ -636,31 +629,33 @@ max-width:280px;
 
 <div class="login-container">
 
-<div class="logo-area">
+<div class="login-left">
 
-    <img
-        src="logo-sipbumilnya.png"
-        alt="Logo SIP BUMILNYA"
-        class="logo-sip">
+    <div class="logo-area">
 
-    <h1>SIP BUMILNYA</h1>
+        <img
+            src="logo-sipbumilnya.png"
+            class="logo-sip"
+            alt="Logo SIP BUMILNYA">
 
-    <p>
-        Sistem Informasi Persiapan
-        Ibu Hamil dan Bayinya
-    </p>
+        <h1>SIP BUMILNYA</h1>
 
-</div>
+        <p class="subtitle">
+            Sistem Informasi Persiapan
+            Ibu Hamil dan Bayinya
+        </p>
+
+    </div>
 
     <div class="welcome-text">
         Platform digital kesehatan desa untuk pendataan ibu hamil,
         bayi, risiko tinggi dan pelayanan posyandu modern berbasis data.
     </div>
 
-   <img
-    src="https://muningbaru1-design.github.io/sipbumil-muningbaru/bumil-bayi.png"
-    class="bumil-img"
-    alt="Ibu Hamil dan Bayi">
+    <img
+        src="bumil-bayi.png"
+        class="bumil-img"
+        alt="Ibu Hamil dan Bayi">
 
 </div>
 
