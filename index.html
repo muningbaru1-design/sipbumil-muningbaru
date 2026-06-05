@@ -1182,10 +1182,38 @@ function tutupProfilBumil(){
 document.getElementById("modalProfilBumil").style.display="none";
 }
 
+
 async function cariProfilBumil(){
-const nik=document.getElementById("nikProfil").value.trim();
-if(nik==="") return;
-const hasil=document.getElementById("hasilProfil");
+
+const nik = document.getElementById("nikProfil").value.trim();
+
+if(nik === "") return;
+
+const hasil = document.getElementById("hasilProfil");
+
+hasil.innerHTML = "<p style='color:#00ffd5'>Mencari data...</p>";
+
+try{
+
+const data = await fetch(CSV_URL).then(res => res.text());
+
+const rows = data.split("
+");
+
+let ditemukan = false;
+
+for(let i=1; i<rows.length; i++){
+
+const row = rows[i].trim();
+
+if(row === "") continue;
+
+const col = parseCSV(row);
+
+const nikData = (col[6] || "").trim();
+
+if(nikData === nik){
+
 hasil.innerHTML = `
 
 <div class="bumil-dashboard">
@@ -1200,92 +1228,65 @@ margin-bottom:20px;
 🤰 DASHBOARD IBU HAMIL
 </h2>
 
-<p><b>Nama :</b> ${col[1]}</p>
-<p><b>NIK :</b> ${col[6]}</p>
-<p><b>Gol. Darah :</b> ${col[2]}</p>
-<p><b>Hamil Ke :</b> ${col[3]}</p>
+<p><b>Nama :</b> ${col[1] || "-"}</p>
+<p><b>NIK :</b> ${col[6] || "-"}</p>
+<p><b>Gol. Darah :</b> ${col[2] || "-"}</p>
+<p><b>Hamil Ke :</b> ${col[3] || "-"}</p>
 
 </div>
 
 <div class="bumil-card">
-
 <h3>📅 Taksiran Persalinan</h3>
-
 <div class="bumil-value">
-${col[21]}
+${col[21] || "-"}
 </div>
-
 </div>
 
 <div class="bumil-card">
-
 <h3>🏥 Tempat Persalinan</h3>
-
-<p>${col[17]}</p>
-
+<p>${col[17] || "-"}</p>
 </div>
 
 <div class="bumil-card">
-
 <h3>👨‍⚕️ Penolong Persalinan</h3>
-
-<p>${col[22]}</p>
-
+<p>${col[22] || "-"}</p>
 </div>
 
 <div class="bumil-card">
-
 <h3>👨 Pendamping Persalinan</h3>
-
-<p>${col[25]}</p>
-
+<p>${col[25] || "-"}</p>
 </div>
 
 <div class="bumil-card">
-
 <h3>💳 BPJS</h3>
-
-<p><b>Kepesertaan :</b> ${col[10]}</p>
-<p><b>Kelas :</b> ${col[11]}</p>
-<p><b>Status :</b> ${col[12]}</p>
-<p><b>No BPJS :</b> ${col[9]}</p>
-
+<p><b>Kepesertaan :</b> ${col[10] || "-"}</p>
+<p><b>Kelas :</b> ${col[11] || "-"}</p>
+<p><b>Status :</b> ${col[12] || "-"}</p>
+<p><b>No BPJS :</b> ${col[9] || "-"}</p>
 </div>
 
 <div class="bumil-card">
-
 <h3>🚑 Transportasi</h3>
-
-<p>${col[14]}</p>
-
+<p>${col[14] || "-"}</p>
 </div>
 
 <div class="bumil-card">
-
 <h3>❤️ Calon Pendonor</h3>
-
-<p>${col[13]}</p>
-
+<p>${col[13] || "-"}</p>
 </div>
 
 <div class="bumil-card">
-
 <h3>📍 Informasi Domisili</h3>
-
-<p><b>Desa :</b> ${col[19]}</p>
-<p><b>RT/RW :</b> ${col[20]}</p>
-<p><b>Kecamatan :</b> ${col[7]}</p>
-
+<p><b>Desa :</b> ${col[19] || "-"}</p>
+<p><b>RT/RW :</b> ${col[20] || "-"}</p>
+<p><b>Kecamatan :</b> ${col[7] || "-"}</p>
 </div>
 
 <div class="bumil-card">
-
 <h3>👶 Data Pribadi</h3>
-
-<p><b>Tempat Lahir :</b> ${col[24]}</p>
-<p><b>Tanggal Lahir :</b> ${col[5]}</p>
-<p><b>No HP/WA :</b> ${col[26]}</p>
-
+<p><b>Tempat Lahir :</b> ${col[24] || "-"}</p>
+<p><b>Tanggal Lahir :</b> ${col[5] || "-"}</p>
+<p><b>No HP/WA :</b> ${col[26] || "-"}</p>
 </div>
 
 <button
@@ -1299,17 +1300,33 @@ onclick="window.open('https://wa.me/6285246320106')">
 </div>
 
 `;
-return;
-}
-}
-hasil.innerHTML="<div class='result-card'><p style='color:#ff7070'>Data tidak ditemukan</p></div>";
-}catch(e){
-hasil.innerHTML="<div class='result-card'><p style='color:#ff7070'>Gagal mengambil data</p></div>";
-}
+
+ditemukan = true;
+
+break;
+
 }
 
+}
+
+if(!ditemukan){
+
+hasil.innerHTML = "<div class='result-card'><p style='color:#ff7070'>Data tidak ditemukan</p></div>";
+
+}
+
+}catch(error){
+
+console.error(error);
+
+hasil.innerHTML = "<div class='result-card'><p style='color:#ff7070'>Gagal mengambil data</p></div>";
+
+}
+
+}
 
 hitungBumil();
+
 hitungBayi();
 hitungResiko();
 /* =========================
