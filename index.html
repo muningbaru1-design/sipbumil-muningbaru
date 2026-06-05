@@ -1197,8 +1197,7 @@ try{
 
 const data = await fetch(CSV_URL).then(res => res.text());
 
-const rows = data.split("
-");
+const rows = data.split("\\n");
 
 let ditemukan = false;
 
