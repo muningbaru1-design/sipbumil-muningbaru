@@ -15,7 +15,18 @@ display:grid;
 gap:15px;
 margin-top:20px;
 }
+/* LOGO SIP BUMILNYA */
+.logo-sip{
+    width:160px;
+    height:160px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto 20px;
 
+    filter:
+        drop-shadow(0 0 15px rgba(0,255,213,.6))
+        drop-shadow(0 0 30px rgba(0,255,213,.4));
+}
 /* =========================
    RESET
 ========================= */
@@ -625,16 +636,21 @@ max-width:280px;
 
 <div class="login-container">
 
-<div class="login-left">
+<div class="logo-area">
 
-    <div class="logo-area">
-        <h1>SIP BUMILNYA</h1>
+    <img
+        src="logo-sipbumilnya.png"
+        alt="Logo SIP BUMILNYA"
+        class="logo-sip">
 
-        <p>
-            Sistem Informasi Persiapan
-            Ibu Hamil dan Bayinya
-        </p>
-    </div>
+    <h1>SIP BUMILNYA</h1>
+
+    <p>
+        Sistem Informasi Persiapan
+        Ibu Hamil dan Bayinya
+    </p>
+
+</div>
 
     <div class="welcome-text">
         Platform digital kesehatan desa untuk pendataan ibu hamil,
