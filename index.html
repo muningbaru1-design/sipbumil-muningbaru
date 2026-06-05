@@ -855,28 +855,44 @@ const col = parseCSV(row);
    AMBIL DATA IDENTITAS ANAK
 ========================= */
 
+let colBayi = [];
+
+try{
+
 const dataBayi = await fetch(CSV_BAYI)
 .then(res => res.text());
 
 const rowsBayi = dataBayi.split("\n");
 
-let colBayi = [];
-
 for(let j=1; j<rowsBayi.length; j++){
 
 const bayi = parseCSV(rowsBayi[j]);
 
-if(
+const namaIbu =
 (bayi[1] || "")
 .toLowerCase()
-.includes((col[1] || "").toLowerCase())
-){
+.trim();
+
+const namaProfil =
+(col[1] || "")
+.toLowerCase()
+.trim();
+
+if(namaIbu.includes(namaProfil)){
 
 colBayi = bayi;
 
 break;
 
 }
+
+}
+
+}catch(err){
+
+console.log("Data bayi tidak ditemukan");
+
+colBayi = [];
 
 }
 const nama = (col[0] || "").trim();
