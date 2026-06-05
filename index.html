@@ -9,7 +9,46 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+.bumil-dashboard{
+display:grid;
+gap:15px;
+margin-top:20px;
+}
 
+.bumil-card{
+background:#181818;
+padding:20px;
+border-radius:18px;
+border:1px solid rgba(0,255,213,.15);
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+.bumil-card h3{
+color:#00ffd5;
+margin-bottom:10px;
+}
+
+.bumil-card p{
+line-height:1.8;
+margin:5px 0;
+}
+
+.bumil-value{
+font-size:26px;
+font-weight:bold;
+color:#00ffd5;
+}
+
+.btn-wa{
+width:100%;
+padding:15px;
+border:none;
+border-radius:15px;
+background:#00ffd5;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
 <style>
 
 /* =========================
@@ -1181,40 +1220,119 @@ async function cariProfilBumil(){
 const nik=document.getElementById("nikProfil").value.trim();
 if(nik==="") return;
 const hasil=document.getElementById("hasilProfil");
-hasil.innerHTML="<p style='margin-top:15px'>Mencari data...</p>";
+hasil.innerHTML = `
 
-try{
-const data=await fetch(CSV_URL).then(res=>res.text());
-const rows=data.split("\n");
-
-for(let i=1;i<rows.length;i++){
-const col=parseCSV(rows[i]);
-const nama=(col[1]||"").trim();
-const nikData=(col[6]||"").trim();
-const hp=(col[7]||"").trim();
-
-if(nik===nikData){
-hasil.innerHTML=`
 <div class="bumil-dashboard">
+
 <div class="bumil-card">
-<h3>🤰 Profil Ibu Hamil</h3>
-<p><b>Nama :</b> ${nama}</p>
-<p><b>NIK :</b> ${nikData}</p>
-<p><b>No HP :</b> ${hp}</p>
+
+<h2 style="
+text-align:center;
+color:#00ffd5;
+margin-bottom:20px;
+">
+🤰 DASHBOARD IBU HAMIL
+</h2>
+
+<p><b>Nama :</b> ${col[1]}</p>
+<p><b>NIK :</b> ${col[6]}</p>
+<p><b>Gol. Darah :</b> ${col[2]}</p>
+<p><b>Hamil Ke :</b> ${col[3]}</p>
+
 </div>
 
-<div class="bumil-grid">
-<div class="bumil-card"><h3>🩸 Golongan Darah</h3><div class="bumil-value">${col[10]||"-"}</div></div>
-<div class="bumil-card"><h3>🤰 Hamil Ke</h3><div class="bumil-value">${col[11]||"-"}</div></div>
+<div class="bumil-card">
+
+<h3>📅 Taksiran Persalinan</h3>
+
+<div class="bumil-value">
+${col[21]}
 </div>
 
-<div class="bumil-grid">
-<div class="bumil-card"><h3>📅 HPL</h3><div class="bumil-value">${col[18]||"-"}</div></div>
-<div class="bumil-card"><h3>🏥 Tempat Persalinan</h3><div class="bumil-value">${col[19]||"-"}</div></div>
 </div>
 
-<button class="btn-wa" onclick="window.open('https://wa.me/6285246320106')">☎️ Hubungi Bidan Desa</button>
-</div>`;
+<div class="bumil-card">
+
+<h3>🏥 Tempat Persalinan</h3>
+
+<p>${col[17]}</p>
+
+</div>
+
+<div class="bumil-card">
+
+<h3>👨‍⚕️ Penolong Persalinan</h3>
+
+<p>${col[22]}</p>
+
+</div>
+
+<div class="bumil-card">
+
+<h3>👨 Pendamping Persalinan</h3>
+
+<p>${col[25]}</p>
+
+</div>
+
+<div class="bumil-card">
+
+<h3>💳 BPJS</h3>
+
+<p><b>Kepesertaan :</b> ${col[10]}</p>
+<p><b>Kelas :</b> ${col[11]}</p>
+<p><b>Status :</b> ${col[12]}</p>
+<p><b>No BPJS :</b> ${col[9]}</p>
+
+</div>
+
+<div class="bumil-card">
+
+<h3>🚑 Transportasi</h3>
+
+<p>${col[14]}</p>
+
+</div>
+
+<div class="bumil-card">
+
+<h3>❤️ Calon Pendonor</h3>
+
+<p>${col[13]}</p>
+
+</div>
+
+<div class="bumil-card">
+
+<h3>📍 Informasi Domisili</h3>
+
+<p><b>Desa :</b> ${col[19]}</p>
+<p><b>RT/RW :</b> ${col[20]}</p>
+<p><b>Kecamatan :</b> ${col[7]}</p>
+
+</div>
+
+<div class="bumil-card">
+
+<h3>👶 Data Pribadi</h3>
+
+<p><b>Tempat Lahir :</b> ${col[24]}</p>
+<p><b>Tanggal Lahir :</b> ${col[5]}</p>
+<p><b>No HP/WA :</b> ${col[26]}</p>
+
+</div>
+
+<button
+class="btn-wa"
+onclick="window.open('https://wa.me/6285246320106')">
+
+☎️ Hubungi Bidan Desa
+
+</button>
+
+</div>
+
+`;
 return;
 }
 }
