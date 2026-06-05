@@ -456,13 +456,232 @@ text-align:center;
 .bumil-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;}
 .bumil-value{font-size:22px;font-weight:700;color:#00ffd5;}
 .btn-wa{width:100%;padding:14px;border:none;border-radius:12px;background:#00ffd5;font-weight:bold;cursor:pointer;}
+/* LOGIN MODERN */
 
+#loginScreen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:
+linear-gradient(
+135deg,
+#00121f,
+#00253f,
+#00111f
+);
+z-index:9999999;
+overflow:auto;
+}
+
+.login-container{
+min-height:100vh;
+display:grid;
+grid-template-columns:1fr 1fr;
+}
+
+.login-left{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:50px;
+text-align:center;
+}
+
+.logo-login{
+width:120px;
+height:120px;
+border-radius:50%;
+background:
+linear-gradient(
+135deg,
+#00ffd5,
+#00a2ff
+);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:55px;
+margin-bottom:20px;
+box-shadow:0 0 40px rgba(0,255,213,.4);
+}
+
+.login-left h1{
+font-size:56px;
+color:#00ffd5;
+margin-bottom:15px;
+}
+
+.subtitle{
+font-size:22px;
+color:white;
+margin-bottom:20px;
+}
+
+.desc{
+max-width:550px;
+color:#ccc;
+line-height:1.8;
+}
+
+.bumil-img{
+width:100%;
+max-width:450px;
+margin-top:30px;
+border-radius:30px;
+}
+
+.login-right{
+display:flex;
+justify-content:center;
+align-items:center;
+padding:40px;
+}
+
+.login-card-modern{
+width:100%;
+max-width:500px;
+
+background:
+rgba(255,255,255,.05);
+
+backdrop-filter:blur(20px);
+
+border:1px solid
+rgba(255,255,255,.08);
+
+border-radius:30px;
+
+padding:40px;
+}
+
+.login-card-modern h2{
+font-size:34px;
+margin-bottom:10px;
+color:white;
+}
+
+.login-card-modern p{
+color:#bbb;
+margin-bottom:20px;
+}
+
+.login-card-modern input{
+width:100%;
+padding:16px;
+background:#101820;
+border:none;
+border-radius:14px;
+margin-bottom:15px;
+color:white;
+}
+
+.login-card-modern button{
+width:100%;
+padding:16px;
+border:none;
+border-radius:14px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+
+background:
+linear-gradient(
+90deg,
+#00ffd5,
+#00a2ff
+);
+}
+
+#loginModernError{
+display:none;
+color:#ff7070;
+margin-top:15px;
+}
+
+@media(max-width:900px){
+
+.login-container{
+grid-template-columns:1fr;
+}
+
+.login-left h1{
+font-size:40px;
+}
+
+.bumil-img{
+max-width:280px;
+}
+
+}
 </style>
 
 </head>
 
 <body>
+   <div id="loginScreen">
 
+<div class="login-container">
+
+<div class="login-left">
+
+<div class="logo-login">
+🤰
+</div>
+
+<h1>SIP BUMILNYA</h1>
+
+<p class="subtitle">
+Sistem Informasi Persiapan
+Ibu Hamil dan Bayinya
+</p>
+
+<p class="desc">
+Platform digital kesehatan desa untuk pendataan ibu hamil,
+bayi, risiko tinggi dan pelayanan posyandu modern berbasis data.
+</p>
+
+<img
+src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800"
+class="bumil-img">
+
+</div>
+
+<div class="login-right">
+
+<div class="login-card-modern">
+
+<h2>Login Admin</h2>
+
+<p>Silakan masuk untuk melanjutkan</p>
+
+<input
+type="password"
+id="loginPasswordModern"
+placeholder="Masukkan Password">
+
+<button onclick="loginModern()">
+Masuk
+</button>
+
+<div id="loginModernError">
+Password Salah
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div id="loginScreen">
+    <!-- isi halaman login modern -->
+</div>
+
+<div id="appContent" style="display:none;">
 <!-- =========================
      HEADER
 ========================= -->
@@ -1412,6 +1631,47 @@ document.getElementById("modalResikoTinggi")
 .style.display = "none";
 
 }
+   function loginModern(){
+
+const pass =
+document.getElementById(
+"loginPasswordModern"
+).value;
+
+if(pass === ADMIN_PASSWORD){
+
+document.getElementById(
+"loginScreen"
+).style.display = "none";
+
+document.getElementById(
+"appContent"
+).style.display = "block";
+
+}else{
+
+document.getElementById(
+"loginModernError"
+).style.display = "block";
+
+}
+
+}
+
+document
+.getElementById(
+"loginPasswordModern"
+)
+.addEventListener(
+"keypress",
+function(e){
+
+if(e.key==="Enter"){
+loginModern();
+}
+
+}
+);
 </script>
 <!-- MODAL DATA BAYI -->
 <div id="modalDataBayi" style="
@@ -1608,6 +1868,6 @@ background:white;
 <div id="hasilProfil"></div>
 </div>
 </div>
-
+</div>
 </body>
 </html>
