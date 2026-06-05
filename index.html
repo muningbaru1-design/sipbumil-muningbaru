@@ -851,50 +851,7 @@ const row = rows[i].trim();
 if(row === "") continue;
 
 const col = parseCSV(row);
-/* =========================
-   AMBIL DATA IDENTITAS ANAK
-========================= */
 
-let colBayi = [];
-
-try{
-
-const dataBayi = await fetch(CSV_BAYI)
-.then(res => res.text());
-
-const rowsBayi = dataBayi.split("\n");
-
-for(let j=1; j<rowsBayi.length; j++){
-
-const bayi = parseCSV(rowsBayi[j]);
-
-const namaIbu =
-(bayi[1] || "")
-.toLowerCase()
-.trim();
-
-const namaProfil =
-(col[1] || "")
-.toLowerCase()
-.trim();
-
-if(namaIbu.includes(namaProfil)){
-
-colBayi = bayi;
-
-break;
-
-}
-
-}
-
-}catch(err){
-
-console.log("Data bayi tidak ditemukan");
-
-colBayi = [];
-
-}
 const nama = (col[0] || "").trim();
 const resiko = (col[1] || "").trim();
 
@@ -1342,47 +1299,7 @@ ${col[21] || "-"}
 <p><b>Kecamatan :</b> ${col[7] || "-"}</p>
 
 </div>
-<div class="bumil-card">
 
-<h3>📄 Hak Identitas Anak</h3>
-
-<p>
-📘 Update KK :
-<b style="
-color:${colBayi[3]=='Sudah' ? '#00ffd5':'#ff5252'};
-">
-${colBayi[3] || 'Belum'}
-</b>
-</p>
-
-<p>
-🧾 Akta Lahir :
-<b style="
-color:${colBayi[4]=='Sudah' ? '#00ffd5':'#ff5252'};
-">
-${colBayi[4] || 'Belum'}
-</b>
-</p>
-
-<p>
-🪪 KIA :
-<b style="
-color:${colBayi[5]=='Sudah' ? '#00ffd5':'#ff5252'};
-">
-${colBayi[5] || 'Belum'}
-</b>
-</p>
-
-<p>
-🏥 BPJS :
-<b style="
-color:${colBayi[6]=='Sudah' ? '#00ffd5':'#ff5252'};
-">
-${colBayi[6] || 'Belum'}
-</b>
-</p>
-
-</div>
 <div class="bumil-card">
 <h3>👶 Data Pribadi</h3>
 
