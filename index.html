@@ -2034,7 +2034,7 @@ function tutupPMT(){
 const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=1996897545&single=true&output=csv";
 
 <script>
-const sheetURL = "LINK_KAMU";
+const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=1996897545&single=true&output=csv";
 
 async function loadData() {
   const res = await fetch(sheetURL);
@@ -2046,9 +2046,16 @@ async function loadData() {
   table.innerHTML = "";
 
   rows.forEach((row, index) => {
-    const cols = row.split(",");
+    const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
 
-    if (cols.length < 7) return;
+    if (cols.length < 7 || cols[1] === "") return;
+
+    let status = cols[6];
+    let warna = "white";
+
+    if(status === "Belum") warna = "yellow";
+    if(status === "Selesai") warna = "lime";
+    if(status === "Terlambat") warna = "red";
 
     const tr = `
       <tr>
@@ -2058,7 +2065,7 @@ async function loadData() {
         <td>${cols[3]}</td>
         <td>${cols[4]}</td>
         <td>${cols[5]}</td>
-        <td>${cols[6]}</td>
+        <td style="color:${warna}; font-weight:bold;">${status}</td>
       </tr>
     `;
 
