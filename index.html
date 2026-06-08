@@ -2003,6 +2003,52 @@ Tutup
 </tbody>
 
 </table>
+  <script>
+const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=1996897545&single=true&output=csv";
+
+function formatStatus(status){
+  if(!status) return `<span style="color:gray;">-</span>`;
+
+  if(status.toLowerCase().includes("sudah")){
+    return `<span style="color:green; font-weight:bold;">✔ Sudah</span>`;
+  } else {
+    return `<span style="color:red; font-weight:bold;">✖ Belum</span>`;
+  }
+}
+
+async function loadData() {
+  const res = await fetch(sheetURL);
+  const data = await res.text();
+
+  const rows = data.trim().split("\n").slice(1);
+  const table = document.getElementById("dataPMT");
+
+  table.innerHTML = "";
+
+  rows.forEach((row, index) => {
+    const cols = row.split(",");
+
+    if (cols.length < 7) return;
+
+    const tr = `
+      <tr>
+        <td>${index + 1}</td>
+        <td>${cols[1]}</td>
+        <td>${cols[2]}</td>
+        <td>${formatStatus(cols[3])}</td>
+        <td>${formatStatus(cols[4])}</td>
+        <td>${formatStatus(cols[5])}</td>
+        <td>${formatStatus(cols[6])}</td>
+        <td>${cols[7] || '-'}</td>
+      </tr>
+    `;
+
+    table.innerHTML += tr;
+  });
+}
+
+loadData();
+</script>
 </div>
 
 <br><br>
