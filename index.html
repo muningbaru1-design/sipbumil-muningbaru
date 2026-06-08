@@ -2010,16 +2010,9 @@ Tutup
 <!-- OPSIONAL GOOGLE SHEET -->
 <h3 style="color:#00ffd5;">📊 Data Lengkap PMT</h3>
 
-<iframe 
-src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pubhtml?gid=1996897545&single=true"
-width="100%" 
-height="400"
-style="border:none;border-radius:10px;">
-</iframe>
-
 </div>
     <script>
-// === PMT ===
+// === MENU PMT ===
 function bukaPMT(){
   document.querySelector('.menu-grid').style.display = 'none';
   document.getElementById('halamanPMT').style.display = 'block';
@@ -2029,11 +2022,8 @@ function tutupPMT(){
   document.getElementById('halamanPMT').style.display = 'none';
   document.querySelector('.menu-grid').style.display = 'grid';
 }
-</script>
-  <script>
-const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=1996897545&single=true&output=csv";
 
-<script>
+// === LOAD DATA GOOGLE SHEET ===
 const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=1996897545&single=true&output=csv";
 
 async function loadData() {
@@ -2046,16 +2036,9 @@ async function loadData() {
   table.innerHTML = "";
 
   rows.forEach((row, index) => {
-    const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+    const cols = row.split(",");
 
-    if (cols.length < 7 || cols[1] === "") return;
-
-    let status = cols[6];
-    let warna = "white";
-
-    if(status === "Belum") warna = "yellow";
-    if(status === "Selesai") warna = "lime";
-    if(status === "Terlambat") warna = "red";
+    if (cols.length < 7) return;
 
     const tr = `
       <tr>
@@ -2065,7 +2048,7 @@ async function loadData() {
         <td>${cols[3]}</td>
         <td>${cols[4]}</td>
         <td>${cols[5]}</td>
-        <td style="color:${warna}; font-weight:bold;">${status}</td>
+        <td>${cols[6]}</td>
       </tr>
     `;
 
@@ -2073,13 +2056,11 @@ async function loadData() {
   });
 }
 
+// jalankan saat halaman dibuka
 loadData();
 </script>
-    table.innerHTML += tr;
-  });
-}
-
-loadData();
-</script>
+  ...
+<script> ... </script>
+</body>
 </body>
 </html>
