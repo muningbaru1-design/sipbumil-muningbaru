@@ -2022,14 +2022,14 @@ function tutupPMT(){
   document.querySelector('.menu-grid').style.display = 'grid';
 }
 </script>
-   <script>
+  <script>
 const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=1996897545&single=true&output=csv";
 
 async function loadData() {
   const res = await fetch(sheetURL);
   const data = await res.text();
 
-  const rows = data.trim().split("\n").slice(1); // skip header
+  const rows = data.trim().split("\n").slice(1);
   const table = document.getElementById("dataPMT");
 
   table.innerHTML = "";
@@ -2037,8 +2037,7 @@ async function loadData() {
   rows.forEach((row, index) => {
     const cols = row.split(",");
 
-    // filter data aneh / tidak lengkap
-    if (cols.length < 6 || cols[1] === "") return;
+    if (cols.length < 7 || cols[1] === "") return;
 
     const tr = `
       <tr>
@@ -2047,10 +2046,17 @@ async function loadData() {
         <td>${cols[2]}</td>
         <td>${cols[3]}</td>
         <td>${cols[4]}</td>
-        <td>${cols[6]}</td>
+        <td>${cols[5]}</td> <!-- KADER -->
+        <td>${cols[6]}</td> <!-- STATUS -->
       </tr>
     `;
 
+    table.innerHTML += tr;
+  });
+}
+
+loadData();
+</script>
     table.innerHTML += tr;
   });
 }
