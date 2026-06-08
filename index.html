@@ -1991,28 +1991,7 @@ Tutup
 </tr>
 </thead>
 
-<tbody>
-
-<tr>
-<td style="padding:10px;">1</td>
-<td>Siti Aminah</td>
-<td>Bumil KEK</td>
-<td>Dusun 1</td>
-<td>10 Juni 2026</td>
-<td>Kader A</td>
-<td style="color:yellow;">Belum</td>
-</tr>
-
-<tr>
-<td style="padding:10px;">2</td>
-<td>Bayi Andi</td>
-<td>Stunting</td>
-<td>Dusun 2</td>
-<td>11 Juni 2026</td>
-<td>Kader B</td>
-<td style="color:lime;">Selesai</td>
-</tr>
-
+<tbody id="dataPMT">
 </tbody>
 
 </table>
@@ -2042,6 +2021,45 @@ function tutupPMT(){
   document.getElementById('halamanPMT').style.display = 'none';
   document.querySelector('.menu-grid').style.display = 'grid';
 }
+</script>
+   <script>
+const sheetURL = "https://docs.google.com/spreadsheets/d/1ubTT7jy8hCH6kTUstf92wzYaLumyEHe0ue28ZnrecBg/export?format=csv";
+
+fetch(sheetURL)
+  .then(response => response.text())
+  .then(data => {
+    const rows = data.split("\n").slice(1);
+    let html = "";
+
+    rows.forEach((row, index) => {
+      const cols = row.split(",");
+
+      if(cols.length > 1 && cols[6].trim() !== "Selesai"){
+        let status = cols[6]?.trim();
+
+        let warnaStatus = "white";
+        if(status === "Belum") warnaStatus = "yellow";
+        if(status === "Selesai") warnaStatus = "lime";
+        if(status === "Terlambat") warnaStatus = "red";
+
+        html += `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${cols[1]}</td>
+          <td>${cols[2]}</td>
+          <td>${cols[3]}</td>
+          <td>${cols[4]}</td>
+          <td>${cols[5]}</td>
+          <td style="color:${warnaStatus}; font-weight:bold;">
+            ${status}
+          </td>
+        </tr>
+        `;
+      }
+    });
+
+    document.getElementById("dataPMT").innerHTML = html;
+  });
 </script>
 </body>
 </html>
