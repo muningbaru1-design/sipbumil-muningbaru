@@ -896,13 +896,14 @@ Hubungi
 </div>
  <!-- RELAWAN -->
   <div class="menu-card">
-    <div class="icon">🩸</div>
-    <h3>Relawan Donor Darah</h3>
-    <p>Data relawan pendonor darah desa.</p>
-   <button onclick="window.location.replace('relawan.html')">
-Buka Menu
-</button>
-  </div>
+  <div class="icon">🩸</div>
+  <h3>Relawan Donor Darah</h3>
+  <p>Data relawan pendonor darah desa.</p>
+
+  <button onclick="bukaRelawan()">
+    Buka Menu
+  </button>
+</div>
 
 </div>
 
@@ -1874,24 +1875,83 @@ background:white;
 </div>
 
 </div>
-
-
+<!-- MODAL PROFIL BUMIL -->
 <div id="modalProfilBumil" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.95);z-index:999999;overflow:auto;padding:20px;">
-<div style="max-width:900px;margin:auto;background:#111;padding:30px;border-radius:25px;">
-<h2 style="color:#00ffd5;">🤰 Dashboard Profil Bumil</h2>
-<input type="text" id="nikProfil" placeholder="Masukkan NIK" style="width:100%;padding:14px;margin:15px 0;background:#1a1a1a;color:white;border:none;border-radius:12px;">
-<button onclick="cariProfilBumil()" class="header-btn">Lihat Profil</button>
-<button onclick="tutupProfilBumil()" style="margin-left:10px" class="header-btn">Tutup</button>
-<div id="hasilProfil"></div>
+  <div style="max-width:900px;margin:auto;background:#111;padding:30px;border-radius:25px;">
+    
+    <h2 style="color:#00ffd5;">🤰 Dashboard Profil Bumil</h2>
+
+    <input type="text" id="nikProfil" placeholder="Masukkan NIK"
+      style="width:100%;padding:14px;margin:15px 0;background:#1a1a1a;color:white;border:none;border-radius:12px;">
+
+    <button onclick="cariProfilBumil()" class="header-btn">Lihat Profil</button>
+    <button onclick="tutupProfilBumil()" style="margin-left:10px" class="header-btn">Tutup</button>
+
+    <div id="hasilProfil"></div>
+
+  </div>
 </div>
+
+
+<!-- HALAMAN RELAWAN -->
+<div id="halamanRelawan" style="display:none; padding:20px;">
+
+  <h2>🩸 Data Relawan Pendonor Darah</h2>
+
+  <button onclick="tutupRelawan()" style="
+    background:red;
+    color:white;
+    padding:10px 15px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;">
+    Tutup
+  </button>
+
+  <br><br>
+
+  <iframe 
+    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pubhtml?gid=2058503626&single=true"
+    width="100%" 
+    height="500"
+    style="border:none;border-radius:10px;">
+  </iframe>
+
 </div>
-</div>
+
+
+<!-- SCRIPT (WAJIB PALING BAWAH) -->
 <script>
 window.onload = function() {
   if(window.location.hash === "#menu"){
     document.getElementById("menu").scrollIntoView();
   }
+};
+
+// === RELAWAN ===
+function bukaRelawan(){
+  document.querySelector('.menu-grid').style.display = 'none';
+  document.getElementById('halamanRelawan').style.display = 'block';
 }
-</script>
+
+function tutupRelawan(){
+  document.getElementById('halamanRelawan').style.display = 'none';
+  document.querySelector('.menu-grid').style.display = 'grid';
+}
+</script>    
+    <div id="halamanRelawan" style="display:none; padding:20px;">
+
+<h2>🩸 Data Relawan Pendonor Darah</h2>
+
+<button onclick="tutupRelawan()">Tutup</button>
+
+<br><br>
+
+<iframe 
+src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pubhtml?gid=2058503626&single=true"
+width="100%" height="500">
+</iframe>
+
+</div>
 </body>
 </html>
