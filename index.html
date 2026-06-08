@@ -854,7 +854,15 @@ Buka Menu
 </button>
 
 </div>
+<div class="menu-card">
+    <div class="icon">🍲</div>
+    <h3>Intervensi Gizi (PMT)</h3>
+    <p>Jadwal pemberian makanan tambahan untuk bumil KEK & stunting.</p>
 
+    <button onclick="bukaPMT()">Buka Menu</button>
+  </div>
+
+</div>
 <div class="menu-card">
 <div class="icon">📅</div>
 <h3>Jadwal Posyandu</h3>
@@ -1951,5 +1959,89 @@ width="100%" height="500">
 </iframe>
 
 </div>
+    <div id="halamanPMT" style="display:none; padding:20px;">
+
+<h2 style="color:#00ffd5;">🍲 Jadwal Intervensi Gizi (PMT)</h2>
+
+<button onclick="tutupPMT()" style="
+background:red;
+color:white;
+padding:10px 15px;
+border:none;
+border-radius:8px;
+cursor:pointer;">
+Tutup
+</button>
+
+<br><br>
+
+<!-- TABEL PMT -->
+<div style="overflow-x:auto;">
+<table style="width:100%; border-collapse:collapse; background:#111; color:white; border-radius:10px; overflow:hidden;">
+
+<thead style="background:#00ffd5; color:black;">
+<tr>
+<th style="padding:10px;">No</th>
+<th>Nama</th>
+<th>Kategori</th>
+<th>Dusun</th>
+<th>Jadwal PMT</th>
+<th>Kader</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td style="padding:10px;">1</td>
+<td>Siti Aminah</td>
+<td>Bumil KEK</td>
+<td>Dusun 1</td>
+<td>10 Juni 2026</td>
+<td>Kader A</td>
+<td style="color:yellow;">Belum</td>
+</tr>
+
+<tr>
+<td style="padding:10px;">2</td>
+<td>Bayi Andi</td>
+<td>Stunting</td>
+<td>Dusun 2</td>
+<td>11 Juni 2026</td>
+<td>Kader B</td>
+<td style="color:lime;">Selesai</td>
+</tr>
+
+</tbody>
+
+</table>
+</div>
+
+<br><br>
+
+<!-- OPSIONAL GOOGLE SHEET -->
+<h3 style="color:#00ffd5;">📊 Data Lengkap PMT</h3>
+
+<iframe 
+src="LINK_GOOGLE_SHEET_KAMU"
+width="100%" 
+height="400"
+style="border:none;border-radius:10px;">
+</iframe>
+
+</div>
+    <script>
+// === PMT ===
+function bukaPMT(){
+  document.querySelector('.menu-grid').style.display = 'none';
+  document.getElementById('halamanPMT').style.display = 'block';
+}
+
+function tutupPMT(){
+  document.getElementById('halamanPMT').style.display = 'none';
+  document.querySelector('.menu-grid').style.display = 'grid';
+}
+</script>
 </body>
 </html>
