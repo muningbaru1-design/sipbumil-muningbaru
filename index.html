@@ -1996,7 +1996,38 @@ Tutup
 </button>
 
 <br><br>
+<!-- ✅ INPUT TARUH DI SINI -->
+<input type="text" id="cariNama"
+placeholder="Ketik nama ibu untuk cek dokumen bayi..."
+onkeyup="cariData()"
+style="margin-bottom:10px; padding:10px; width:100%; border-radius:8px; border:none;">
 
+<!-- ✅ TABEL TARUH DI SINI -->
+<div style="overflow-x:auto;">
+
+<table style="width:100%; border-collapse:collapse; background:#111; color:white;">
+<thead style="background:#00ffd5; color:black;">
+<tr>
+<th>No</th>
+<th>Nama Bayi</th>
+<th>Nama Ibu</th>
+<th>KK</th>
+<th>Akta</th>
+<th>KIA</th>
+<th>BPJS</th>
+<th>Keterangan</th>
+</tr>
+</thead>
+
+<tbody id="dataPMT"></tbody>
+
+</table>
+
+</div>
+
+<br><br>
+
+</div>
 <!-- TABEL PMT -->
 <div style="overflow-x:auto;">
 <table style="width:100%; border-collapse:collapse; background:#111; color:white; border-radius:10px; overflow:hidden;">
@@ -2013,9 +2044,14 @@ Tutup
 </tr>
 </thead>
 
-<tbody id="dataPMT">
-</tbody>
-<input type="text" id="cariNama" placeholder="Cari Nama Ibu..." onkeyup="cariData()" style="margin-bottom:10px; padding:8px; width:100%;">
+<br>
+
+<input type="text" id="cariNama"
+placeholder="Ketik nama ibu untuk cek dokumen bayi..."
+onkeyup="cariData()"
+style="margin-bottom:10px; padding:10px; width:100%; border-radius:8px; border:none;">
+
+<div style="overflow-x:auto;">
 </table>
 </div>
 
