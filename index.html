@@ -1107,37 +1107,20 @@ const row = rows[i].trim();
 if(row === "") continue;
 
 const col = parseCSV(row);
-  total++;
 
-if((col[3]||"").toLowerCase().trim() === "sudah") kk++;
-
-if((col[4]||"").toLowerCase().trim() === "sudah") akta++;
-
-if((col[5]||"").toLowerCase().trim() === "sudah") kia++;
-
-if((col[6]||"").toLowerCase().trim() === "sudah") bpjs++;
-
-for(let i=1; i<rows.length; i++){
-
-const row = rows[i].trim();
-
-if(row === "") continue;
-
-const col = parseCSV(row);
-
-console.log("Baris:", col);
-
+if(col.length > 1){
 jumlah++;
-
 }
 
 }
+
 console.log("Jumlah Bumil =", jumlah);
+
 animateValue("jumlahBumil",0,jumlah,1000);
 
 }catch(error){
 
-console.error(error);
+console.error("Error hitung bumil:", error);
 
 document.getElementById("jumlahBumil").innerText = "0";
 
