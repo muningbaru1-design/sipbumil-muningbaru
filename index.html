@@ -1746,34 +1746,35 @@ if(row==="") continue;
 
 const col = parseCSV(row);
 
-if(row==="") continue;
+/* HITUNG TOTAL */
+total++;
 
-const col = parseCSV(row);
+if((col[3]||"").toLowerCase().trim()==="sudah") kk++;
+if((col[4]||"").toLowerCase().trim()==="sudah") akta++;
+if((col[5]||"").toLowerCase().trim()==="sudah") kia++;
+if((col[6]||"").toLowerCase().trim()==="sudah") bpjs++;
 
 html += `
 <tr>
-
 <td>${col[0]||''}</td>
-
 <td>${col[1]||''}</td>
-
 <td>${col[2]||''}</td>
-
 <td>${iconStatus(col[3])}</td>
-
 <td>${iconStatus(col[4])}</td>
-
 <td>${iconStatus(col[5])}</td>
-
 <td>${iconStatus(col[6])}</td>
-
 </tr>
 `;
 
 }
 
 document.getElementById("tabelBayi").innerHTML = html;
-  document.getElementById("persenKK").innerText =
+
+/* DASHBOARD */
+
+if(total > 0){
+
+document.getElementById("persenKK").innerText =
 Math.round((kk/total)*100) + "%";
 
 document.getElementById("persenAkta").innerText =
@@ -1797,9 +1798,13 @@ kia + " / " + total + " Bayi";
 document.getElementById("jumlahBPJS").innerText =
 bpjs + " / " + total + " Bayi";
 
+}
+
 }catch(error){
 
 console.error(error);
+
+}
 
 }
 
