@@ -2073,58 +2073,164 @@ padding:20px;
 ">
 
 <div style="background:#111; padding:20px; border-radius:10px;">
+<!DOCTYPE html>
 
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>SIP BUMILNYA - Data Bayi</title>
+
+<style>
+body{
+  font-family: Arial;
+  background:#000;
+  color:white;
+  margin:0;
+}
+
+/* TOMBOL */
+button{
+  padding:10px 15px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.8);
+  overflow:auto;
+}
+
+.modal-content{
+  background:#111;
+  margin:5% auto;
+  padding:20px;
+  width:90%;
+  border-radius:10px;
+}
+
+/* TABLE */
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th, td{
+  padding:10px;
+  text-align:center;
+}
+
+th{
+  background:#00ffd5;
+  color:black;
+}
+
+/* INPUT */
+input{
+  width:100%;
+  padding:10px;
+  margin-bottom:10px;
+  border-radius:8px;
+  border:none;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- ================= TOMBOL BUKA ================= -->
+
+<div style="padding:20px;">
+  <button onclick="bukaDataBayi()" style="background:#00ffd5;">
+    👶 Data Kelengkapan Bayi
+  </button>
+</div>
+
+<!-- ================= MODAL DATA BAYI ================= -->
+
+<div id="modalDataBayi" class="modal">
+  <div class="modal-content">
+
+```
 <h2>👶 Data Kelengkapan Bayi</h2>
 
-<button onclick="tutupDataBayi()" 
-style="background:red;color:white;padding:8px;border:none;border-radius:5px;">
-Tutup
+<button onclick="tutupDataBayi()" style="background:red;color:white;">
+  Tutup
 </button>
 
 <br><br>
 
-<input type="text" id="searchBayi"
-placeholder="Cari nama ibu..."
-style="width:100%; padding:10px; margin-bottom:10px;">
+<input type="text" id="searchBayi" placeholder="Cari nama ibu...">
 
-<table style="width:100%; background:#222; color:white;">
-<thead style="background:#00ffd5; color:black;">
-<tr>
-<th>No</th>
-<th>Nama Bayi</th>
-<th>Nama Ibu</th>
-<th>KK</th>
-<th>Akta</th>
-<th>KIA</th>
-<th>BPJS</th>
-<th>Keterangan</th>
-</tr>
-</thead>
-
-<tbody id="dataBayi"></tbody>
-
+<table>
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Nama Bayi</th>
+      <th>Nama Ibu</th>
+      <th>KK</th>
+      <th>Akta</th>
+      <th>KIA</th>
+      <th>BPJS</th>
+      <th>Keterangan</th>
+    </tr>
+  </thead>
+  <tbody id="dataBayi"></tbody>
 </table>
+```
 
+  </div>
 </div>
-</div>
-</script>
-  ...
-<script> ... </script>
-  let dataBayi = [
+
+<!-- ================= SCRIPT ================= -->
+
+<script>
+
+// ================= DATA =================
+let dataBayi = [
   {
-    namaBayi: "Rahmah",
-    namaIbu: "Norhalimah",
-    kk: "Ada",
-    akta: "Belum",
-    kia: "Ada",
-    bpjs: "Ada",
-    keterangan: "Belum lengkap"
+    namaBayi:"Rahmah",
+    namaIbu:"Norhalimah",
+    kk:"Ada",
+    akta:"Belum",
+    kia:"Ada",
+    bpjs:"Ada",
+    keterangan:"Belum lengkap"
+  },
+  {
+    namaBayi:"Ahmad",
+    namaIbu:"Siti Aminah",
+    kk:"Ada",
+    akta:"Ada",
+    kia:"Ada",
+    bpjs:"Belum",
+    keterangan:"Belum lengkap"
   }
 ];
 
+// ================= BUKA MODAL =================
+function bukaDataBayi(){
+  document.getElementById("modalDataBayi").style.display="block";
+  tampilDataBayi();
+}
+
+// ================= TUTUP MODAL =================
+function tutupDataBayi(){
+  document.getElementById("modalDataBayi").style.display="none";
+}
+
+// ================= TAMPIL DATA =================
 function tampilDataBayi(){
   let tbody = document.getElementById("dataBayi");
-  tbody.innerHTML = "";
+  tbody.innerHTML="";
 
   dataBayi.forEach((d,i)=>{
     tbody.innerHTML += `
@@ -2140,31 +2246,33 @@ function tampilDataBayi(){
     </tr>`;
   });
 }
-  function bukaDataBayi(){
-  document.getElementById("modalDataBayi").style.display = "block";
-  tampilDataBayi(); // ← WAJIB biar data muncul
-}
-  document.getElementById("searchBayi").addEventListener("keyup", function(){
-  let keyword = this.value.toLowerCase();
-  let tbody = document.getElementById("dataBayi");
-  tbody.innerHTML = "";
 
-  dataBayi
-    .filter(d => d.namaIbu.toLowerCase().includes(keyword))
-    .forEach((d,i)=>{
-      tbody.innerHTML += `
-      <tr>
-        <td>${i+1}</td>
-        <td>${d.namaBayi}</td>
-        <td>${d.namaIbu}</td>
-        <td>${d.kk}</td>
-        <td>${d.akta}</td>
-        <td>${d.kia}</td>
-        <td>${d.bpjs}</td>
-        <td>${d.keterangan}</td>
-      </tr>`;
-    });
+// ================= SEARCH =================
+document.addEventListener("DOMContentLoaded", function(){
+  document.getElementById("searchBayi").addEventListener("keyup", function(){
+    let keyword = this.value.toLowerCase();
+    let tbody = document.getElementById("dataBayi");
+    tbody.innerHTML="";
+
+    dataBayi
+      .filter(d => d.namaIbu.toLowerCase().includes(keyword))
+      .forEach((d,i)=>{
+        tbody.innerHTML += `
+        <tr>
+          <td>${i+1}</td>
+          <td>${d.namaBayi}</td>
+          <td>${d.namaIbu}</td>
+          <td>${d.kk}</td>
+          <td>${d.akta}</td>
+          <td>${d.kia}</td>
+          <td>${d.bpjs}</td>
+          <td>${d.keterangan}</td>
+        </tr>`;
+      });
+  });
 });
-</body>
+
+</script>
+
 </body>
 </html>
