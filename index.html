@@ -1117,14 +1117,18 @@ if((col[5]||"").toLowerCase().trim() === "sudah") kia++;
 
 if((col[6]||"").toLowerCase().trim() === "sudah") bpjs++;
 
-const nama = (col[0] || "").trim();
-const resiko = (col[1] || "").trim();
+for(let i=1; i<rows.length; i++){
 
-if(
-nama.length > 2 &&
-resiko.length > 2
-){
+const row = rows[i].trim();
+
+if(row === "") continue;
+
+const col = parseCSV(row);
+
+console.log("Baris:", col);
+
 jumlah++;
+
 }
 
 }
