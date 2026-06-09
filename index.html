@@ -1806,10 +1806,6 @@ console.error(error);
 
 }
 
-}
-
-}
-
 function iconStatus(v){
 
 v=(v||"").toLowerCase().trim();
@@ -1861,54 +1857,23 @@ justify-content:space-between;
 align-items:center;
 ">
 
-<h2 style="color:black;">
-👶 Data Bayi Desa
-</h2>
+<h2 style="color:black;">👶 Data Bayi Desa</h2>
 
-<button onclick="tutupDataBayi()" style="
-padding:10px 15px;
-border:none;
-border-radius:10px;
-font-weight:bold;
-cursor:pointer;
-">
+<button onclick="tutupDataBayi()">
 Tutup
 </button>
 
 </div>
+
+<!-- ISI -->
 <div style="
 padding:20px;
 overflow:auto;
 height:calc(100% - 70px);
 ">
 
-<table style="
-width:100%;
-border-collapse:collapse;
-background:#111;
-color:white;
-">
+<!-- DASHBOARD -->
 
-<thead>
-
-<tr style="
-background:#00ffd5;
-color:black;
-">
-
-<th>No</th>
-<th>Nama Ibu</th>
-<th>Nama Anak</th>
-<th>KK</th>
-<th>Akta</th>
-<th>KIA</th>
-<th>BPJS</th>
-
-</tr>
-
-</thead>
-
-<tbody id="tabelBayi"></tbody>
 <div class="bumil-grid" style="margin-bottom:20px;">
 
 <div class="bumil-card">
@@ -1936,12 +1901,38 @@ color:black;
 </div>
 
 </div>
+
+<!-- TABEL -->
+
+<table style="
+width:100%;
+border-collapse:collapse;
+background:#111;
+color:white;
+">
+
+<thead>
+<tr style="background:#00ffd5;color:black;">
+<th>No</th>
+<th>Nama Ibu</th>
+<th>Nama Anak</th>
+<th>KK</th>
+<th>Akta</th>
+<th>KIA</th>
+<th>BPJS</th>
+</tr>
+</thead>
+
+<tbody id="tabelBayi"></tbody>
+
 </table>
 
-</div>
-</div>
+</div> <!-- akhir isi -->
 
-</div>
+</div> <!-- akhir panel -->
+
+</div> <!-- akhir modal -->
+
    <!-- MODAL DATA IBU HAMIL -->
 <div id="modalIbuHamil" style="
 display:none;
