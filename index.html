@@ -1621,6 +1621,8 @@ function bukaDataBayi(){
 document.getElementById("modalDataBayi")
 .style.display = "block";
 
+loadDataBayi();
+
 }
 
 function tutupDataBayi(){
@@ -1704,6 +1706,80 @@ loginModern();
 
 }
 );
+  /* =========================
+   DATA BAYI IDENTITAS
+========================= */
+
+async function loadDataBayi(){
+
+try{
+
+const data = await fetch(CSV_BAYI)
+.then(res => res.text());
+
+const rows = data.split("\n");
+
+let html = "";
+
+for(let i=2;i<rows.length;i++){
+
+const row = rows[i].trim();
+
+if(row==="") continue;
+
+const col = parseCSV(row);
+
+html += `
+<tr>
+
+<td>${col[0]||''}</td>
+
+<td>${col[1]||''}</td>
+
+<td>${col[2]||''}</td>
+
+<td>${iconStatus(col[3])}</td>
+
+<td>${iconStatus(col[4])}</td>
+
+<td>${iconStatus(col[5])}</td>
+
+<td>${iconStatus(col[6])}</td>
+
+</tr>
+`;
+
+}
+
+document.getElementById("tabelBayi").innerHTML = html;
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
+
+function iconStatus(v){
+
+v=(v||"").toLowerCase().trim();
+
+if(v==="sudah"){
+
+return "<span style='color:#00ff88;font-weight:bold;'>✅ Sudah</span>";
+
+}
+
+if(v==="belum"){
+
+return "<span style='color:#ff5252;font-weight:bold;'>❌ Belum</span>";
+
+}
+
+return "-";
+
+}
 </script>
 <!-- MODAL DATA BAYI -->
 <div id="modalDataBayi" style="
@@ -1751,18 +1827,45 @@ Tutup
 </button>
 
 </div>
-
-<!-- IFRAME -->
-<iframe
-src="https://docs.google.com/spreadsheets/d/1ubTT7jy8hCH6kTUstf92wzYaLumyEHe0ue28ZnrecBg/edit#gid=716234537"
-style="
-width:100%;
+<div style="
+padding:20px;
+overflow:auto;
 height:calc(100% - 70px);
-border:none;
-background:white;
 ">
-</iframe>
 
+<table style="
+width:100%;
+border-collapse:collapse;
+background:#111;
+color:white;
+">
+
+<thead>
+
+<tr style="
+background:#00ffd5;
+color:black;
+">
+
+<th>No</th>
+<th>Nama Ibu</th>
+<th>Nama Anak</th>
+<th>KK</th>
+<th>Akta</th>
+<th>KIA</th>
+<th>BPJS</th>
+
+</tr>
+
+</thead>
+
+<tbody id="tabelBayi">
+
+</tbody>
+
+</table>
+
+</div>
 </div>
 
 </div>
