@@ -2060,9 +2060,111 @@ async function loadData() {
 
 // jalankan saat halaman dibuka
 loadData();
+      <div id="modalDataBayi" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+overflow:auto;
+padding:20px;
+">
+
+<div style="background:#111; padding:20px; border-radius:10px;">
+
+<h2>👶 Data Kelengkapan Bayi</h2>
+
+<button onclick="tutupDataBayi()" 
+style="background:red;color:white;padding:8px;border:none;border-radius:5px;">
+Tutup
+</button>
+
+<br><br>
+
+<input type="text" id="searchBayi"
+placeholder="Cari nama ibu..."
+style="width:100%; padding:10px; margin-bottom:10px;">
+
+<table style="width:100%; background:#222; color:white;">
+<thead style="background:#00ffd5; color:black;">
+<tr>
+<th>No</th>
+<th>Nama Bayi</th>
+<th>Nama Ibu</th>
+<th>KK</th>
+<th>Akta</th>
+<th>KIA</th>
+<th>BPJS</th>
+<th>Keterangan</th>
+</tr>
+</thead>
+
+<tbody id="dataBayi"></tbody>
+
+</table>
+
+</div>
+</div>
 </script>
   ...
 <script> ... </script>
+  let dataBayi = [
+  {
+    namaBayi: "Rahmah",
+    namaIbu: "Norhalimah",
+    kk: "Ada",
+    akta: "Belum",
+    kia: "Ada",
+    bpjs: "Ada",
+    keterangan: "Belum lengkap"
+  }
+];
+
+function tampilDataBayi(){
+  let tbody = document.getElementById("dataBayi");
+  tbody.innerHTML = "";
+
+  dataBayi.forEach((d,i)=>{
+    tbody.innerHTML += `
+    <tr>
+      <td>${i+1}</td>
+      <td>${d.namaBayi}</td>
+      <td>${d.namaIbu}</td>
+      <td>${d.kk}</td>
+      <td>${d.akta}</td>
+      <td>${d.kia}</td>
+      <td>${d.bpjs}</td>
+      <td>${d.keterangan}</td>
+    </tr>`;
+  });
+}
+  function bukaDataBayi(){
+  document.getElementById("modalDataBayi").style.display = "block";
+  tampilDataBayi(); // ← WAJIB biar data muncul
+}
+  document.getElementById("searchBayi").addEventListener("keyup", function(){
+  let keyword = this.value.toLowerCase();
+  let tbody = document.getElementById("dataBayi");
+  tbody.innerHTML = "";
+
+  dataBayi
+    .filter(d => d.namaIbu.toLowerCase().includes(keyword))
+    .forEach((d,i)=>{
+      tbody.innerHTML += `
+      <tr>
+        <td>${i+1}</td>
+        <td>${d.namaBayi}</td>
+        <td>${d.namaIbu}</td>
+        <td>${d.kk}</td>
+        <td>${d.akta}</td>
+        <td>${d.kia}</td>
+        <td>${d.bpjs}</td>
+        <td>${d.keterangan}</td>
+      </tr>`;
+    });
+});
 </body>
 </body>
 </html>
