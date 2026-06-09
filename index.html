@@ -1093,22 +1093,18 @@ async function hitungBumil(){
 
 try{
 
-const data = await fetch(CSV_URL)
-.then(res => res.text());
+const data = await fetch(CSV_URL);
+const text = await data.text();
 
-const rows = data.split("\n");
+const rows = text.split("\n");
 
 let jumlah = 0;
 
-for(let i=1; i<rows.length; i++){
+for(let i = 1; i < rows.length; i++){
 
 const row = rows[i].trim();
 
-if(row === "") continue;
-
-const col = parseCSV(row);
-
-if(col.length > 1){
+if(row !== ""){
 jumlah++;
 }
 
@@ -1120,7 +1116,7 @@ animateValue("jumlahBumil",0,jumlah,1000);
 
 }catch(error){
 
-console.error("Error hitung bumil:", error);
+console.error(error);
 
 document.getElementById("jumlahBumil").innerText = "0";
 
