@@ -1100,19 +1100,21 @@ const rows = text.split("\n");
 
 let jumlah = 0;
 
-for(let i = 1; i < rows.length; i++){
+for(let i=1;i<rows.length;i++){
 
 const row = rows[i].trim();
 
-if(row !== ""){
+if(row === "") continue;
+
+const col = parseCSV(row);
+
+if((col[1] || "").trim() !== ""){
 jumlah++;
 }
 
 }
 
-console.log("Jumlah Bumil =", jumlah);
-
-animateValue("jumlahBumil",0,jumlah,1000);
+document.getElementById("jumlahBumil").innerText = jumlah;
 
 }catch(error){
 
