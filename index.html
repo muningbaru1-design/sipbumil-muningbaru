@@ -1952,20 +1952,6 @@ function tutupRelawan(){
   document.getElementById('halamanRelawan').style.display = 'none';
   document.querySelector('.menu-grid').style.display = 'grid';
 }
-  function cariData(){
-  const input = document.getElementById("cariNama").value.toLowerCase();
-  const rows = document.querySelectorAll("#dataPMT tr");
-
-  rows.forEach(row => {
-    const namaIbu = row.children[2]?.innerText.toLowerCase();
-
-    if(namaIbu && namaIbu.includes(input)){
-      row.style.display = "";
-    } else {
-      row.style.display = "none";
-    }
-  });
-}
 </script>    
     <div id="halamanRelawan" style="display:none; padding:20px;">
 
@@ -1996,38 +1982,7 @@ Tutup
 </button>
 
 <br><br>
-<!-- ✅ INPUT TARUH DI SINI -->
-<input type="text" id="cariNama"
-placeholder="Ketik nama ibu untuk cek dokumen bayi..."
-onkeyup="cariData()"
-style="margin-bottom:10px; padding:10px; width:100%; border-radius:8px; border:none;">
 
-<!-- ✅ TABEL TARUH DI SINI -->
-<div style="overflow-x:auto;">
-
-<table style="width:100%; border-collapse:collapse; background:#111; color:white;">
-<thead style="background:#00ffd5; color:black;">
-<tr>
-<th>No</th>
-<th>Nama Bayi</th>
-<th>Nama Ibu</th>
-<th>KK</th>
-<th>Akta</th>
-<th>KIA</th>
-<th>BPJS</th>
-<th>Keterangan</th>
-</tr>
-</thead>
-
-<tbody id="dataPMT"></tbody>
-
-</table>
-
-</div>
-
-<br><br>
-
-</div>
 <!-- TABEL PMT -->
 <div style="overflow-x:auto;">
 <table style="width:100%; border-collapse:collapse; background:#111; color:white; border-radius:10px; overflow:hidden;">
@@ -2044,14 +1999,9 @@ style="margin-bottom:10px; padding:10px; width:100%; border-radius:8px; border:n
 </tr>
 </thead>
 
-<br>
+<tbody id="dataPMT">
+</tbody>
 
-<input type="text" id="cariNama"
-placeholder="Ketik nama ibu untuk cek dokumen bayi..."
-onkeyup="cariData()"
-style="margin-bottom:10px; padding:10px; width:100%; border-radius:8px; border:none;">
-
-<div style="overflow-x:auto;">
 </table>
 </div>
 
