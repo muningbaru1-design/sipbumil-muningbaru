@@ -2093,7 +2093,18 @@ background:white;
 
 
 <!-- HALAMAN RELAWAN -->
-<div id="halamanRelawan" style="display:none; padding:20px;">
+<div id="halamanRelawan" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#050505;
+z-index:999999;
+overflow:auto;
+padding:20px;
+">
 
   <h2 style="
 color:#00ffd5;
@@ -2196,15 +2207,19 @@ loadDonor();
 
 }
 
-function tutupRelawan(){
-
-alert("Tombol tutup diklik");
-
-document.getElementById('halamanRelawan').style.display='none';
-
-document.querySelector('.menu-grid').style.display='grid';
-
-}
+<button onclick="tutupRelawan(); return false;" style="
+background:#ff5252;
+color:white;
+padding:10px 20px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+position:relative;
+z-index:999999;
+">
+❌ Tutup
+</button>
 
 </script>
   
