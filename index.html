@@ -2184,7 +2184,6 @@ window.onload = function() {
 };
 <script>
 
-// === RELAWAN ===
 function bukaRelawan(){
 
 document.querySelector('.menu-grid').style.display='none';
@@ -2200,54 +2199,6 @@ function tutupRelawan(){
 document.getElementById('halamanRelawan').style.display='none';
 
 document.querySelector('.menu-grid').style.display='grid';
-
-}
-
-function hitungDonor(){
-
-const csvUrl =
-'https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=2058503626&single=true&output=csv';
-
-fetch(csvUrl)
-.then(response => response.text())
-.then(csv => {
-
-const rows = csv.split('\n');
-
-let html = '';
-
-for(let i=1;i<rows.length;i++){
-
-const cols = rows[i].split(',');
-
-if(cols.length>=4){
-
-html += `
-<tr>
-<td>${cols[0]}</td>
-<td>${cols[1]}</td>
-<td>${cols[2]}</td>
-<td>${cols[3]}</td>
-<td>
-<a href="https://wa.me/62${cols[2].replace(/^0/,'')}" target="_blank">
-📞 Hubungi
-</a>
-</td>
-</tr>
-`;
-
-}
-
-}
-
-document.getElementById('tabelDonor').innerHTML = html;
-
-})
-.catch(error => {
-
-console.log(error);
-
-});
 
 }
 
@@ -2527,6 +2478,13 @@ Tutup
 </div>
 
 </div>
+  <script>
+
+function bukaRelawan(){
+alert("Relawan terbuka");
+}
+
+</script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </body>
 </html>
