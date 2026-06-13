@@ -2481,10 +2481,34 @@ Tutup
   <script>
 
 function bukaRelawan(){
-alert("Relawan terbuka");
+
+document.querySelector('.menu-grid').style.display='none';
+
+document.getElementById('halamanRelawan').style.display='block';
+
+hitungDonor();
+
 }
 
 </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <script>
+
+function hitungDonor(){
+
+const csvUrl =
+'https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=2058503626&single=true&output=csv';
+
+fetch(csvUrl)
+.then(res => res.text())
+.then(data => {
+
+console.log(data);
+
+});
+
+}
+
+</script>
 </body>
 </html>
