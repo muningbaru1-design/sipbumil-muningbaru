@@ -2187,9 +2187,13 @@ window.onload = function() {
 
 function bukaRelawan(){
 
-document.querySelector('.menu-grid').style.display = 'none';
+document.querySelector('.menu-grid').style.display='none';
 
-document.getElementById('halamanRelawan').style.display = 'block';
+document.getElementById('halamanRelawan').style.display='block';
+
+loadDonor();
+
+hitungDonor();
 
 }
 
@@ -2312,7 +2316,58 @@ async function loadData() {
 
 // jalankan saat halaman dibuka
 loadData();
-</script>
+async function loadDonor(){
+
+try{
+
+const data = await fetch(CSV_DONOR)
+.then(res => res.text());
+
+const rows = data.split("\n");
+
+let html = "";
+
+for(let i=1;i<rows.length;i++){
+
+const row = rows[i].trim();
+
+if(row==="") continue;
+
+const col = parseCSV(row);
+
+html += `
+<tr>
+
+<td>${col[0]||''}</td>
+
+<td>${col[1]||''}</td>
+
+<td>${col[2]||''}</td>
+
+<td>${col[3]||''}</td>
+
+<td>
+<button class="kontak-btn"
+onclick="window.open('https://wa.me/${col[2]}')">
+📞 Hubungi
+</button>
+</td>
+
+</tr>
+`;
+
+}
+
+document.getElementById("tabelDonor").innerHTML = html;
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
+    </script>
 <!-- MODAL JADWAL POSYANDU -->
 
 <div id="modalJadwal" style="
