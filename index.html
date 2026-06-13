@@ -815,6 +815,12 @@ Cari
 <p>Jadwal Posyandu</p>
 </div>
 
+<div class="menu-card" onclick="bukaGrafikStunting()">
+    <div class="menu-icon">📊</div>
+    <h3>Grafik Stunting</h3>
+    <p>Monitoring stunting balita</p>
+</div>
+  
 <div class="stat-box">
 <div class="stat-icon">🚨</div>
 <h3 id="jumlahResiko" style="color:#ff5252;">0</h3>
@@ -2542,6 +2548,183 @@ window.tutupRelawan = function(){
     document.querySelector(".menu-grid").style.display = "grid";
 
 }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div id="halamanGrafik" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#0b0b0b;
+z-index:999999;
+overflow:auto;
+padding:20px;
+">
+
+<h2 style="color:#00ffd5;">
+📊 Dashboard Stunting
+</h2>
+
+<button onclick="tutupGrafikStunting()"
+style="
+background:red;
+color:white;
+padding:10px 20px;
+border:none;
+border-radius:10px;
+margin-bottom:20px;
+">
+❌ Tutup
+</button>
+
+<div class="stats-grid">
+
+<div class="stat-card">
+<h3>Total Balita</h3>
+<h1 id="totalBalita">0</h1>
+</div>
+
+<div class="stat-card">
+<h3>Total Stunting</h3>
+<h1 id="totalStunting">0</h1>
+</div>
+
+<div class="stat-card">
+<h3>Prevalensi</h3>
+<h1 id="persenStunting">0%</h1>
+</div>
+
+</div>
+
+<br>
+
+<h3 style="color:white;">Status Gizi</h3>
+<canvas id="chartGizi"></canvas>
+
+<br><br>
+
+<h3 style="color:white;">Stunting per RT/RW</h3>
+<canvas id="chartRT"></canvas>
+
+</div>
+<script>
+
+const CSV_STUNTING =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=314667954&single=true&output=csv";
+
+function bukaGrafikStunting(){
+
+document.getElementById("halamanGrafik").style.display="block";
+
+loadGrafikStunting();
+
+}
+
+function tutupGrafikStunting(){
+
+document.getElementById("halamanGrafik").style.display="none";
+
+}
+
+async function loadGrafikStunting(){
+
+const response = await fetch(CSV_STUNTING);
+const csv = await response.text();
+
+const rows = csv.split("\n").slice(1);
+
+let totalBalita = 0;
+let totalStunting = 0;
+
+let statusGizi = {};
+let rtData = {};
+
+rows.forEach(row=>{
+
+const cols = row.split(",");
+
+if(cols.length < 5) return;
+
+const nama = cols[0]?.trim();
+
+const rt = cols[2]?.trim();
+
+const gizi = cols[3]?.trim();
+
+const stunting =
+cols[4]?.trim().toUpperCase();
+
+if(!nama) return;
+
+totalBalita++;
+
+statusGizi[gizi] =
+(statusGizi[gizi] || 0) + 1;
+
+if(
+stunting=="YA" ||
+stunting=="STUNTING"
+){
+
+totalStunting++;
+
+rtData[rt] =
+(rtData[rt] || 0) + 1;
+
+}
+
+});
+
+document.getElementById("totalBalita")
+.innerText = totalBalita;
+
+document.getElementById("totalStunting")
+.innerText = totalStunting;
+
+document.getElementById("persenStunting")
+.innerText =
+((totalStunting/totalBalita)*100 || 0)
+.toFixed(2)+"%";
+
+buatGrafikGizi(statusGizi);
+
+buatGrafikRT(rtData);
+
+}
+
+function buatGrafikGizi(data){
+
+new Chart(
+document.getElementById("chartGizi"),
+{
+type:'pie',
+data:{
+labels:Object.keys(data),
+datasets:[{
+data:Object.values(data)
+}]
+}
+});
+}
+
+function buatGrafikRT(data){
+
+new Chart(
+document.getElementById("chartRT"),
+{
+type:'bar',
+data:{
+labels:Object.keys(data),
+datasets:[{
+label:'Jumlah Stunting',
+data:Object.values(data)
+}]
+}
+});
+}
+
 </script>
 </body>
 </html>
