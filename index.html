@@ -2202,26 +2202,54 @@ document.getElementById('halamanRelawan').style.display = 'none';
 document.querySelector('.menu-grid').style.display = 'grid';
 
 }
-function hitungDonor(){
+<script>
+function hitungDonor() {
 
 const csvUrl =
 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=2058503626&single=true&output=csv';
 
-Papa.parse(csvUrl,{
+fetch(csvUrl)
+.then(response => response.text())
+.then(csv => {
 
-download:true,
-header:true,
+const rows = csv.split('\n');
 
-complete:function(results){
+let html = '';
 
-console.log(results.data);
+for(let i = 1; i < rows.length; i++){
+
+const cols = rows[i].split(',');
+
+if(cols.length >= 4){
+
+html += `
+<tr>
+<td>${cols[0]}</td>
+<td>${cols[1]}</td>
+<td>${cols[2]}</td>
+<td>${cols[3]}</td>
+<td>
+<a href="https://wa.me/62${cols[2].replace(/^0/,'')}" target="_blank">
+Hubungi
+</a>
+</td>
+</tr>
+`;
 
 }
 
+}
+
+document.getElementById('tabelDonor').innerHTML = html;
+
+})
+.catch(error => {
+console.log(error);
+alert('Data donor gagal dimuat');
 });
 
 }
-</script>    
+</script>
   
     <div id="halamanPMT" style="display:none; padding:20px;">
 
