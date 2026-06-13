@@ -2182,9 +2182,9 @@ window.onload = function() {
     document.getElementById("menu").scrollIntoView();
   }
 };
+<script>
 
 // === RELAWAN ===
-
 function bukaRelawan(){
 
 document.querySelector('.menu-grid').style.display='none';
@@ -2197,13 +2197,13 @@ hitungDonor();
 
 function tutupRelawan(){
 
-document.getElementById('halamanRelawan').style.display = 'none';
+document.getElementById('halamanRelawan').style.display='none';
 
-document.querySelector('.menu-grid').style.display = 'grid';
+document.querySelector('.menu-grid').style.display='grid';
 
 }
-<script>
-function hitungDonor() {
+
+function hitungDonor(){
 
 const csvUrl =
 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=2058503626&single=true&output=csv';
@@ -2216,11 +2216,11 @@ const rows = csv.split('\n');
 
 let html = '';
 
-for(let i = 1; i < rows.length; i++){
+for(let i=1;i<rows.length;i++){
 
 const cols = rows[i].split(',');
 
-if(cols.length >= 4){
+if(cols.length>=4){
 
 html += `
 <tr>
@@ -2230,7 +2230,7 @@ html += `
 <td>${cols[3]}</td>
 <td>
 <a href="https://wa.me/62${cols[2].replace(/^0/,'')}" target="_blank">
-Hubungi
+📞 Hubungi
 </a>
 </td>
 </tr>
@@ -2244,11 +2244,13 @@ document.getElementById('tabelDonor').innerHTML = html;
 
 })
 .catch(error => {
+
 console.log(error);
-alert('Data donor gagal dimuat');
+
 });
 
 }
+
 </script>
   
     <div id="halamanPMT" style="display:none; padding:20px;">
