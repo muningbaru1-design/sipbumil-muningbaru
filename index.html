@@ -2202,12 +2202,12 @@ document.getElementById('halamanRelawan').style.display = 'none';
 document.querySelector('.menu-grid').style.display = 'grid';
 
 }
-  function hitungDonor(){
+function hitungDonor(){
 
 const csvUrl =
 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=2058503626&single=true&output=csv';
 
-Papa.parse(csvUrl, {
+Papa.parse(csvUrl,{
 
 download:true,
 header:true,
@@ -2409,7 +2409,6 @@ console.error(error);
 
 }
     </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <!-- MODAL JADWAL POSYANDU -->
 
 <div id="modalJadwal" style="
@@ -2515,5 +2514,6 @@ Tutup
 </div>
 
 </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </body>
 </html>
