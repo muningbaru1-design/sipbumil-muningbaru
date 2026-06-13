@@ -2473,11 +2473,11 @@ Tutup
 
 function bukaRelawan(){
 
-document.querySelector('.menu-grid').style.display='none';
+    document.querySelector(".menu-section").style.display = "none";
 
-document.getElementById('halamanRelawan').style.display='block';
+    document.getElementById("halamanRelawan").style.display = "block";
 
-hitungDonor();
+    loadDonor();
 
 }
 
@@ -2526,14 +2526,13 @@ document.getElementById("tabelDonor").innerHTML = html;
 </script>
   <script>
 window.tutupRelawan = function() {
-    alert("Tombol tutup terdeteksi");
 
     document.getElementById("halamanRelawan").style.display = "none";
 
-    const menu = document.querySelector(".menu-grid");
-    if(menu){
-        menu.style.display = "grid";
-    }
+    alert("Display Relawan = " +
+          document.getElementById("halamanRelawan").style.display);
+
+}
 }
 </script>
 </body>
