@@ -2195,32 +2195,14 @@ window.onload = function() {
     document.getElementById("menu").scrollIntoView();
   }
 };
-</script>
-
+<script>
 function bukaRelawan(){
-
-document.querySelector('.menu-grid').style.display='none';
-
-document.getElementById('halamanRelawan').style.display='block';
-
-loadDonor();
-
+  document.getElementById('halamanRelawan').style.display='block';
 }
 
-<button onclick="tutupRelawan(); return false;" style="
-background:#ff5252;
-color:white;
-padding:10px 20px;
-border:none;
-border-radius:10px;
-font-weight:bold;
-cursor:pointer;
-position:relative;
-z-index:999999;
-">
-❌ Tutup
-</button>
-
+function tutupRelawan(){
+  document.getElementById('halamanRelawan').style.display='none';
+}
 </script>
   
     <div id="halamanPMT" style="display:none; padding:20px;">
