@@ -2195,6 +2195,7 @@ loadDonor();
 
 hitungDonor();
 
+hitungDonor(console.log("CSV DONOR =", CSV_DONOR););
 }
 
 function tutupRelawan(){
@@ -2324,7 +2325,7 @@ const data = await fetch(CSV_DONOR)
 .then(res => res.text());
 
 const rows = data.split("\n");
-
+console.log("Jumlah baris:", rows.length);
 let html = "";
 
 for(let i=1;i<rows.length;i++){
