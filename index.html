@@ -2094,26 +2094,65 @@ background:white;
 <!-- HALAMAN RELAWAN -->
 <div id="halamanRelawan" style="display:none; padding:20px;">
 
-  <h2>🩸 Data Relawan Pendonor Darah</h2>
+  <h2 style="
+color:#00ffd5;
+font-size:28px;
+margin-bottom:15px;
+">
+🩸 Data Relawan Pendonor Darah
+</h2>
 
   <button onclick="tutupRelawan()" style="
-    background:red;
-    color:white;
-    padding:10px 15px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;">
-    Tutup
-  </button>
+background:#ff5252;
+color:white;
+padding:10px 20px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+">
+❌ Tutup
+</button>
 
   <br><br>
+<div class="bumil-grid" style="margin-bottom:20px;">
 
-  <iframe 
-    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pubhtml?gid=2058503626&single=true"
-    width="100%" 
-    height="500"
-    style="border:none;border-radius:10px;">
-  </iframe>
+<div class="bumil-card">
+<h3>🩸 Relawan</h3>
+<div class="bumil-value">26</div>
+<p>Total Pendonor</p>
+</div>
+
+<div class="bumil-card">
+<h3>🅰️ Gol A</h3>
+<div class="bumil-value">8</div>
+<p>Pendonor</p>
+</div>
+
+<div class="bumil-card">
+<h3>🅱️ Gol B</h3>
+<div class="bumil-value">6</div>
+<p>Pendonor</p>
+</div>
+
+<div class="bumil-card">
+<h3>🆎/🅾️</h3>
+<div class="bumil-value">12</div>
+<p>Pendonor</p>
+</div>
+
+</div>
+ <iframe
+src="LINK-SPREADSHEET"
+width="100%"
+height="600"
+style="
+border:none;
+border-radius:15px;
+background:white;
+box-shadow:0 0 20px rgba(0,255,213,.3);
+">
+</iframe>
 
 </div>
 
@@ -2137,9 +2176,13 @@ function tutupRelawan(){
   document.querySelector('.menu-grid').style.display = 'grid';
 }
 </script>    
-    <div id="halamanRelawan" style="display:none; padding:20px;">
-
-<h2>🩸 Data Relawan Pendonor Darah</h2>
+<div id="halamanRelawan" style="
+display:none;
+padding:20px;
+background:#000;
+min-height:100vh;
+color:white;
+">
 
 <button onclick="tutupRelawan()">Tutup</button>
 
