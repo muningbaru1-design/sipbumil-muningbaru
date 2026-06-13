@@ -2172,17 +2172,6 @@ color:black;
 </tbody>
 
 </table>
-<th>No</th>
-<th>Nama</th>
-<th>No HP</th>
-<th>Gol Darah</th>
-<th>Kontak</th>
-</tr>
-</thead>
-
-<tbody id="tabelDonor"></tbody>
-
-</table>
 
 </div>
 
@@ -2194,7 +2183,7 @@ window.onload = function() {
     document.getElementById("menu").scrollIntoView();
   }
 };
-<script>
+</script>
 
 function bukaRelawan(){
 
@@ -2202,16 +2191,13 @@ document.querySelector('.menu-grid').style.display='none';
 
 document.getElementById('halamanRelawan').style.display='block';
 
-hitungDonor();
+loadDonor();
 
 }
 
 function tutupRelawan(){
-
-document.getElementById('halamanRelawan').style.display='none';
-
-document.querySelector('.menu-grid').style.display='grid';
-
+  document.getElementById('halamanRelawan').style.display='none';
+  document.querySelector('.menu-grid').style.display='grid';
 }
 
 </script>
@@ -2502,7 +2488,6 @@ hitungDonor();
 
 }
 
-<script>
 function hitungDonor(){
 
 const csvUrl =
