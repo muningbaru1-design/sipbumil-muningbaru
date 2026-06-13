@@ -301,7 +301,17 @@ border-radius:28px;
 border:1px solid rgba(0,255,213,0.08);
 transition:0.3s;
 }
-
+.kontak-btn{
+width:100%;
+margin-top:10px;
+padding:10px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+background:#00ffd5;
+color:black;
+}
 .menu-card:hover{
 transform:translateY(-8px);
 box-shadow:0 0 25px rgba(0,255,213,0.15);
@@ -906,15 +916,18 @@ Buka Menu
 <h3>Kontak Bidan dan Kader KPM</h3>
 <p>Hubungi bidan desa dan Kader KPM secara langsung.</p>
 
-<button onclick="window.open('https://wa.me/6285246320106')">
+<button class="kontak-btn"
+onclick="window.open('https://wa.me/6285246320106')">
 👩‍⚕️ Bidan Desa
 </button>
 
-<button onclick="window.open('https://wa.me/6285245277071')">
+<button class="kontak-btn"
+onclick="window.open('https://wa.me/6285245277071')">
 👨‍💼 KPM 1
 </button>
 
-<button onclick="window.open('https://wa.me/6285651291572')">
+<button class="kontak-btn"
+onclick="window.open('https://wa.me/6285651291572')">
 👨‍💼 KPM 2
 </button>
 
