@@ -2114,7 +2114,15 @@ margin-bottom:15px;
 🩸 Data Relawan Pendonor Darah
 </h2>
 
-<button onclick="window.tutupRelawan()">
+<button onclick="window.tutupRelawan()"
+style="
+background:#ff5252;
+color:white;
+padding:10px 20px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;">
 ❌ Tutup
 </button>
   <br><br>
@@ -2524,15 +2532,13 @@ document.getElementById("tabelDonor").innerHTML = html;
 
 }
 </script>
-  <script>
-window.tutupRelawan = function() {
+<script>
+window.tutupRelawan = function(){
 
     document.getElementById("halamanRelawan").style.display = "none";
 
-    alert("Display Relawan = " +
-          document.getElementById("halamanRelawan").style.display);
+    document.querySelector(".menu-grid").style.display = "grid";
 
-}
 }
 </script>
 </body>
