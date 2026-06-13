@@ -994,7 +994,8 @@ Password salah
 /* =========================
    CONFIG
 ========================= */
-
+const CSV_DONOR =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=2058503626&single=true&output=csv";
 const CSV_URL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv";
 const CSV_BAYI =
@@ -1919,31 +1920,6 @@ height:calc(100% - 70px);
 </div>
 <div class="bumil-grid" style="margin-bottom:20px;">
 
-<div class="bumil-card">
-<h3>🩸 Relawan</h3>
-<div class="bumil-value">35</div>
-<p>Total Pendonor</p>
-</div>
-
-<div class="bumil-card">
-<h3>🅰️ Gol. A</h3>
-<div class="bumil-value">20</div>
-<p>Pendonor</p>
-</div>
-
-<div class="bumil-card">
-<h3>🅱️ Gol. B</h3>
-<div class="bumil-value">8</div>
-<p>Pendonor</p>
-</div>
-
-<div class="bumil-card">
-<h3>🅾️ / 🆎</h3>
-<div class="bumil-value">7</div>
-<p>Pendonor</p>
-</div>
-
-</div>
 <!-- TABEL -->
 
 <table style="
@@ -2154,27 +2130,182 @@ window.onload = function() {
 
 // === RELAWAN ===
 function bukaRelawan(){
-  document.querySelector('.menu-grid').style.display = 'none';
-  document.getElementById('halamanRelawan').style.display = 'block';
+
+document.querySelector('.menu-grid').style.display='none';
+
+document.getElementById('halamanRelawan').style.display='block';
+
+loadDonor();
+
 }
 
 function tutupRelawan(){
+  async function loadDonor(){
+
+try{
+
+const data = await fetch(CSV_DONOR)
+.then(res => res.text());
+
+const rows = data.split("\n");
+
+let html="";
+
+let total=0;
+
+let A=0;
+let B=0;
+let AB=0;
+let O=0;
+
+for(let i=1;i<rows.length;i++){
+
+const row = rows[i].trim();
+
+if(row==="") continue;
+
+const col = parseCSV(row);
+
+total++;
+
+const gd=(col[3]||"").toUpperCase().trim();
+
+if(gd==="A") A++;
+if(gd==="B") B++;
+if(gd==="AB") AB++;
+if(gd==="O") O++;
+
+html += `
+<tr>
+
+<td>${col[0]||''}</td>
+
+<td>${col[1]||''}</td>
+
+<td>${col[2]||''}</td>
+
+<td>${col[3]||''}</td>
+
+<td>
+<button class="kontak-btn"
+onclick="window.open('https://wa.me/${col[2]}')">
+📞 Hubungi
+</button>
+</td>
+
+</tr>
+`;
+
+}
+
+document.getElementById("tabelDonor").innerHTML = html;
+
+document.getElementById("totalDonor").innerText = total;
+
+document.getElementById("donorA").innerText = A;
+
+document.getElementById("donorB").innerText = B;
+
+document.getElementById("donorABO").innerText = AB + O;
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
   document.getElementById('halamanRelawan').style.display = 'none';
   document.querySelector('.menu-grid').style.display = 'grid';
 }
 </script>    
-    <div id="halamanRelawan" style="display:none; padding:20px;">
+<div id="halamanRelawan" style="
+display:none;
+padding:20px;
+background:#000;
+min-height:100vh;
+color:white;
+">
+
+<h2 style="color:#00ffd5;">
+🩸 Data Relawan Pendonor Darah
+</h2>
+
+<button onclick="tutupRelawan()" style="
+background:red;
+color:white;
+padding:10px 15px;
+border:none;
+border-radius:8px;
+cursor:pointer;">
+Tutup
+</button>
+
+<br><br>
+
+<div class="bumil-grid" style="margin-bottom:20px;">
+
+<div class="bumil-card">
+<h3>🩸 Total Donor</h3>
+<div class="bumil-value" id="totalDonor">0</div>
+<p>Relawan Terdaftar</p>
+</div>
+
+<div class="bumil-card">
+<h3>🅰️ Gol. A</h3>
+<div class="bumil-value" id="donorA">0</div>
+<p>Pendonor</p>
+</div>
+
+<div class="bumil-card">
+<h3>🅱️ Gol. B</h3>
+<div class="bumil-value" id="donorB">0</div>
+<p>Pendonor</p>
+</div>
+
+<div class="bumil-card">
+<h3>🆎 + 🅾️</h3>
+<div class="bumil-value" id="donorABO">0</div>
+<p>Pendonor</p>
+</div>
+
+</div>
+
+<table style="
+width:100%;
+border-collapse:collapse;
+background:#111;
+color:white;
+">
+
+<thead>
+
+<tr style="
+background:#00ffd5;
+color:black;
+">
+
+<th>No</th>
+<th>Nama</th>
+<th>No HP</th>
+<th>Golongan Darah</th>
+<th>Kontak</th>
+
+</tr>
+
+</thead>
+
+<tbody id="tabelDonor"></tbody>
+
+</table>
+
+</div>
 
 <h2>🩸 Data Relawan Pendonor Darah</h2>
 
 <button onclick="tutupRelawan()">Tutup</button>
 
 <br><br>
-
-<iframe 
-src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pubhtml?gid=2058503626&single=true"
-width="100%" height="500">
-</iframe>
 
 </div>
     <div id="halamanPMT" style="display:none; padding:20px;">
