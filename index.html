@@ -2168,6 +2168,18 @@ color:black;
 </tr>
 </thead>
 
+<tbody id="tabelDonor">
+</tbody>
+
+</table>
+<th>No</th>
+<th>Nama</th>
+<th>No HP</th>
+<th>Gol Darah</th>
+<th>Kontak</th>
+</tr>
+</thead>
+
 <tbody id="tabelDonor"></tbody>
 
 </table>
@@ -2490,10 +2502,7 @@ hitungDonor();
 
 }
 
-</script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-  <script>
-
+<script>
 function hitungDonor(){
 
 const csvUrl =
@@ -2503,12 +2512,39 @@ fetch(csvUrl)
 .then(res => res.text())
 .then(data => {
 
-console.log(data);
+const rows = data.trim().split("\n");
 
-});
+let html = "";
+
+for(let i=1;i<rows.length;i++){
+
+const col = rows[i].split(",");
+
+if(col.length < 4) continue;
+
+html += `
+<tr>
+<td>${col[0]}</td>
+<td>${col[1]}</td>
+<td>${col[2]}</td>
+<td>${col[3]}</td>
+<td>
+<a href="https://wa.me/62${col[2].replace(/^0/,'')}"
+target="_blank">
+📞 Hubungi
+</a>
+</td>
+</tr>
+`;
 
 }
 
+document.getElementById("tabelDonor").innerHTML = html;
+
+})
+.catch(err => console.log(err));
+
+}
 </script>
 </body>
 </html>
