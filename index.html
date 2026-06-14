@@ -1467,8 +1467,76 @@ document.getElementById("modalProfilBumil").style.display="block";
 function tutupProfilBumil(){
 document.getElementById("modalProfilBumil").style.display="none";
 }
+function hitungUsiaKehamilan(hpht){
 
+if(!hpht) return "-";
 
+const hphtDate = parseTanggalIndonesia(hpht);
+
+if(!hphtDate) return "-";
+
+const today = new Date();
+
+const totalHari =
+Math.floor((today - hphtDate)/(1000*60*60*24));
+
+const minggu = Math.floor(totalHari/7);
+const hari = totalHari % 7;
+
+return `${minggu} Minggu ${hari} Hari`;
+}
+function hitungTrimester(hpht){
+
+if(!hpht) return "-";
+
+const hphtDate = parseTanggalIndonesia(hpht);
+
+if(!hphtDate) return "-";
+
+const today = new Date();
+
+const minggu =
+Math.floor(((today-hphtDate)/(1000*60*60*24))/7);
+
+if(minggu <= 13) return "🟢 Trimester I";
+if(minggu <= 27) return "🟡 Trimester II";
+
+return "🔴 Trimester III";
+}
+function sisaPersalinan(hpl){
+
+if(!hpl) return "-";
+
+const hplDate = parseTanggalIndonesia(hpl);
+
+if(!hplDate) return "-";
+
+const today = new Date();
+
+const hari =
+Math.ceil((hplDate - today)/(1000*60*60*24));
+
+if(hari < 0){
+return "Sudah Melahirkan";
+}
+
+return `${hari} Hari Lagi`;
+}
+  
+function parseTanggalIndonesia(tanggal){
+
+if(!tanggal) return null;
+
+const parts = tanggal.split("/");
+
+if(parts.length !== 3) return null;
+
+return new Date(
+parts[2],      // tahun
+parts[1]-1,    // bulan
+parts[0]       // hari
+);
+}
 async function cariProfilBumil(){
 
 const nik =
@@ -1500,7 +1568,8 @@ const row = rows[i].trim();
 if(row === "") continue;
 
 const col = parseCSV(row);
-
+const hpht = col[27] || "";
+const hpl  = col[21] || "";
 /*
 CARI NIK DI SEMUA KOLOM
 */
@@ -1532,7 +1601,11 @@ margin-bottom:20px;
 <p><b>NIK :</b> ${nik}</p>
 <p><b>Gol. Darah :</b> ${col[2] || "-"}</p>
 <p><b>Hamil Ke :</b> ${col[3] || "-"}</p>
+<p><b>Usia Kehamilan :</b> ${hitungUsiaKehamilan(hpht)}</p>
 
+<p><b>Trimester :</b> ${hitungTrimester(hpht)}</p>
+
+<p><b>Menuju Persalinan :</b> ${sisaPersalinan(hpl)}</p>
 </div>
 
 <div class="bumil-card">
