@@ -885,7 +885,12 @@ Buka Menu
 
     <button onclick="bukaPMT()">Buka Menu</button>
   </div>
-
+<div class="menu-card" onclick="bukaLayananAdm()">
+    <div class="menu-icon">📋</div>
+    <h3>Layanan Adm</h3>
+    <p>KK, Akta, KIA & BPJS</p>
+</div>
+  
 </div>
 <div class="menu-card">
 <div class="icon">📅</div>
@@ -2723,6 +2728,109 @@ data:Object.values(data)
 }]
 }
 });
+}
+
+</script>
+  <div id="halamanLayananAdm" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#0b0b0b;
+z-index:999999;
+overflow:auto;
+padding:20px;
+">
+
+<h2 style="color:#00ffd5;">
+📋 Layanan Administrasi
+</h2>
+
+<button onclick="tutupLayananAdm()" style="
+background:red;
+color:white;
+padding:10px 20px;
+border:none;
+border-radius:10px;
+margin-bottom:20px;
+">
+❌ Tutup
+</button>
+
+<div class="card">
+
+<h3>🆔 Pembaruan Kartu Keluarga (KK)</h3>
+
+<ul>
+<li>Fotokopi KK lama</li>
+<li>Fotokopi KTP Kepala Keluarga</li>
+<li>Dokumen pendukung perubahan data</li>
+<li>Surat pengantar RT/RW (jika diperlukan)</li>
+</ul>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h3>👶 Pembuatan Akta Kelahiran</h3>
+
+<ul>
+<li>Surat Keterangan Lahir</li>
+<li>Fotokopi KK</li>
+<li>Fotokopi KTP Orang Tua</li>
+<li>Buku Nikah/Akta Nikah</li>
+<li>Data saksi kelahiran (jika diperlukan)</li>
+</ul>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h3>🪪 Pembuatan KIA</h3>
+
+<ul>
+<li>Fotokopi Akta Kelahiran</li>
+<li>Fotokopi KK</li>
+<li>Pas foto anak 2x3 (untuk usia tertentu)</li>
+</ul>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h3>🏥 Pendaftaran BPJS Kesehatan</h3>
+
+<ul>
+<li>Fotokopi KK</li>
+<li>Fotokopi KTP</li>
+<li>Nomor HP aktif</li>
+<li>Email aktif (jika ada)</li>
+<li>Rekening pembayaran iuran (mandiri)</li>
+</ul>
+
+</div>
+
+</div>
+  <script>
+
+function bukaLayananAdm(){
+document.getElementById(
+"halamanLayananAdm"
+).style.display="block";
+}
+
+function tutupLayananAdm(){
+document.getElementById(
+"halamanLayananAdm"
+).style.display="none";
 }
 
 </script>
