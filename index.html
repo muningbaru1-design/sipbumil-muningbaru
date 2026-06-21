@@ -2990,12 +2990,14 @@ foto = foto.replace(/"/g, "");
       if (!match) match = foto.match(/\/d\/([^/]+)/);
 
       if (match) {
-        foto = `https://drive.google.com/uc?export=view&id=${match[1]}`;
+        foto = `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1000`;
       }
 
       container.innerHTML += `
         <div class="galeri-item">
-          <img src="${foto}" onerror="this.style.display='none'">
+          <img src="${foto}"
+     onload="console.log('GAMBAR OK')"
+     onerror="console.log('GAMBAR GAGAL', this.src)">
           <p>${jenis || '-'}</p>
         </div>
       `;
