@@ -2949,37 +2949,52 @@ document.getElementById(
 }
 
 </script>
-  <script>
+ <script>
+console.log("GALERI SCRIPT JALAN");
+
 const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTbbYgIwa9xLxHTC9GBtV9j1z_KQdizecsCUsv4n5oHMkM7dlCw3OoGcDyE0ZQCjtQ6-OEDboS78VZS/pub?gid=2117553001&single=true&output=csv";
 
 fetch(sheetURL)
   .then(res => res.text())
   .then(data => {
+
+    console.log("DATA GALERI:", data);
+
     const rows = data.split("\n").slice(1);
     const container = document.getElementById("galeri-dinamis");
 
+    container.innerHTML = "";
+
     rows.forEach(row => {
-      const cols = row.split(",");
 
-      const jenis = cols[2];
-      let foto = cols[3];
+      // 🔥 FIX UTAMA DI SINI
+      let cols = row.split(/,|;/);
 
-      if (!foto) return;
+      const jenis = cols[2]?.trim();
+      let foto = cols[3]?.trim();
 
-      // ubah link drive
-      const match = foto.match(/id=([^&]+)/);
+      console.log("FOTO:", foto);
+
+      if (!foto || !foto.includes("drive")) return;
+
+      // 🔥 HANDLE SEMUA FORMAT LINK DRIVE
+      let match = foto.match(/id=([^&]+)/);
+      if (!match) match = foto.match(/\/d\/([^/]+)/);
+
       if (match) {
         foto = `https://drive.google.com/uc?export=view&id=${match[1]}`;
       }
 
       container.innerHTML += `
         <div class="galeri-item">
-          <img src="${foto}">
-          <p>${jenis}</p>
+          <img src="${foto}" onerror="this.style.display='none'">
+          <p>${jenis || '-'}</p>
         </div>
       `;
     });
-  });
+
+  })
+  .catch(err => console.error("ERROR GALERI:", err));
 </script>
   <script>
 console.log("SCRIPT JALAN");
