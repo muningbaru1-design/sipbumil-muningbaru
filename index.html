@@ -1628,64 +1628,57 @@ document.body.appendChild(modal);
 }
 async function loadGaleri(){
 
+const container =
+document.getElementById("galeriContainer");
+
 try{
 
 const data =
-await fetch(GALERI_CSV)
-.then(res=>res.text());
+await fetch(CSV_GALERI).then(r=>r.text());
 
 const rows = data.split("\n");
 
-let html = "";
+let html = '<div class="galeri-grid">';
 
 for(let i=1;i<rows.length;i++){
 
-const row = rows[i].trim();
+const col = parseCSV(rows[i]);
 
-if(!row) continue;
-
-const col = parseCSV(row);
-
-const kegiatan = col[2] || "-";
-const driveLink = col[3] || "";
-
-const match =
-driveLink.match(/[-\w]{25,}/);
-
-if(!match) continue;
-
-const fileId = match[0];
+const kegiatan =
+(col[2] || "").trim();
 
 const foto =
-`https://drive.google.com/uc?export=view&id=${fileId}`;
+(col[3] || "")
+.replace(/"/g,"")
+.trim();
+
+if(!foto) continue;
 
 html += `
-
-<div class="galeri-item">
-
-<img src="${foto}"
-alt="${kegiatan}"
-loading="lazy">
-
-<p>${kegiatan}</p>
-
+<div class="galeri-card">
+<img src="${foto}" alt="${kegiatan}">
+<h4>${kegiatan}</h4>
 </div>
-
 `;
 
 }
 
-document.getElementById(
-"galeriContainer"
-).innerHTML = html;
+html += "</div>";
+
+container.innerHTML = html;
 
 }catch(err){
 
-console.log(err);
+console.error(err);
+
+container.innerHTML =
+"Gagal memuat galeri";
 
 }
 
 }
+
+loadGaleri();
 async function cariProfilBumil(){
 
 const nik =
