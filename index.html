@@ -1628,37 +1628,38 @@ const data =
 await fetch(GALERI_CSV)
 .then(res=>res.text());
 
-const rows =
-data.split("\n");
+const rows = data.split("\n");
 
-let html="";
+let html = "";
 
 for(let i=1;i<rows.length;i++){
 
-const row = rows[i];
+const row = rows[i].trim();
 
 if(!row) continue;
 
 const col = parseCSV(row);
 
 const kegiatan = col[2] || "-";
-const fotoLink = col[3] || "";
+const driveLink = col[3] || "";
 
-if(!fotoLink) continue;
+const match =
+driveLink.match(/[-\w]{25,}/);
 
-const fileId =
-fotoLink.match(/[-\w]{25,}/);
+if(!match) continue;
 
-if(!fileId) continue;
+const fileId = match[0];
 
 const foto =
-`https://drive.google.com/uc?export=view&id=${fileId[0]}`;
+`https://drive.google.com/uc?export=view&id=${fileId}`;
 
 html += `
 
 <div class="galeri-item">
 
-<img src="${foto}">
+<img src="${foto}"
+alt="${kegiatan}"
+loading="lazy">
 
 <p>${kegiatan}</p>
 
