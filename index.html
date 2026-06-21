@@ -1639,22 +1639,28 @@ const row = rows[i];
 
 if(!row) continue;
 
-const col = row.split(",");
+const col = parseCSV(row);
 
-const judul = col[1] || "";
-const foto = col[3] || "";
+const kegiatan = col[2] || "-";
+const fotoLink = col[3] || "";
 
-if(!foto) continue;
+if(!fotoLink) continue;
+
+const fileId =
+fotoLink.match(/[-\w]{25,}/);
+
+if(!fileId) continue;
+
+const foto =
+`https://drive.google.com/uc?export=view&id=${fileId[0]}`;
 
 html += `
 
 <div class="galeri-item">
 
-<img
-src="${foto}"
-onclick="lihatFoto('${foto}')">
+<img src="${foto}">
 
-<p>${judul}</p>
+<p>${kegiatan}</p>
 
 </div>
 
