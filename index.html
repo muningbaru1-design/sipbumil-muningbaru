@@ -1512,7 +1512,9 @@ cariData();
 /* =========================
    INIT
 ========================= */
-
+function parseCSV(line){
+  return line.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || [];
+}
 
 function bukaProfilBumil(){
 document.getElementById("modalProfilBumil").style.display="block";
