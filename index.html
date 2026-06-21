@@ -9,6 +9,42 @@
   td:nth-child(2) {
     text-align: left;
   }
+  .galeri-section{
+padding:15px;
+}
+
+.galeri-section h2{
+text-align:center;
+color:#00ffd5;
+margin-bottom:15px;
+}
+
+#galeriContainer{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+
+.galeri-item{
+background:#fff;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+.galeri-item img{
+width:100%;
+height:140px;
+object-fit:cover;
+cursor:pointer;
+}
+
+.galeri-item p{
+padding:8px;
+font-size:13px;
+font-weight:bold;
+text-align:center;
+}
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -844,7 +880,17 @@ Cari
 <h2>Menu Utama</h2>
 <p>Sistem layanan kesehatan desa digital</p>
 </div>
+<!-- GALERI SIP BUMILNYA -->
 
+<section class="galeri-section">
+
+<h2>📸 Galeri Kegiatan SIP BUMILNYA</h2>
+
+<div id="galeriContainer">
+Memuat galeri...
+</div>
+
+</section>
 <div class="menu-grid">
 
 <div class="menu-card">
@@ -1005,6 +1051,8 @@ Password salah
 /* =========================
    CONFIG
 ========================= */
+const GALERI_CSV =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vQqjMens0gYa0UGZ1JIm6TizW_1qElZ_yJGzPz44OoxgfndTtS9w9Xhn7gJYraxfVfPz2dw68Tdacyz/pub?output=csv";
 const CSV_DONOR =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=2058503626&single=true&output=csv";
 const CSV_URL =
@@ -1537,6 +1585,94 @@ parts[1]-1,    // bulan
 parts[0]       // hari
 );
 }
+function lihatFoto(url){
+
+const modal =
+document.createElement("div");
+
+modal.style=`
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.9);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:99999;
+`;
+
+modal.innerHTML=
+`
+<img src="${url}"
+style="
+max-width:90%;
+max-height:90%;
+border-radius:10px;
+">
+`;
+
+modal.onclick=()=>{
+modal.remove();
+};
+
+document.body.appendChild(modal);
+
+}
+async function loadGaleri(){
+
+try{
+
+const data =
+await fetch(GALERI_CSV)
+.then(res=>res.text());
+
+const rows =
+data.split("\n");
+
+let html="";
+
+for(let i=1;i<rows.length;i++){
+
+const row = rows[i];
+
+if(!row) continue;
+
+const col = row.split(",");
+
+const judul = col[1] || "";
+const foto = col[3] || "";
+
+if(!foto) continue;
+
+html += `
+
+<div class="galeri-item">
+
+<img
+src="${foto}"
+onclick="lihatFoto('${foto}')">
+
+<p>${judul}</p>
+
+</div>
+
+`;
+
+}
+
+document.getElementById(
+"galeriContainer"
+).innerHTML = html;
+
+}catch(err){
+
+console.log(err);
+
+}
+
+}
 async function cariProfilBumil(){
 
 const nik =
@@ -1719,6 +1855,7 @@ hitungBumil();
 
 hitungBayi();
 hitungResiko();
+loadGaleri();
 /* =========================
    DATA BAYI
 ========================= */
