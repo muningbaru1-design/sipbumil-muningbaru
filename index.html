@@ -9,42 +9,6 @@
   td:nth-child(2) {
     text-align: left;
   }
-  .galeri-section{
-padding:15px;
-}
-
-.galeri-section h2{
-text-align:center;
-color:#00ffd5;
-margin-bottom:15px;
-}
-
-#galeriContainer{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-}
-
-.galeri-item{
-background:#fff;
-border-radius:15px;
-overflow:hidden;
-box-shadow:0 2px 10px rgba(0,0,0,.15);
-}
-
-.galeri-item img{
-width:100%;
-height:140px;
-object-fit:cover;
-cursor:pointer;
-}
-
-.galeri-item p{
-padding:8px;
-font-size:13px;
-font-weight:bold;
-text-align:center;
-}
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -873,30 +837,14 @@ Cari
      MENU
 ========================= -->
 
+<section class="menu-section" id="menuUtama">
+
 <div class="section-title">
-    <div id="menu">
-        <h2>Menu Utama</h2>
-        <p>Sistem layanan kesehatan desa digital</p>
-    </div>
+<div id="menu">
+<h2>Menu Utama</h2>
+<p>Sistem layanan kesehatan desa digital</p>
 </div>
 
-<!-- =========================
-     GALERI SIP BUMILNYA
-========================= -->
-
-<section class="galeri-section">
-
-    <h2>📸 Galeri Kegiatan SIP BUMILNYA</h2>
-
-    <div id="galeriContainer">
-        Memuat galeri...
-    </div>
-
-</section>
-  
-<!-- =========================
-     MENU GRID
-========================= -->
 <div class="menu-grid">
 
 <div class="menu-card">
@@ -1061,8 +1009,6 @@ const CSV_DONOR =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=2058503626&single=true&output=csv";
 const CSV_URL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv";
-const CSV_GALERI =
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vTbbYgIwa9xLxHTC9GBtV9j1z_KQdizecsCUsv4n5oHMkM7dlCw3OoGcDyE0ZQCjtQ6-OEDboS78VZS/pub?gid=2117553001&single=true&output=csv";
 const CSV_BAYI =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=716234537&single=true&output=csv";
 const CSV_RESIKO =
@@ -1512,9 +1458,7 @@ cariData();
 /* =========================
    INIT
 ========================= */
-function parseCSV(line){
-  return line.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || [];
-}
+
 
 function bukaProfilBumil(){
 document.getElementById("modalProfilBumil").style.display="block";
@@ -1593,94 +1537,6 @@ parts[1]-1,    // bulan
 parts[0]       // hari
 );
 }
-function lihatFoto(url){
-
-const modal =
-document.createElement("div");
-
-modal.style=`
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.9);
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:99999;
-`;
-
-modal.innerHTML=
-`
-<img src="${url}"
-style="
-max-width:90%;
-max-height:90%;
-border-radius:10px;
-">
-`;
-
-modal.onclick=()=>{
-modal.remove();
-};
-
-document.body.appendChild(modal);
-
-}
-async function loadGaleri(){
-
-const container =
-document.getElementById("galeriContainer");
-
-try{
-
-const data =
-await fetch(CSV_GALERI).then(r=>r.text());
-
-const rows = data.split("\n");
-
-let html = '<div class="galeri-grid">';
-
-for(let i=1;i<rows.length;i++){
-
-const col = parseCSV(rows[i]);
-
-const kegiatan =
-(col[2] || "").trim();
-
-const foto =
-(col[3] || "")
-.replace(/"/g,"")
-.trim();
-
-if(!foto) continue;
-
-html += `
-<div class="galeri-card">
-<img src="${foto}" alt="${kegiatan}">
-<h4>${kegiatan}</h4>
-</div>
-`;
-
-}
-
-html += "</div>";
-
-container.innerHTML = html;
-
-}catch(err){
-
-console.error(err);
-
-container.innerHTML =
-"Gagal memuat galeri";
-
-}
-
-}
-
-loadGaleri();
 async function cariProfilBumil(){
 
 const nik =
@@ -1863,7 +1719,6 @@ hitungBumil();
 
 hitungBayi();
 hitungResiko();
-loadGaleri();
 /* =========================
    DATA BAYI
 ========================= */
@@ -2420,8 +2275,6 @@ color:black;
 window.onload = function() {
   if(window.location.hash === "#menu"){
     document.getElementById("menu").scrollIntoView();
-    loadDashboard();
-   loadGaleri();
   }
 };
 <script>
