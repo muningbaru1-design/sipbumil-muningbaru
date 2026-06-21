@@ -2962,6 +2962,7 @@ fetch(sheetURL)
 
     const rows = data.split("\n").slice(1);
     const container = document.getElementById("galeri-dinamis");
+    console.log("Container:", container);
 
     container.innerHTML = "";
 
@@ -2973,6 +2974,7 @@ fetch(sheetURL)
 
       const jenis = cols[2]?.trim();
       let foto = cols[3]?.trim();
+foto = foto.replace(/"/g, "");
 
       console.log("FOTO:", foto);
 
