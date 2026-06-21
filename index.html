@@ -1057,12 +1057,12 @@ Password salah
 /* =========================
    CONFIG
 ========================= */
-const GALERI_CSV =
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vTbbYgIwa9xLxHTC9GBtV9j1z_KQdizecsCUsv4n5oHMkM7dlCw3OoGcDyE0ZQCjtQ6-OEDboS78VZS/pub?gid=2117553001&single=true&output=csv";
 const CSV_DONOR =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=2058503626&single=true&output=csv";
 const CSV_URL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv";
+const CSV_GALERI =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vTbbYgIwa9xLxHTC9GBtV9j1z_KQdizecsCUsv4n5oHMkM7dlCw3OoGcDyE0ZQCjtQ6-OEDboS78VZS/pub?gid=2117553001&single=true&output=csv";
 const CSV_BAYI =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=716234537&single=true&output=csv";
 const CSV_RESIKO =
@@ -2420,6 +2420,8 @@ color:black;
 window.onload = function() {
   if(window.location.hash === "#menu"){
     document.getElementById("menu").scrollIntoView();
+    loadDashboard();
+   loadGaleri();
   }
 };
 <script>
