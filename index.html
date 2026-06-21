@@ -2322,7 +2322,16 @@ const cols = row.split(",");
 
 const tanggal = cols[0];
 const kegiatan = cols[2];
-const foto = cols[3];
+let foto = cols[3];
+
+if(foto.includes("id=")){
+
+const id = foto.split("id=")[1];
+
+foto =
+`https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
+
+}
 
 if(foto){
 
