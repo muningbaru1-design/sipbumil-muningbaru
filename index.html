@@ -2322,39 +2322,33 @@ const cols = row.split(",");
 
 const tanggal = cols[0];
 const kegiatan = cols[2];
-let foto = cols[3];
+const fotoAsli = cols[3];
+
+let foto = fotoAsli
+  .replace(/"/g,"")
+  .trim();
 
 if(foto.includes("id=")){
+  const id = foto.split("id=")[1];
 
-const id = foto.split("id=")[1];
-
-foto =
-`https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
-
+  foto =
+  `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
 }
-
 if(foto){
 
 html += `
-<div style="
-background:white;
-border-radius:15px;
-overflow:hidden;
-box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+<div class="card-galeri">
 
-<img src="${foto}"
-style="
-width:100%;
-height:250px;
-object-fit:cover;">
+<img
+src="${foto}"
+loading="lazy"
+onerror="this.src='https://via.placeholder.com/400x300?text=Foto+Tidak+Tersedia';">
 
-<div style="padding:10px">
-
+<div class="info">
 <h3>${kegiatan}</h3>
-
-<small>${tanggal}</small>
-
+<p>${tanggal}</p>
 </div>
+
 </div>
 `;
 
