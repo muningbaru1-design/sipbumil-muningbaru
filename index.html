@@ -2952,9 +2952,9 @@ document.getElementById(
  <script>
 console.log("GALERI SCRIPT JALAN");
 
-const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTbbYgIwa9xLxHTC9GBtV9j1z_KQdizecsCUsv4n5oHMkM7dlCw3OoGcDyE0ZQCjtQ6-OEDboS78VZS/pub?gid=2117553001&single=true&output=csv";
+const galeriSheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTbbYgIwa9xLxHTC9GBtV9j1z_KQdizecsCUsv4n5oHMkM7dlCw3OoGcDyE0ZQCjtQ6-OEDboS78VZS/pub?gid=2117553001&single=true&output=csv";
 
-fetch(sheetURL)
+fetch(galeriSheetURL)
   .then(res => res.text())
   .then(data => {
 
@@ -2962,6 +2962,11 @@ fetch(sheetURL)
 
     const rows = data.split("\n").slice(1);
     const container = document.getElementById("galeri-dinamis");
+
+if (!container) {
+  console.error("DIV galeri-dinamis tidak ditemukan");
+  return;
+}
     console.log("Container:", container);
 
     container.innerHTML = "";
