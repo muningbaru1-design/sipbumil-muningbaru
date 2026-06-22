@@ -12,16 +12,23 @@
 }
 
 .galeri-container{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
+  display:flex;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  gap:10px;
+  scrollbar-width:none;
 }
 
-@media (max-width:768px){
-  .galeri-container{
-    grid-template-columns:repeat(3,1fr);
-    gap:8px;
-  }
+.galeri-container::-webkit-scrollbar{
+  display:none;
+}
+
+.galeri-page{
+  min-width:100%;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  scroll-snap-align:start;
 }
 
 .galeri-item img{
@@ -2969,40 +2976,56 @@ if (!container) {
 }
     console.log("Container:", container);
 
-    container.innerHTML = "";
+container.innerHTML = "";
 
-    rows.forEach(row => {
+let semuaFoto = [];
 
-      // 🔥 FIX UTAMA DI SINI
-      let cols = row.split(/,|;/);
-      console.log("COLS:", cols);
+rows.forEach(row => {
 
-      const jenis = cols[2]?.trim();
-      let foto = cols[3]?.trim();
-foto = foto.replace(/"/g, "");
+  let cols = row.split(/,|;/);
 
-      console.log("FOTO:", foto);
+  const jenis = cols[2]?.trim();
+  let foto = cols[3]?.trim();
 
-      if (!foto || !foto.includes("drive")) return;
+  foto = foto.replace(/"/g, "");
 
-      // 🔥 HANDLE SEMUA FORMAT LINK DRIVE
-      let match = foto.match(/id=([^&]+)/);
-      if (!match) match = foto.match(/\/d\/([^/]+)/);
+  if (!foto || !foto.includes("drive")) return;
 
-      if (match) {
-        foto = `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1000`;
-      }
+  let match = foto.match(/id=([^&]+)/);
+  if (!match) match = foto.match(/\/d\/([^/]+)/);
 
-      container.innerHTML += `
-        <div class="galeri-item">
-          <img src="${foto}"
-     onload="console.log('GAMBAR OK')"
-     onerror="console.log('GAMBAR GAGAL', this.src)">
-          <p>${jenis || '-'}</p>
-        </div>
-      `;
-    });
+  if (match) {
+    foto = `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1000`;
+  }
 
+  semuaFoto.push({
+    foto,
+    jenis
+  });
+
+});
+
+for(let i = 0; i < semuaFoto.length; i += 12){
+
+  const page = document.createElement("div");
+  page.className = "galeri-page";
+
+  semuaFoto.slice(i, i + 12).forEach(item => {
+
+    page.innerHTML += `
+      <div class="galeri-item">
+        <img src="${item.foto}"
+        onload="console.log('GAMBAR OK')"
+        onerror="console.log('GAMBAR GAGAL', this.src)">
+        <p>${item.jenis || '-'}</p>
+      </div>
+    `;
+
+  });
+
+  container.appendChild(page);
+
+}
   })
   .catch(err => console.error("ERROR GALERI:", err));
 </script>
