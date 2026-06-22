@@ -57,6 +57,56 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  .popup-overlay{
+
+position:fixed;
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:
+rgba(0,0,0,0.8);
+
+z-index:9999;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+}
+
+.popup-content{
+
+width:90%;
+max-width:1000px;
+
+max-height:90vh;
+
+overflow:auto;
+
+background:#111;
+
+padding:20px;
+
+border-radius:15px;
+
+color:white;
+
+}
+
+.popup-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:20px;
+
+}
 <style>
 .bumil-dashboard{
 display:grid;
@@ -1110,6 +1160,20 @@ return id
 : "";
 
 }
+function parseTanggal(str){
+
+const p = str.split("/");
+
+if(p.length !== 3)
+return null;
+
+return new Date(
+parseInt(p[2]),
+parseInt(p[1])-1,
+parseInt(p[0])
+);
+
+}
 
 /* =========================
    COUNTER
@@ -1786,17 +1850,70 @@ document.getElementById("modalDataBayi")
    DATA IBU HAMIL
 ========================= */
 
-function bukaDataIbuHamil(){
+async function bukaDataIbuHamil() {
 
-document.getElementById("modalIbuHamil")
-.style.display = "block";
+const csvUrl =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv";
+
+try {
+
+const data =
+await fetch(csvUrl).then(r=>r.text());
+
+const rows = data.split("\n");
+
+let belum = [];
+let sudah = [];
+
+const hariIni = new Date();
+
+for(let i=1;i<rows.length;i++){
+
+const col = parseCSV(rows[i]);
+
+const nama =
+(col[1] || "").trim();
+
+const hpl =
+(col[21] || "").trim();
+
+if(!nama || !hpl) continue;
+
+const tanggalHPL =
+parseTanggal(hpl);
+
+if(!tanggalHPL) continue;
+
+if(tanggalHPL >= hariIni){
+
+belum.push({
+nama:nama,
+hpl:hpl
+});
+
+}else{
+
+sudah.push({
+nama:nama,
+hpl:hpl
+});
 
 }
 
-function tutupDataIbuHamil(){
+}
 
-document.getElementById("modalIbuHamil")
-.style.display = "none";
+tampilkanDashboardBumil(
+belum,
+sudah
+);
+
+}catch(err){
+
+console.log(err);
+
+alert("Gagal memuat data");
+
+}
 
 }
 /* =========================
@@ -3025,6 +3142,117 @@ for(let i = 0; i < semuaFoto.length; i += 12){
 </script>
   <script>
 console.log("SCRIPT JALAN");
+function tampilkanDashboardBumil(
+belum,
+sudah
+){
+
+let html = `
+
+<div class="popup-overlay">
+
+<div class="popup-content">
+
+<div class="popup-header">
+
+<h2>
+📊 Dashboard Ibu Hamil
+</h2>
+
+<button onclick="tutupPopup()">
+Tutup
+</button>
+
+</div>
+
+<div style="
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+margin-bottom:20px;
+">
+
+<div class="stat-box">
+
+<h2>${belum.length}</h2>
+
+<p>
+🤰 Belum Melahirkan
+</p>
+
+</div>
+
+<div class="stat-box">
+
+<h2>${sudah.length}</h2>
+
+<p>
+👶 Sudah Melahirkan
+</p>
+
+</div>
+
+</div>
+
+<h3>
+🤰 Belum Melahirkan
+</h3>
+
+<ul>
+
+${belum.map(x=>`
+
+<li>
+${x.nama}
+(HPL ${x.hpl})
+</li>
+
+`).join("")}
+
+</ul>
+
+<hr>
+
+<h3>
+👶 Sudah Melahirkan
+</h3>
+
+<ul>
+
+${sudah.map(x=>`
+
+<li>
+${x.nama}
+(HPL ${x.hpl})
+</li>
+
+`).join("")}
+
+</ul>
+
+</div>
+
+</div>
+
+`;
+
+document.body.insertAdjacentHTML(
+"beforeend",
+html
+);
+
+}
+    function tutupPopup(){
+
+const popup =
+document.querySelector(
+".popup-overlay"
+);
+
+if(popup)
+popup.remove();
+
+}
 </script>
 </body>
 </html>
