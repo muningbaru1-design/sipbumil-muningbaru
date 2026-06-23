@@ -2,6 +2,19 @@
 <html lang="id">
 <head>
 <style>
+.stat-mini{
+display:flex;
+justify-content:center;
+gap:20px;
+margin:15px 0;
+font-size:20px;
+}
+
+.stat-mini span{
+background:#0f2a3a;
+padding:8px 12px;
+border-radius:10px;
+}
    .popup-overlay{
 position:fixed;
 top:0;
@@ -934,7 +947,7 @@ Cari
 Pendataan lengkap ibu hamil desa.
 </p>
 
-<button onclick="bukaDataIbuHamil()">
+<button onclick="loginAdmin('bumil')">
 Buka Menu
 </button>
 
@@ -950,9 +963,7 @@ Buka Menu
 Informasi Hak Identitas Anak Setelah Lahir.
 </p>
 
-<button onclick="bukaDataBayi()">
-Buka Menu
-</button>
+<button onclick="loginAdmin('bayi')">
 
 </div>
 <div class="menu-card">
@@ -960,7 +971,7 @@ Buka Menu
     <h3>Intervensi Gizi (PMT)</h3>
     <p>Jadwal pemberian makanan tambahan untuk bumil KEK & stunting.</p>
 
-    <button onclick="bukaPMT()">Buka Menu</button>
+    <button onclick="loginAdmin('pmt')">Buka Menu</button>
   </div>
 <div class="menu-card" onclick="bukaLayananAdm()">
     <div class="menu-icon">📋</div>
@@ -1500,6 +1511,33 @@ document.getElementById("loginError")
 }
 
 }
+function loginAdmin(menu){
+
+const pass =
+prompt("Masukkan Password Admin");
+
+if(pass !== "admin123"){
+
+alert(
+"Menu hanya untuk Admin/Kader"
+);
+
+return;
+}
+
+if(menu==="bumil"){
+showBumil();
+}
+
+if(menu==="bayi"){
+showBayi();
+}
+
+if(menu==="pmt"){
+showPMT();
+}
+
+}
 
 /* =========================
    CLOSE MODAL
@@ -1810,6 +1848,7 @@ hitungBumil();
 
 hitungBayi();
 hitungResiko();
+statistikBumil();
 /* =========================
    DATA BAYI
 ========================= */
@@ -2213,6 +2252,21 @@ align-items:center;
 <h2 style="color:black;">
 🤰 Data Ibu Hamil Desa
 </h2>
+<div class="stat-mini">
+
+<span>
+🤰 <b id="totalBumil">0</b>
+</span>
+
+<span>
+🫄 <b id="belumLahir">0</b>
+</span>
+
+<span>
+🤱 <b id="sudahLahir">0</b>
+</span>
+
+</div>
 
 <button onclick="tutupDataIbuHamil()" style="
 padding:10px 15px;
@@ -2946,7 +3000,57 @@ data:Object.values(data)
 }
 });
 }
+async function statistikBumil(){
 
+const data =
+await fetch(CSV_URL)
+.then(r=>r.text());
+
+const rows =
+data.split("\n");
+
+let total=0;
+let belum=0;
+let sudah=0;
+
+for(let i=1;i<rows.length;i++){
+
+const col =
+parseCSV(rows[i]);
+
+if(!col[1]) continue;
+
+total++;
+
+if(
+(col[23] || "")
+.toLowerCase()
+.includes("sudah")
+){
+
+sudah++;
+
+}else{
+
+belum++;
+
+}
+
+}
+
+document.getElementById(
+"totalBumil"
+).innerText=total;
+
+document.getElementById(
+"belumLahir"
+).innerText=belum;
+
+document.getElementById(
+"sudahLahir"
+).innerText=sudah;
+
+}
 </script>
   <div id="halamanLayananAdm" style="
 display:none;
