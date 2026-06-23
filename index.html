@@ -1515,31 +1515,23 @@ document.getElementById("loginError")
 }
 function loginAdmin(menu){
 
-const pass =
-prompt("Masukkan Password Admin");
+const pass = prompt("Masukkan Password Admin");
 
 if(pass !== "admin123"){
-
-alert(
-"Menu hanya untuk Admin/Kader"
-);
-
+alert("Menu hanya untuk Admin/Kader");
 return;
 }
 
 if(menu==="bumil"){
-window.open(
-"https://docs.google.com/spreadsheets/d/ID_SHEET_BUMIL/edit",
-"_blank"
-);
+window.open(SPREADSHEET_URL,"_blank");
 }
 
 if(menu==="bayi"){
-showBayi();
+window.open(SPREADSHEET_BAYI_URL,"_blank");
 }
 
 if(menu==="pmt"){
-showPMT();
+window.open(SPREADSHEET_PMT_URL,"_blank");
 }
 
 }
