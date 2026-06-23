@@ -928,14 +928,14 @@ Cari
 
 <div class="icon">🤰</div>
 
-<h3>Data Ibu Hamil</h3>
+<h3>🔒 Data Ibu Hamil</h3>
 
 <p>
 Pendataan lengkap ibu hamil desa.
 </p>
 
-<button onclick="bukaDataIbuHamil()">
-Buka Menu
+<button onclick="cekAksesAdmin('bumil')">
+🔒 Admin Only
 </button>
 
 </div>
@@ -944,23 +944,33 @@ Buka Menu
 
 <div class="icon">👶</div>
 
-<h3>Data Bayi</h3>
+<h3>🔒 Data Bayi</h3>
 
 <p>
 Informasi Hak Identitas Anak Setelah Lahir.
 </p>
 
-<button onclick="bukaDataBayi()">
-Buka Menu
+<button onclick="cekAksesAdmin('bayi')">
+🔒 Admin Only
 </button>
 
 </div>
-<div class="menu-card">
-    <div class="icon">🍲</div>
-    <h3>Intervensi Gizi (PMT)</h3>
-    <p>Jadwal pemberian makanan tambahan untuk bumil KEK & stunting.</p>
 
-    <button onclick="bukaPMT()">Buka Menu</button>
+<div class="menu-card">
+
+<div class="icon">🍲</div>
+
+<h3>🔒 Intervensi Gizi (PMT)</h3>
+
+<p>
+Jadwal pemberian makanan tambahan untuk bumil KEK & stunting.
+</p>
+
+<button onclick="cekAksesAdmin('pmt')">
+🔒 Admin Only
+</button>
+
+</div>
   </div>
 <div class="menu-card" onclick="bukaLayananAdm()">
     <div class="menu-icon">📋</div>
@@ -1482,8 +1492,10 @@ document.getElementById("adminPassword").value;
 
 if(password === ADMIN_PASSWORD){
 
-window.open(SPREADSHEET_URL,"_blank");
+// Simpan status login
+localStorage.setItem("adminLogin","true");
 
+// Tutup popup login
 document.getElementById("loginModal")
 .style.display = "none";
 
@@ -1492,12 +1504,22 @@ document.getElementById("loginError")
 
 document.getElementById("adminPassword").value = "";
 
+// Jika ingin tetap membuka spreadsheet admin
+window.open(SPREADSHEET_URL,"_blank");
+
 }else{
 
 document.getElementById("loginError")
 .style.display = "block";
 
 }
+
+}
+   function logoutAdmin(){
+
+  localStorage.removeItem("adminLogin");
+
+  alert("Logout berhasil");
 
 }
 
@@ -3253,5 +3275,28 @@ popup.remove();
 
 }
 </script>
+   function cekAksesAdmin(menu){
+
+  const loginAdmin = localStorage.getItem("adminLogin");
+
+  if(loginAdmin !== "true"){
+    alert("🔒 Data ini bersifat rahasia dan hanya dapat diakses oleh Admin.");
+    bukaLogin();
+    return;
+  }
+
+  if(menu === "bumil"){
+    bukaDataIbuHamil();
+  }
+
+  if(menu === "bayi"){
+    bukaDataBayi();
+  }
+
+  if(menu === "pmt"){
+    bukaPMT();
+  }
+
+}
 </body>
 </html>
