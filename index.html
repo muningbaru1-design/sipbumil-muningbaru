@@ -994,8 +994,8 @@ Buka Menu
 <h3>Risiko Tinggi</h3>
 <p>Monitoring ibu hamil risiko tinggi.</p>
 
-<button onclick="bukaResikoTinggi()">
-Buka Menu
+<button onclick="cekAksesRisikoTinggi()">
+🔒 Risiko Tinggi
 </button>
 </div>
 
@@ -1649,6 +1649,20 @@ parts[2],      // tahun
 parts[1]-1,    // bulan
 parts[0]       // hari
 );
+}
+   function cekAksesRisikoTinggi(){
+
+const loginAdmin = localStorage.getItem("adminLogin");
+
+if(loginAdmin !== "true"){
+
+document.getElementById("loginModal").style.display = "flex";
+return;
+
+}
+
+bukaRisikoTinggi();
+
 }
 async function cariProfilBumil(){
 
