@@ -965,7 +965,7 @@ Cari
     <div class="stat-item">
         <div class="stat-icon">🤰</div>
         <div class="stat-info">
-            <div class="stat-angka" id="jumlahBumil">28</div>
+            <div class="stat-angka" id="jumlahBumil">0</div>
             <div class="stat-text">Total Bumil</div>
         </div>
     </div>
@@ -973,7 +973,7 @@ Cari
     <div class="stat-item">
         <div class="stat-icon">👶</div>
         <div class="stat-info">
-            <div class="stat-angka" id="jumlahMelahirkan">9</div>
+            <div class="stat-angka" id="jumlahMelahirkan">0</div>
             <div class="stat-text">Sudah Melahirkan</div>
         </div>
     </div>
@@ -981,7 +981,7 @@ Cari
     <div class="stat-item">
         <div class="stat-icon">⏳</div>
         <div class="stat-info">
-            <div class="stat-angka" id="jumlahBelum">19</div>
+            <div class="stat-angka" id="jumlahBelum">0</div>
             <div class="stat-text">Belum Melahirkan</div>
         </div>
     </div>
@@ -1979,7 +1979,17 @@ hpl:hpl
 }
 
 }
+// ==============================
+// Statistik di Halaman Utama
+// ==============================
 
+const totalBumil = belum.length + sudah.length;
+
+document.getElementById("jumlahBumil").innerText = totalBumil;
+
+document.getElementById("jumlahMelahirkan").innerText = sudah.length;
+
+document.getElementById("jumlahBelum").innerText = belum.length;
 tampilkanDashboardBumil(
 belum,
 sudah
