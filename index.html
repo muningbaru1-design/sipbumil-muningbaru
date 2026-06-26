@@ -711,45 +711,38 @@ max-width:280px;
 }
 
 }
-   .dashboardStatistik{
-
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
-margin:25px auto;
-
+   .mini-statistik{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    margin-bottom:15px;
 }
 
-.statCard{
-
-width:180px;
-padding:20px;
-background:white;
-border-radius:18px;
-text-align:center;
-box-shadow:0 8px 20px rgba(0,0,0,.15);
-
+.stat-item{
+    display:flex;
+    align-items:center;
 }
 
-.statCard .icon{
-
-font-size:42px;
-
+.stat-icon{
+    font-size:24px;
+    width:35px;
 }
 
-.statCard div{
-
-font-size:34px;
-font-weight:bold;
-color:#00b894;
-
+.stat-info{
+    display:flex;
+    flex-direction:column;
+    line-height:1.1;
 }
 
-.statCard span{
+.stat-angka{
+    color:#00ffd5;
+    font-size:22px;
+    font-weight:bold;
+}
 
-font-size:15px;
-
+.stat-text{
+    color:#ffffff;
+    font-size:12px;
 }
 </style>
 
@@ -961,33 +954,39 @@ Cari
 </div>
 <p>Sistem layanan kesehatan desa digital</p>
 </div>
-<div class="dashboardStatistik">
 
-<div class="statCard">
-<div class="icon">🤰</div>
-<div id="jumlahBumil">0</div>
-<span>Total Ibu Hamil</span>
-</div>
-
-<div class="statCard">
-<div class="icon">👶</div>
-<div id="jumlahLahir">0</div>
-<span>Sudah Melahirkan</span>
-</div>
-
-<div class="statCard">
-<div class="icon">⏳</div>
-<div id="jumlahBelum">0</div>
-<span>Belum Melahirkan</span>
-</div>
-
-</div>
 <div class="menu-grid">
 
 <div class="menu-card">
 
 <div class="icon">🤰</div>
+<div class="mini-statistik">
 
+    <div class="stat-item">
+        <div class="stat-icon">🤰</div>
+        <div class="stat-info">
+            <div class="stat-angka" id="jumlahBumil">28</div>
+            <div class="stat-text">Total Bumil</div>
+        </div>
+    </div>
+
+    <div class="stat-item">
+        <div class="stat-icon">👶</div>
+        <div class="stat-info">
+            <div class="stat-angka" id="jumlahMelahirkan">9</div>
+            <div class="stat-text">Sudah Melahirkan</div>
+        </div>
+    </div>
+
+    <div class="stat-item">
+        <div class="stat-icon">⏳</div>
+        <div class="stat-info">
+            <div class="stat-angka" id="jumlahBelum">19</div>
+            <div class="stat-text">Belum Melahirkan</div>
+        </div>
+    </div>
+
+</div>
 <h3>🔒 Data Ibu Hamil</h3>
 
 <p>
