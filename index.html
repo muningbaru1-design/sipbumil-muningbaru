@@ -1924,10 +1924,73 @@ document.getElementById("modalDataBayi")
 .style.display = "none";
 
 }
+   
 /* =========================
    DATA IBU HAMIL
 ========================= */
+async function loadStatistikDashboard(){
 
+const csvUrl =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv";
+
+try{
+
+const data = await fetch(csvUrl).then(r=>r.text());
+
+const rows = data.split("\n");
+
+let belum = [];
+let sudah = [];
+
+const hariIni = new Date();
+
+for(let i=1;i<rows.length;i++){
+
+const col = parseCSV(rows[i]);
+
+const nama = (col[1] || "").trim();
+
+const hpl = (col[21] || "").trim();
+
+if(!nama || !hpl) continue;
+
+const tanggalHPL = parseTanggal(hpl);
+
+if(!tanggalHPL) continue;
+
+if(tanggalHPL >= hariIni){
+
+belum.push({
+nama:nama,
+hpl:hpl
+});
+
+}else{
+
+sudah.push({
+nama:nama,
+hpl:hpl
+});
+
+}
+
+}
+
+const totalBumil = belum.length + sudah.length;
+
+document.getElementById("jumlahBumil").innerText = totalBumil;
+
+document.getElementById("jumlahMelahirkan").innerText = sudah.length;
+
+document.getElementById("jumlahBelum").innerText = belum.length;
+
+}catch(err){
+
+console.log(err);
+
+}
+
+}
 async function bukaDataIbuHamil() {
 
 const csvUrl =
@@ -2524,6 +2587,7 @@ color:black;
 window.onload = function() {
   if(window.location.hash === "#menu"){
     document.getElementById("menu").scrollIntoView();
+     loadStatistikDashboard();
   }
 };
 <script>
