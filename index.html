@@ -711,6 +711,46 @@ max-width:280px;
 }
 
 }
+   .dashboardStatistik{
+
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+margin:25px auto;
+
+}
+
+.statCard{
+
+width:180px;
+padding:20px;
+background:white;
+border-radius:18px;
+text-align:center;
+box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+}
+
+.statCard .icon{
+
+font-size:42px;
+
+}
+
+.statCard div{
+
+font-size:34px;
+font-weight:bold;
+color:#00b894;
+
+}
+
+.statCard span{
+
+font-size:15px;
+
+}
 </style>
 
 </head>
@@ -921,7 +961,27 @@ Cari
 </div>
 <p>Sistem layanan kesehatan desa digital</p>
 </div>
+<div class="dashboardStatistik">
 
+<div class="statCard">
+<div class="icon">🤰</div>
+<div id="jumlahBumil">0</div>
+<span>Total Ibu Hamil</span>
+</div>
+
+<div class="statCard">
+<div class="icon">👶</div>
+<div id="jumlahLahir">0</div>
+<span>Sudah Melahirkan</span>
+</div>
+
+<div class="statCard">
+<div class="icon">⏳</div>
+<div id="jumlahBelum">0</div>
+<span>Belum Melahirkan</span>
+</div>
+
+</div>
 <div class="menu-grid">
 
 <div class="menu-card">
