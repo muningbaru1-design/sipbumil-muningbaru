@@ -1277,9 +1277,6 @@ document.getElementById("modalJadwal")
 .style.display="none";
 
 }
-/* =========================
-   HITUNG BUMIL
-========================= */
 
 /* =========================
    HITUNG BUMIL
@@ -1294,32 +1291,60 @@ const text = await data.text();
 
 const rows = text.split("\n");
 
-let jumlah = 0;
+let belum = [];
+let sudah = [];
+
+const hariIni = new Date();
 
 for(let i=1;i<rows.length;i++){
 
 const row = rows[i].trim();
 
-if(row === "") continue;
+if(row=="") continue;
 
 const col = parseCSV(row);
 
-if((col[1] || "").trim() !== ""){
-jumlah++;
-}
+const nama = (col[1] || "").trim();
+const hpl  = (col[21] || "").trim();
+
+if(!nama || !hpl) continue;
+
+const tanggalHPL = parseTanggal(hpl);
+
+if(!tanggalHPL) continue;
+
+if(tanggalHPL >= hariIni){
+
+belum.push({
+nama:nama,
+hpl:hpl
+});
+
+}else{
+
+sudah.push({
+nama:nama,
+hpl:hpl
+});
 
 }
 
-document.getElementById("jumlahBumil").innerText = jumlah;
+}
+
+document.getElementById("jumlahBumil").innerText =
+belum.length + sudah.length;
+
+document.getElementById("jumlahMelahirkan").innerText =
+sudah.length;
+
+document.getElementById("jumlahBelum").innerText =
+belum.length;
 
 }catch(error){
 
 console.error(error);
 
-document.getElementById("jumlahBumil").innerText = "0";
-
 }
-
 }
 /* =========================
    HITUNG BAYI
@@ -3446,7 +3471,12 @@ popup.remove();
   if(menu==="risikoTinggi"){
     bukaRisikoTinggi();
   }
-}
+
+     window.addEventListener("DOMContentLoaded", function(){
+
+    hitungBumil();
+
+});
 </script>
   
 </body>
