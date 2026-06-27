@@ -711,39 +711,6 @@ max-width:280px;
 }
 
 }
-   .mini-statistik{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-    margin-bottom:15px;
-}
-
-.stat-item{
-    display:flex;
-    align-items:center;
-}
-
-.stat-icon{
-    font-size:24px;
-    width:35px;
-}
-
-.stat-info{
-    display:flex;
-    flex-direction:column;
-    line-height:1.1;
-}
-
-.stat-angka{
-    color:#00ffd5;
-    font-size:22px;
-    font-weight:bold;
-}
-
-.stat-text{
-    color:#ffffff;
-    font-size:12px;
-}
 </style>
 
 </head>
@@ -960,33 +927,7 @@ Cari
 <div class="menu-card">
 
 <div class="icon">🤰</div>
-<div class="mini-statistik">
 
-    <div class="stat-item">
-        <div class="stat-icon">🤰</div>
-        <div class="stat-info">
-            <div class="stat-angka" id="jumlahBumil">0</div>
-            <div class="stat-text">Total Bumil</div>
-        </div>
-    </div>
-
-    <div class="stat-item">
-        <div class="stat-icon">👶</div>
-        <div class="stat-info">
-            <div class="stat-angka" id="jumlahMelahirkan">0</div>
-            <div class="stat-text">Sudah Melahirkan</div>
-        </div>
-    </div>
-
-    <div class="stat-item">
-        <div class="stat-icon">⏳</div>
-        <div class="stat-info">
-            <div class="stat-angka" id="jumlahBelum">0</div>
-            <div class="stat-text">Belum Melahirkan</div>
-        </div>
-    </div>
-
-</div>
 <h3>🔒 Data Ibu Hamil</h3>
 
 <p>
@@ -1155,12 +1096,6 @@ const CSV_DONOR =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=2058503626&single=true&output=csv";
 const CSV_URL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv";
-   // ==========================
-// DATA GLOBAL BUMIL
-// ==========================
-
-let dataBelum = [];
-let dataSudah = [];
 const CSV_BAYI =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=716234537&single=true&output=csv";
 const CSV_RESIKO =
@@ -1283,11 +1218,15 @@ document.getElementById("modalJadwal")
 .style.display="none";
 
 }
+/* =========================
+   HITUNG BUMIL
+========================= */
 
 /* =========================
    HITUNG BUMIL
 ========================= */
-async function ambilDataBumil(){
+
+async function hitungBumil(){
 
 try{
 
@@ -1296,66 +1235,31 @@ const text = await data.text();
 
 const rows = text.split("\n");
 
-dataBelum = [];
-dataSudah = [];
-
-const hariIni = new Date();
+let jumlah = 0;
 
 for(let i=1;i<rows.length;i++){
 
 const row = rows[i].trim();
 
-if(row=="") continue;
+if(row === "") continue;
 
 const col = parseCSV(row);
 
-const nama = (col[1] || "").trim();
-
-const hpl = (col[21] || "").trim();
-
-if(!nama || !hpl) continue;
-
-const tanggalHPL = parseTanggal(hpl);
-
-if(!tanggalHPL) continue;
-
-if(tanggalHPL >= hariIni){
-
-dataBelum.push({
-nama:nama,
-hpl:hpl
-});
-
-}else{
-
-dataSudah.push({
-nama:nama,
-hpl:hpl
-});
-
+if((col[1] || "").trim() !== ""){
+jumlah++;
 }
 
 }
+
+document.getElementById("jumlahBumil").innerText = jumlah;
 
 }catch(error){
 
-console.log(error);
+console.error(error);
+
+document.getElementById("jumlahBumil").innerText = "0";
 
 }
-
-}
-async function hitungBumil(){
-
-await ambilDataBumil();
-
-document.getElementById("jumlahBumil").innerText =
-dataBelum.length + dataSudah.length;
-
-document.getElementById("jumlahMelahirkan").innerText =
-dataSudah.length;
-
-document.getElementById("jumlahBelum").innerText =
-dataBelum.length;
 
 }
 /* =========================
@@ -1961,83 +1865,24 @@ document.getElementById("modalDataBayi")
 .style.display = "none";
 
 }
-   
 /* =========================
    DATA IBU HAMIL
 ========================= */
-async function loadStatistikDashboard(){
+
+async function bukaDataIbuHamil() {
 
 const csvUrl =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv";
 
-try{
+try {
 
-const data = await fetch(csvUrl).then(r=>r.text());
+const data =
+await fetch(csvUrl).then(r=>r.text());
 
 const rows = data.split("\n");
 
 let belum = [];
 let sudah = [];
-
-const hariIni = new Date();
-
-for(let i=1;i<rows.length;i++){
-
-const col = parseCSV(rows[i]);
-
-const nama = (col[1] || "").trim();
-
-const hpl = (col[21] || "").trim();
-
-if(!nama || !hpl) continue;
-
-const tanggalHPL = parseTanggal(hpl);
-
-if(!tanggalHPL) continue;
-
-if(tanggalHPL >= hariIni){
-
-belum.push({
-nama:nama,
-hpl:hpl
-});
-
-}else{
-
-sudah.push({
-nama:nama,
-hpl:hpl
-});
-
-}
-
-}
-
-const totalBumil = belum.length + sudah.length;
-
-document.getElementById("jumlahBumil").innerText = totalBumil;
-
-document.getElementById("jumlahMelahirkan").innerText = sudah.length;
-
-document.getElementById("jumlahBelum").innerText = belum.length;
-
-}catch(err){
-
-console.log(err);
-
-}
-
-}
-async function bukaDataIbuHamil(){
-
-await ambilDataBumil();
-
-tampilkanDashboardBumil(
-dataBelum,
-dataSudah
-);
-
-}
 
 const hariIni = new Date();
 
@@ -2075,17 +1920,7 @@ hpl:hpl
 }
 
 }
-// ==============================
-// Statistik di Halaman Utama
-// ==============================
 
-const totalBumil = belum.length + sudah.length;
-
-document.getElementById("jumlahBumil").innerText = totalBumil;
-
-document.getElementById("jumlahMelahirkan").innerText = sudah.length;
-
-document.getElementById("jumlahBelum").innerText = belum.length;
 tampilkanDashboardBumil(
 belum,
 sudah
@@ -2620,8 +2455,6 @@ color:black;
 window.onload = function() {
   if(window.location.hash === "#menu"){
     document.getElementById("menu").scrollIntoView();
-     console.log("Dashboard dimuat");
-     loadStatistikDashboard();
   }
 };
 <script>
@@ -3479,10 +3312,7 @@ popup.remove();
   if(menu==="risikoTinggi"){
     bukaRisikoTinggi();
   }
-
-window.addEventListener("DOMContentLoaded", function () {
-    hitungBumil();
-});
+}
 </script>
   
 </body>
