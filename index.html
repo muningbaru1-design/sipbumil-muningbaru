@@ -1155,6 +1155,12 @@ const CSV_DONOR =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=2058503626&single=true&output=csv";
 const CSV_URL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv";
+   // ==========================
+// DATA GLOBAL BUMIL
+// ==========================
+
+let dataBelum = [];
+let dataSudah = [];
 const CSV_BAYI =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=716234537&single=true&output=csv";
 const CSV_RESIKO =
@@ -1281,8 +1287,7 @@ document.getElementById("modalJadwal")
 /* =========================
    HITUNG BUMIL
 ========================= */
-
-async function hitungBumil(){
+async function ambilDataBumil(){
 
 try{
 
@@ -1291,8 +1296,8 @@ const text = await data.text();
 
 const rows = text.split("\n");
 
-let belum = [];
-let sudah = [];
+dataBelum = [];
+dataSudah = [];
 
 const hariIni = new Date();
 
@@ -1305,7 +1310,8 @@ if(row=="") continue;
 const col = parseCSV(row);
 
 const nama = (col[1] || "").trim();
-const hpl  = (col[21] || "").trim();
+
+const hpl = (col[21] || "").trim();
 
 if(!nama || !hpl) continue;
 
@@ -1315,14 +1321,14 @@ if(!tanggalHPL) continue;
 
 if(tanggalHPL >= hariIni){
 
-belum.push({
+dataBelum.push({
 nama:nama,
 hpl:hpl
 });
 
 }else{
 
-sudah.push({
+dataSudah.push({
 nama:nama,
 hpl:hpl
 });
@@ -1331,20 +1337,26 @@ hpl:hpl
 
 }
 
-document.getElementById("jumlahBumil").innerText =
-belum.length + sudah.length;
-
-document.getElementById("jumlahMelahirkan").innerText =
-sudah.length;
-
-document.getElementById("jumlahBelum").innerText =
-belum.length;
-
 }catch(error){
 
-console.error(error);
+console.log(error);
 
 }
+
+}
+async function hitungBumil(){
+
+await ambilDataBumil();
+
+document.getElementById("jumlahBumil").innerText =
+dataBelum.length + dataSudah.length;
+
+document.getElementById("jumlahMelahirkan").innerText =
+dataSudah.length;
+
+document.getElementById("jumlahBelum").innerText =
+dataBelum.length;
+
 }
 /* =========================
    HITUNG BAYI
@@ -2016,20 +2028,16 @@ console.log(err);
 }
 
 }
-async function bukaDataIbuHamil() {
+async function bukaDataIbuHamil(){
 
-const csvUrl =
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vSEiMvSlcQpexG-W6N00NC7FLNIZTSJTVJ2Dgac4J8a0-AXaUN5Sb_2kQLRgRYjgsnV5cAq_ApHpOeg/pub?gid=580499086&single=true&output=csv";
+await ambilDataBumil();
 
-try {
+tampilkanDashboardBumil(
+dataBelum,
+dataSudah
+);
 
-const data =
-await fetch(csvUrl).then(r=>r.text());
-
-const rows = data.split("\n");
-
-let belum = [];
-let sudah = [];
+}
 
 const hariIni = new Date();
 
@@ -3475,6 +3483,9 @@ popup.remove();
      window.addEventListener("DOMContentLoaded", function(){
 
     hitungBumil();
+   
+   window.addEventListener("DOMContentLoaded", async function(){
+await hitungBumil();
 
 });
 </script>
