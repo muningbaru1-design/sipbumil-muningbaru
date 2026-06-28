@@ -1439,34 +1439,7 @@ console.log(err);
 
 async function hitungBayi(){
 
-try{
-
-const data = await fetch(CSV_BAYI)
-.then(res => res.text());
-
-const rows = data.split("\n");
-
-let jumlah = 0;
-
-for(let i=2; i<rows.length; i++){
-
-const row = rows[i].trim();
-
-if(row !== ""){
-jumlah++;
-}
-
-}
-
-animateValue("jumlahBayi",0,jumlah,1000);
-
-}catch(error){
-
-console.error(error);
-
-document.getElementById("jumlahBayi").innerText = "0";
-
-}
+await loadDataBayi();
 
 }
 /* =========================
@@ -2247,7 +2220,21 @@ kia + " / " + total + " Bayi";
 
 document.getElementById("jumlahBPJS").innerText =
 bpjs + " / " + total + " Bayi";
+// ==============================
+// STATISTIK MINI MENU DATA BAYI
+// ==============================
 
+const miniKK = document.getElementById("miniKK");
+if(miniKK) miniKK.innerText = kk;
+
+const miniAkta = document.getElementById("miniAkta");
+if(miniAkta) miniAkta.innerText = akta;
+
+const miniKIA = document.getElementById("miniKIA");
+if(miniKIA) miniKIA.innerText = kia;
+
+const miniBPJS = document.getElementById("miniBPJS");
+if(miniBPJS) miniBPJS.innerText = bpjs;
 }
 
 }catch(error){
