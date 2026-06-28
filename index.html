@@ -2196,6 +2196,7 @@ document.getElementById("tabelBayi").innerHTML = html;
 /* DASHBOARD */
 
 if(total > 0){
+animateValue("jumlahBayi", 0, total, 1000);
 
 document.getElementById("persenKK").innerText =
 Math.round((kk/total)*100) + "%";
