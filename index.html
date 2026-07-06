@@ -1077,7 +1077,14 @@ Informasi Hak Identitas Anak Setelah Lahir.
 <button onclick="cekAksesAdmin('bayi')">
 🔒 Admin Only
 </button>
+   
+<button
+class="btn-cek"
+onclick="bukaCekIdentitas()">
 
+🔍 Cek Kelengkapan Identitas
+
+</button>
 </div>
 
 <div class="menu-card">
@@ -2794,6 +2801,82 @@ console.error(error);
 }
 
 }
+       async function cekIdentitasBayi(){
+
+const nik =
+document.getElementById(
+"nikBayiCari"
+).value.trim();
+
+const hasil =
+document.getElementById(
+"hasilIdentitas"
+);
+
+const csv =
+await fetch(CSV_BAYI)
+.then(r=>r.text());
+
+const rows =
+csv.split("\n");
+
+let ditemukan=false;
+
+for(let i=1;i<rows.length;i++){
+
+const col =
+parseCSV(rows[i]);
+
+if((col[8]||"").trim()===nik){
+
+ditemukan=true;
+
+let lengkap=0;
+
+if(col[3]=="Sudah") lengkap++;
+if(col[4]=="Sudah") lengkap++;
+if(col[5]=="Sudah") lengkap++;
+if(col[6]=="Sudah") lengkap++;
+
+const persen=
+lengkap*25;
+
+hasil.innerHTML=`
+
+<h3>👶 ${col[2]}</h3>
+
+<p>📄 KK :
+${col[3]=="Sudah"?"✅":"❌"}</p>
+
+<p>📜 Akta :
+${col[4]=="Sudah"?"✅":"❌"}</p>
+
+<p>🪪 KIA :
+${col[5]=="Sudah"?"✅":"❌"}</p>
+
+<p>💳 BPJS :
+${col[6]=="Sudah"?"✅":"❌"}</p>
+
+<hr>
+
+<h4>Progress ${persen}%</h4>
+
+`;
+
+break;
+
+}
+
+}
+
+if(!ditemukan){
+
+hasil.innerHTML=
+"<p>Data tidak ditemukan</p>";
+
+}
+
+}
     </script>
 <!-- MODAL JADWAL POSYANDU -->
 
@@ -3423,6 +3506,31 @@ ${x.nama}
 `).join("")}
 
 </ul>
+
+</div>
+
+</div>
+<div id="cekIdentitasModal"
+class="modal">
+
+<div class="modal-content">
+
+<h2>
+👶 Cek Kelengkapan Identitas Bayi
+</h2>
+
+<input
+type="text"
+id="nikBayiCari"
+placeholder="Masukkan NIK Bayi">
+
+<button onclick="cekIdentitasBayi()">
+
+Cari
+
+</button>
+
+<div id="hasilIdentitas"></div>
 
 </div>
 
