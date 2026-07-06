@@ -1887,12 +1887,13 @@ bukaRisikoTinggi();
 }
 async function cariProfilBumil(){
 
-const nik =
+const keyword =
 document.getElementById("nikProfil")
 .value
-.trim();
+.trim()
+.toLowerCase();
 
-if(nik === "") return;
+if(keyword === "") return;
 
 const hasil =
 document.getElementById("hasilProfil");
@@ -1921,14 +1922,24 @@ const hpl  = col[21] || "";
 /*
 CARI NIK DI SEMUA KOLOM
 */
-const gabung =
-col.join(" ")
-.replace(/\s/g,"");
+const nikBumil =
+(col[0] || "")
+.replace(/\s/g,"")
+.toLowerCase();
+
+const namaBumil =
+(col[1] || "")
+.toLowerCase();
+
+const cari =
+keyword.replace(/\s/g,"");
 
 if(
-gabung.includes(
-nik.replace(/\s/g,"")
-)
+
+nikBumil.includes(cari) ||
+
+namaBumil.includes(keyword)
+
 ){
 
 hasil.innerHTML = `
@@ -1946,7 +1957,7 @@ margin-bottom:20px;
 </h2>
 
 <p><b>Nama :</b> ${col[1] || "-"}</p>
-<p><b>NIK :</b> ${nik}</p>
+<p><b>NIK :</b> ${col[0] || "-"}</p>
 <p><b>Gol. Darah :</b> ${col[2] || "-"}</p>
 <p><b>Hamil Ke :</b> ${col[3] || "-"}</p>
 <p><b>Usia Kehamilan :</b> ${hitungUsiaKehamilan(hpht)}</p>
@@ -2580,7 +2591,10 @@ background:white;
     
     <h2 style="color:#00ffd5;">🤰 Dashboard Profil Bumil</h2>
 
-    <input type="text" id="nikProfil" placeholder="Masukkan NIK"
+    <input
+id="nikProfil"
+type="text"
+placeholder="Masukkan NIK atau Nama Ibu Hamil">
       style="width:100%;padding:14px;margin:15px 0;background:#1a1a1a;color:white;border:none;border-radius:12px;">
 
     <button onclick="cariProfilBumil()" class="header-btn">Lihat Profil</button>
