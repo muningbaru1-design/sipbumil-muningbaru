@@ -1078,12 +1078,8 @@ Informasi Hak Identitas Anak Setelah Lahir.
 🔒 Admin Only
 </button>
    
-<button
-class="btn-cek"
-onclick="bukaCekIdentitas()">
-
+<button onclick="cekIdentitasBayi()">
 🔍 Cek Kelengkapan Identitas
-
 </button>
 </div>
 
@@ -2801,7 +2797,7 @@ console.error(error);
 }
 
 }
-       async function cekIdentitasBayi(){
+async function cekIdentitasBayi(){
 
 const nik =
 document.getElementById(
