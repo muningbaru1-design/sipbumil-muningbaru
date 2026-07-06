@@ -1078,7 +1078,7 @@ Informasi Hak Identitas Anak Setelah Lahir.
 🔒 Admin Only
 </button>
    
-<button onclick="cekIdentitasBayi()">
+<button onclick="bukaCekIdentitas()">
 🔍 Cek Kelengkapan Identitas
 </button>
 </div>
@@ -2797,6 +2797,20 @@ console.error(error);
 }
 
 }
+       
+function bukaCekIdentitas(){
+
+document.getElementById("cekIdentitasModal")
+.style.display="flex";
+
+}
+       
+function tutupCekIdentitas(){
+
+    document.getElementById("cekIdentitasModal")
+    .style.display = "none";
+
+}
 async function cekIdentitasBayi(){
 
 const nik =
@@ -3509,24 +3523,26 @@ ${x.nama}
 <div id="cekIdentitasModal"
 class="modal">
 
-<div class="modal-content">
+<div id="cekIdentitasModal" class="modal">
 
-<h2>
-👶 Cek Kelengkapan Identitas Bayi
-</h2>
+  <div class="modal-content">
 
-<input
-type="text"
-id="nikBayiCari"
-placeholder="Masukkan NIK Bayi">
+    <span class="close" onclick="tutupCekIdentitas()">&times;</span>
 
-<button onclick="cekIdentitasBayi()">
+    <h2>👶 Cek Kelengkapan Identitas Bayi</h2>
 
-Cari
+    <input
+      type="text"
+      id="nikBayiCari"
+      placeholder="Masukkan NIK Bayi">
 
-</button>
+    <button onclick="cekIdentitasBayi()">
+      Cari
+    </button>
 
-<div id="hasilIdentitas"></div>
+    <div id="hasilIdentitas"></div>
+
+  </div>
 
 </div>
 
