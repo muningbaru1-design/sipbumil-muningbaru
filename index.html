@@ -2586,20 +2586,38 @@ background:white;
 
 </div>
 <!-- MODAL PROFIL BUMIL -->
-<div id="modalProfilBumil" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.95);z-index:999999;overflow:auto;padding:20px;">
-  <div style="max-width:900px;margin:auto;background:#111;padding:30px;border-radius:25px;">
-    
-    <h2 style="color:#00ffd5;">🤰 Dashboard Profil Bumil</h2>
+<div id="profilModal" class="modal">
 
-    <input type="text" id="nikProfil" placeholder="Masukkan NIK"
-      style="width:100%;padding:14px;margin:15px 0;background:#1a1a1a;color:white;border:none;border-radius:12px;">
+  <div class="modal-content">
 
-    <button onclick="cariProfilBumil()" class="header-btn">Lihat Profil</button>
-    <button onclick="tutupProfilBumil()" style="margin-left:10px" class="header-btn">Tutup</button>
+    <h2>🤰 Dashboard Profil Bumil</h2>
+
+    <input
+      id="nikProfil"
+      type="text"
+      placeholder="Masukkan NIK atau Nama Ibu Hamil"
+      style="
+        width:100%;
+        padding:14px;
+        margin:15px 0;
+        background:#1a1a1a;
+        color:white;
+        border:none;
+        border-radius:12px;
+      ">
+
+    <button onclick="cariProfilBumil()">
+      Lihat Profil
+    </button>
+
+    <button onclick="tutupProfil()">
+      Tutup
+    </button>
 
     <div id="hasilProfil"></div>
 
   </div>
+
 </div>
 
 <!-- HALAMAN RELAWAN -->
