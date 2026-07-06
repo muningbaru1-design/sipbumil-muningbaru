@@ -3522,30 +3522,6 @@ ${x.nama}
 </div>
 <div id="cekIdentitasModal"
 class="modal">
-
-<div id="cekIdentitasModal" class="modal">
-
-  <div class="modal-content">
-
-    <span class="close" onclick="tutupCekIdentitas()">&times;</span>
-
-    <h2>👶 Cek Kelengkapan Identitas Bayi</h2>
-
-    <input
-      type="text"
-      id="nikBayiCari"
-      placeholder="Masukkan NIK Bayi">
-
-    <button onclick="cekIdentitasBayi()">
-      Cari
-    </button>
-
-    <div id="hasilIdentitas"></div>
-
-  </div>
-
-</div>
-
 </div>
 
 `;
@@ -3603,6 +3579,27 @@ popup.remove();
 
 }
 </script>
-  
+  <div id="cekIdentitasModal" class="modal">
+
+  <div class="modal-content">
+
+    <span class="close" onclick="tutupCekIdentitas()">&times;</span>
+
+    <h2>👶 Cek Kelengkapan Identitas Bayi</h2>
+
+    <input
+      type="text"
+      id="nikBayiCari"
+      placeholder="Masukkan NIK Bayi">
+
+    <button onclick="cekIdentitasBayi()">
+      Cari
+    </button>
+
+    <div id="hasilIdentitas"></div>
+
+  </div>
+
+</div>
 </body>
 </html>
