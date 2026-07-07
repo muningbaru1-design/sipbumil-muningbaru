@@ -1887,13 +1887,12 @@ bukaRisikoTinggi();
 }
 async function cariProfilBumil(){
 
-const keyword =
+const nik =
 document.getElementById("nikProfil")
 .value
-.trim()
-.toLowerCase();
+.trim();
 
-if(keyword === "") return;
+if(nik === "") return;
 
 const hasil =
 document.getElementById("hasilProfil");
@@ -1922,24 +1921,14 @@ const hpl  = col[21] || "";
 /*
 CARI NIK DI SEMUA KOLOM
 */
-const nikBumil =
-(col[6] || "")
-.replace(/\s/g,"")
-.toLowerCase();
-
-const namaBumil =
-(col[1] || "")
-.toLowerCase();
-
-const cari =
-keyword.replace(/\s/g,"");
+const gabung =
+col.join(" ")
+.replace(/\s/g,"");
 
 if(
-
-nikBumil.includes(cari) ||
-
-namaBumil.includes(keyword)
-
+gabung.includes(
+nik.replace(/\s/g,"")
+)
 ){
 
 hasil.innerHTML = `
@@ -1957,7 +1946,7 @@ margin-bottom:20px;
 </h2>
 
 <p><b>Nama :</b> ${col[1] || "-"}</p>
-<p><b>NIK :</b> ${col[6] || "-"}</p>
+<p><b>NIK :</b> ${nik}</p>
 <p><b>Gol. Darah :</b> ${col[2] || "-"}</p>
 <p><b>Hamil Ke :</b> ${col[3] || "-"}</p>
 <p><b>Usia Kehamilan :</b> ${hitungUsiaKehamilan(hpht)}</p>
@@ -2588,22 +2577,21 @@ background:white;
 <!-- MODAL PROFIL BUMIL -->
 <div id="modalProfilBumil" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.95);z-index:999999;overflow:auto;padding:20px;">
   <div style="max-width:900px;margin:auto;background:#111;padding:30px;border-radius:25px;">
-
+    
     <h2 style="color:#00ffd5;">🤰 Dashboard Profil Bumil</h2>
 
     <input type="text" id="nikProfil" placeholder="Masukkan NIK"
       style="width:100%;padding:14px;margin:15px 0;background:#1a1a1a;color:white;border:none;border-radius:12px;">
 
     <button onclick="cariProfilBumil()" class="header-btn">Lihat Profil</button>
-
-    <button onclick="tutupProfilBumil()" class="header-btn">
-      Tutup
-    </button>
+    <button onclick="tutupProfilBumil()" style="margin-left:10px" class="header-btn">Tutup</button>
 
     <div id="hasilProfil"></div>
 
   </div>
 </div>
+
+
 <!-- HALAMAN RELAWAN -->
 <div id="halamanRelawan" style="
 display:none;
