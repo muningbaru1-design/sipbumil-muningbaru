@@ -1923,7 +1923,7 @@ const hpl  = col[21] || "";
 CARI NIK DI SEMUA KOLOM
 */
 const nikBumil =
-(col[0] || "")
+(col[6] || "")
 .replace(/\s/g,"")
 .toLowerCase();
 
@@ -1957,7 +1957,7 @@ margin-bottom:20px;
 </h2>
 
 <p><b>Nama :</b> ${col[1] || "-"}</p>
-<p><b>NIK :</b> ${col[0] || "-"}</p>
+<p><b>NIK :</b> ${col[6] || "-"}</p>
 <p><b>Gol. Darah :</b> ${col[2] || "-"}</p>
 <p><b>Hamil Ke :</b> ${col[3] || "-"}</p>
 <p><b>Usia Kehamilan :</b> ${hitungUsiaKehamilan(hpht)}</p>
