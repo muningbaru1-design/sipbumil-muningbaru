@@ -1887,10 +1887,11 @@ bukaRisikoTinggi();
 }
 async function cariProfilBumil(){
 
-const nik =
+const keyword =
 document.getElementById("nikProfil")
 .value
-.trim();
+.trim()
+.toLowerCase();
 
 if(nik === "") return;
 
@@ -1919,16 +1920,25 @@ const col = parseCSV(row);
 const hpht = col[27] || "";
 const hpl  = col[21] || "";
 /*
-CARI NIK DI SEMUA KOLOM
+CARI BERDASARKAN NIK ATAU NAMA
 */
-const gabung =
-col.join(" ")
-.replace(/\s/g,"");
+
+const nikBumil =
+(col[6] || "")
+.trim()
+.toLowerCase();
+
+const namaBumil =
+(col[1] || "")
+.trim()
+.toLowerCase();
 
 if(
-gabung.includes(
-nik.replace(/\s/g,"")
-)
+
+nikBumil.includes(keyword) ||
+
+namaBumil.includes(keyword)
+
 ){
 
 hasil.innerHTML = `
