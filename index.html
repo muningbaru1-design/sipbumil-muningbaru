@@ -134,17 +134,27 @@ overflow-x:hidden;
 ========================= */
 
 .header{
+
 width:100%;
-padding:20px 30px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:#0b0b0b;
-border-bottom:1px solid rgba(0,255,255,0.15);
+padding:18px 22px;
+
+background:linear-gradient(
+135deg,
+#00b894,
+#00d2a8
+);
+
+border-radius:0 0 25px 25px;
+
+box-shadow:
+0 5px 18px rgba(0,0,0,.15);
+
 position:sticky;
 top:0;
-z-index:1000;
-backdrop-filter:blur(10px);
+z-index:999;
+
+color:#fff;
+
 }
 
 .logo{
@@ -188,7 +198,88 @@ transition:0.3s;
 .header-btn:hover{
 transform:translateY(-2px);
 }
+.header-top{
 
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+}
+
+.header-right{
+
+display:flex;
+gap:15px;
+
+}
+
+.menu-icon,
+.notif-icon,
+.user-icon{
+
+width:45px;
+height:45px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.2);
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:22px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.menu-icon:hover,
+.notif-icon:hover,
+.user-icon:hover{
+
+transform:scale(1.1);
+
+background:rgba(255,255,255,.35);
+
+}
+
+.welcome{
+
+margin-top:25px;
+
+}
+
+.halo{
+
+font-size:18px;
+margin:0;
+
+opacity:.9;
+
+}
+
+.welcome h1{
+
+margin:5px 0;
+
+font-size:32px;
+
+font-weight:700;
+
+}
+
+.welcome p{
+
+margin:0;
+
+font-size:15px;
+
+opacity:.95;
+
+}
 /* =========================
    HERO
 ========================= */
@@ -906,26 +997,47 @@ Password Salah
 
 <div id="appContent" style="display:none;">
 <!-- =========================
-     HEADER
+     HEADER V2
 ========================= -->
 
 <div class="header">
 
-<div class="logo">
+    <div class="header-top">
 
-<div class="logo-circle">🤰</div>
+        <div class="menu-icon">
+            ☰
+        </div>
 
-<div class="logo-text">
-<h1>SIP BUMILNYA</h1>
-<p>Sistem Informasi Persiapan Ibu Hamil dan Bayinya</p>
-</div>
+        <div class="header-right">
 
-</div>
+            <div class="notif-icon">
+                🔔
+            </div>
 
-<div style="display:flex;gap:10px;">
-<button class="header-btn" onclick="bukaProfilBumil()">🤰 Profil Bumil</button>
-<button class="header-btn" onclick="bukaLogin()">Login Admin</button>
-</div>
+            <div class="user-icon"
+                 onclick="bukaProfilBumil()">
+                👤
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="welcome">
+
+        <p class="halo">
+            Halo,
+        </p>
+
+        <h1>
+            SIP BUMILNYA
+        </h1>
+
+        <p>
+            Sistem Informasi Persiapan Ibu Hamil dan Bayinya
+        </p>
+
+    </div>
 
 </div>
 
