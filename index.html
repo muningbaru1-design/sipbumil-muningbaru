@@ -908,33 +908,29 @@ margin-top:15px;
 
 display:grid;
 
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+grid-template-columns:repeat(2,1fr);
 
-gap:18px;
+gap:14px;
 
-margin-bottom:30px;
-
-width:100%;
+margin-top:25px;
 
 }
 
 .ringkas-card{
 
-background:linear-gradient(135deg,#00d6b5,#00ffd5);
+background:rgba(255,255,255,.18);
 
-color:#000;
+backdrop-filter:blur(12px);
 
-border-radius:22px;
+border-radius:18px;
 
-padding:25px;
+padding:18px;
 
 text-align:center;
 
-box-shadow:0 10px 25px rgba(0,255,213,.25);
+color:white;
 
-transition:.35s;
-
-cursor:pointer;
+box-shadow:none;
 
 }
 .ringkas-card:hover{
@@ -1338,8 +1334,15 @@ Password Salah
         </p>
 
     </div>
+<div class="dashboard-ringkas">
 
+<div class="ringkas-card">
+    <div style="font-size:34px">🤰</div>
+    <div class="angka" id="totalBumilHero">63</div>
+    <div class="label">Ibu Hamil</div>
 </div>
+</div>
+
 <section class="banner-slider">
 
 <div class="banner-slide active">
@@ -1375,13 +1378,7 @@ Password Salah
 
 <!-- SEARCH -->
 <div class="search-box">
-<div class="dashboard-ringkas">
 
-<div class="ringkas-card">
-    <div style="font-size:34px">🤰</div>
-    <div class="angka" id="totalBumilHero">63</div>
-    <div class="label">Ibu Hamil</div>
-</div>
 
 <div class="ringkas-card">
     <div style="font-size:34px">👶</div>
