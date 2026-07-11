@@ -1224,199 +1224,114 @@ Cari
 
 <div class="menu-grid">
 
-<div class="menu-card">
+    <!-- Data Bumil -->
+    <div class="menu-card">
+        <div class="icon">🤰</div>
+        <h3>Data Ibu Hamil</h3>
+        <p>Pendataan ibu hamil desa.</p>
 
-<div class="icon">🤰</div>
+        <button onclick="cekAksesAdmin('bumil')">
+            🔒 Admin Only
+        </button>
+    </div>
 
-<h3>🔒 Data Ibu Hamil</h3>
+    <!-- Data Bayi -->
+    <div class="menu-card">
+        <div class="icon">👶</div>
+        <h3>Data Bayi</h3>
+        <p>Informasi identitas bayi.</p>
 
-<p>
-Pendataan lengkap ibu hamil desa.
-</p>
-<div class="stat-item">
+        <button onclick="cekAksesAdmin('bayi')">
+            🔒 Admin Only
+        </button>
 
-<div class="stat-icon">🤰</div>
+        <button class="btn-cek"
+        onclick="bukaCekIdentitas()">
+            🔍 Cek Identitas Bayi
+        </button>
 
-<div class="stat-info">
+    </div>
 
-<div class="stat-angka" id="jumlahBumil">0</div>
+    <!-- Jadwal -->
+    <div class="menu-card">
 
-<div class="stat-text">Total Bumil</div>
+        <div class="icon">📅</div>
 
-</div>
+        <h3>Jadwal Posyandu</h3>
 
-</div>
+        <p>Jadwal pelayanan kesehatan.</p>
 
-<div class="stat-item">
+        <button onclick="bukaJadwal()">
+            Buka Menu
+        </button>
 
-<div class="stat-icon">👶</div>
+    </div>
 
-<div class="stat-info">
+    <!-- Grafik -->
+    <div class="menu-card"
+    onclick="bukaGrafikStunting()">
 
-<div class="stat-angka" id="jumlahMelahirkan">0</div>
+        <div class="icon">📊</div>
 
-<div class="stat-text">Sudah Melahirkan</div>
+        <h3>Grafik Stunting</h3>
 
-</div>
+        <p>Monitoring stunting balita.</p>
 
-</div>
+    </div>
 
-<div class="stat-item">
+    <!-- Risiko -->
+    <div class="menu-card">
 
-<div class="stat-icon">⏳</div>
+        <div class="icon">🚨</div>
 
-<div class="stat-info">
+        <h3>Risiko Tinggi</h3>
 
-<div class="stat-angka" id="jumlahBelum">0</div>
+        <p>Monitoring ibu hamil risiko tinggi.</p>
 
-<div class="stat-text">Belum Melahirkan</div>
+        <button onclick="cekAksesAdmin('risikoTinggi')">
 
-</div>
+            🔒 Admin Only
 
-</div>
-<button onclick="cekAksesAdmin('bumil')">
-🔒 Admin Only
-</button>
+        </button>
 
-</div>
+    </div>
 
-<div class="menu-card">
+    <!-- Relawan -->
+    <div class="menu-card">
 
-<div class="icon">👶</div>
+        <div class="icon">🩸</div>
 
-<h3>🔒 Data Bayi</h3>
+        <h3>Relawan Donor Darah</h3>
 
-<p>
-Informasi Hak Identitas Anak Setelah Lahir.
-</p>
+        <p>Hubungi relawan donor darah.</p>
 
-<!-- Statistik Bayi -->
+        <button onclick="bukaRelawan()">
 
-<div class="bumil-mini-stat">
+            Buka Menu
 
-<div class="mini-item">
-📄
-<span id="miniKK">0</span>
-<small>KK</small>
-</div>
+        </button>
 
-<div class="mini-item">
-📜
-<span id="miniAkta">0</span>
-<small>Akta</small>
-</div>
+    </div>
 
-<div class="mini-item">
-🟢
-<span id="miniKIA">0</span>
-<small>KIA</small>
-</div>
+    <!-- Kontak -->
+    <div class="menu-card">
 
-<div class="mini-item">
-💳
-<span id="miniBPJS">0</span>
-<small>BPJS</small>
-</div>
+        <div class="icon">☎️</div>
 
-</div>
+        <h3>Kontak Bidan</h3>
 
-<button onclick="cekAksesAdmin('bayi')">
-🔒 Admin Only
-</button>
-   
-<button class="btn-cek"
-onclick="bukaCekIdentitas()">
+        <p>Hubungi bidan desa.</p>
 
-🔍 Cek Kelengkapan Identitas Bayi anda
+        <button class="kontak-btn"
+        onclick="window.open('https://wa.me/6285246320106')">
 
-</button>
-</div>
+            👩‍⚕️ Bidan Desa
 
-<div class="menu-card">
+        </button>
 
-<div class="icon">🍲</div>
-
-<h3>🔒 Intervensi Gizi (PMT)</h3>
-
-<p>
-Jadwal pemberian makanan tambahan untuk bumil KEK & stunting.
-</p>
-
-<button onclick="cekAksesAdmin('pmt')">
-🔒 Admin Only
-</button>
+    </div>
 
 </div>
-  </div>
-<div class="menu-card" onclick="bukaLayananAdm()">
-    <div class="menu-icon">📋</div>
-    <h3>Layanan Adm</h3>
-    <p>KK, Akta, KIA & BPJS</p>
-</div>
-  
-</div>
-<div class="menu-card">
-<div class="icon">📅</div>
-<h3>Jadwal Posyandu</h3>
-<p>Informasi jadwal pelayanan kesehatan desa.</p>
-
-<button onclick="bukaJadwal()">
-Buka Menu
-</button>
-</div>
-
-<div class="menu-card">
-<div class="icon">🚨</div>
-<h3>🔒 Risiko Tinggi</h3>
-<p>Monitoring ibu hamil risiko tinggi.</p>
-
-<button onclick="cekAksesAdmin('risikoTinggi')">
-🔒 Risiko Tinggi
-</button>
-</div>
-
-<div class="menu-card">
-<div class="icon">📊</div>
-<h3>Grafik Stunting</h3>
-<p>Grafik dan statistik kesehatan desa.</p>
-
-<button onclick="alert('Menu Grafik segera tersedia')">
-Buka Menu
-</button>
-</div>
-
-<div class="menu-card">
-<div class="icon">☎️</div>
-<h3>Kontak Bidan dan Kader KPM</h3>
-<p>Hubungi bidan desa dan Kader KPM secara langsung.</p>
-
-<button class="kontak-btn"
-onclick="window.open('https://wa.me/6285246320106')">
-👩‍⚕️ Bidan Desa
-</button>
-
-<button class="kontak-btn"
-onclick="window.open('https://wa.me/6285245277071')">
-👨‍💼 KPM 1
-</button>
-
-<button class="kontak-btn"
-onclick="window.open('https://wa.me/6285651291572')">
-👨‍💼 KPM 2
-</button>
-
-</div>
- <!-- RELAWAN -->
-  <div class="menu-card">
-  <div class="icon">🩸</div>
-  <h3>Relawan Donor Darah</h3>
-  <p>Hubungi No Hp relawan pendonor darah jika memerlukan.</p>
-
-  <button onclick="bukaRelawan()">Buka Menu</button>
-</div>
-
-</div>
-
 </section>
 
 <!-- =========================
