@@ -127,9 +127,6 @@ body{
 background:#050505;
 color:white;
 overflow-x:hidden;
-
-padding-bottom:90px;
-
 }
 
 /* =========================
@@ -137,27 +134,17 @@ padding-bottom:90px;
 ========================= */
 
 .header{
-
 width:100%;
-padding:18px 22px;
-
-background:linear-gradient(
-135deg,
-#00b894,
-#00d2a8
-);
-
-border-radius:0 0 25px 25px;
-
-box-shadow:
-0 5px 18px rgba(0,0,0,.15);
-
+padding:20px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#0b0b0b;
+border-bottom:1px solid rgba(0,255,255,0.15);
 position:sticky;
 top:0;
-z-index:999;
-
-color:#fff;
-
+z-index:1000;
+backdrop-filter:blur(10px);
 }
 
 .logo{
@@ -201,102 +188,19 @@ transition:0.3s;
 .header-btn:hover{
 transform:translateY(-2px);
 }
-.header-top{
 
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-}
-
-.header-right{
-
-display:flex;
-gap:15px;
-
-}
-
-.menu-icon,
-.notif-icon,
-.user-icon{
-
-width:45px;
-height:45px;
-
-border-radius:50%;
-
-background:rgba(255,255,255,.2);
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-font-size:22px;
-
-cursor:pointer;
-
-transition:.3s;
-
-}
-
-.menu-icon:hover,
-.notif-icon:hover,
-.user-icon:hover{
-
-transform:scale(1.1);
-
-background:rgba(255,255,255,.35);
-
-}
-
-.welcome{
-
-margin-top:25px;
-
-}
-
-.halo{
-
-font-size:18px;
-margin:0;
-
-opacity:.9;
-
-}
-
-.welcome h1{
-
-margin:5px 0;
-
-font-size:32px;
-
-font-weight:700;
-
-}
-
-.welcome p{
-
-margin:0;
-
-font-size:15px;
-
-opacity:.95;
-
-}
 /* =========================
    HERO
 ========================= */
 
 .hero{
-
-padding:30px;
-
+padding:70px 30px;
 max-width:1300px;
-
 margin:auto;
-
-display:block;
-
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:center;
 }
 
 .hero h2{
@@ -462,50 +366,17 @@ color:#aaa;
 }
 
 .menu-grid{
-
 display:grid;
-
-grid-template-columns:repeat(2,1fr);
-
-gap:18px;
-
-margin-top:25px;
-
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
 }
+
 .menu-card{
-
-background:#151515;
-
-border-radius:22px;
-
-padding:22px;
-
-border:1px solid rgba(255,255,255,.06);
-
-transition:.3s;
-
-cursor:pointer;
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:space-between;
-
-min-height:210px;
-
-box-shadow:0 8px 20px rgba(0,0,0,.25);
-
-}
-
-.menu-card:hover{
-
-transform:translateY(-6px);
-
-border-color:#00ffd5;
-
-box-shadow:0 0 25px rgba(0,255,213,.25);
-
+background:#111;
+padding:30px;
+border-radius:28px;
+border:1px solid rgba(0,255,213,0.08);
+transition:0.3s;
 }
 .kontak-btn{
 width:100%;
@@ -524,78 +395,30 @@ box-shadow:0 0 25px rgba(0,255,213,0.15);
 }
 
 .menu-card .icon{
-
-width:72px;
-
-height:72px;
-
-border-radius:18px;
-
-background:linear-gradient(135deg,#00ffd5,#00c9ff);
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-font-size:34px;
-
-margin-bottom:18px;
-
-color:#000;
-
+font-size:55px;
+margin-bottom:20px;
 }
 
 .menu-card h3{
-
-font-size:20px;
-
+color:#00ffd5;
 margin-bottom:10px;
-
-font-weight:700;
-
-color:white;
-
 }
 
 .menu-card p{
-
-font-size:14px;
-
+color:#aaa;
+margin-bottom:15px;
 line-height:1.6;
-
-color:#9f9f9f;
-
-margin-bottom:20px;
-
 }
+
 .menu-card button{
-
 width:100%;
-
 padding:12px;
-
 border:none;
-
-border-radius:14px;
-
+border-radius:12px;
 background:#00ffd5;
-
-color:#000;
-
 font-weight:bold;
-
 cursor:pointer;
-
-transition:.3s;
-
-}
-
-.menu-card button:hover{
-
-transform:scale(1.03);
-
+transition:0.3s;
 }
 
 .menu-card button:hover{
@@ -904,66 +727,8 @@ display:none;
 color:#ff7070;
 margin-top:15px;
 }
-.dashboard-ringkas{
 
-display:grid;
-
-grid-template-columns:repeat(2,1fr);
-
-gap:14px;
-
-margin-top:25px;
-
-}
-
-.ringkas-card{
-
-background:rgba(255,255,255,.18);
-
-backdrop-filter:blur(12px);
-
-border-radius:18px;
-
-padding:18px;
-
-text-align:center;
-
-color:white;
-
-box-shadow:none;
-
-}
-.ringkas-card:hover{
-
-transform:translateY(-5px);
-
-background:#1f1f1f;
-
-}
-
-.ringkas-card .angka{
-
-font-size:42px;
-
-font-weight:800;
-
-margin-top:10px;
-
-margin-bottom:8px;
-
-color:#111;
-
-}
-
-.ringkas-card .label{
-
-font-size:16px;
-
-font-weight:600;
-
-color:#111;
-
-}
+@media(max-width:900px){
 
 .login-container{
 grid-template-columns:1fr;
@@ -1071,158 +836,6 @@ text-align:center;
 margin-bottom:15px;
 
 }
-.banner-slider{
-
-max-width:1400px;
-
-margin:25px auto;
-
-overflow:hidden;
-
-border-radius:25px;
-
-position:relative;
-
-}
-
-.banner-slide{
-
-display:none;
-
-height:220px;
-
-padding:40px;
-
-border-radius:25px;
-
-background:linear-gradient(135deg,#00d9b8,#00b5ff);
-
-color:white;
-
-align-items:center;
-
-justify-content:flex-start;
-
-}
-
-.banner-slide.active{
-
-display:flex;
-
-animation:fade .6s;
-
-}
-
-.banner-slide h2{
-
-font-size:36px;
-
-margin-bottom:10px;
-
-}
-
-.banner-slide p{
-
-font-size:18px;
-
-opacity:.95;
-
-}
-
-@keyframes fade{
-
-from{
-
-opacity:0;
-
-transform:translateX(20px);
-
-}
-
-to{
-
-opacity:1;
-
-transform:translateX(0);
-
-}
-
-}
-/* =========================
-   BOTTOM NAVIGATION
-========================= */
-
-.bottom-nav{
-
-position:fixed;
-
-bottom:0;
-
-left:0;
-
-width:100%;
-
-height:75px;
-
-background:#ffffff;
-
-display:flex;
-
-justify-content:space-around;
-
-align-items:center;
-
-box-shadow:0 -5px 20px rgba(0,0,0,.15);
-
-z-index:9999;
-
-border-top-left-radius:22px;
-
-border-top-right-radius:22px;
-
-}
-
-.nav-item{
-
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
-
-cursor:pointer;
-
-font-size:13px;
-
-color:#777;
-
-transition:.3s;
-
-}
-
-.nav-item.active{
-
-color:#00b894;
-
-font-weight:bold;
-
-}
-
-.nav-item:hover{
-
-transform:translateY(-4px);
-
-color:#00b894;
-
-}
-
-.nav-icon{
-
-font-size:26px;
-
-margin-bottom:4px;
-
-}
 </style>
 
 </head>
@@ -1293,48 +906,29 @@ Password Salah
 
 <div id="appContent" style="display:none;">
 <!-- =========================
-     HEADER V2
+     HEADER
 ========================= -->
 
 <div class="header">
 
-    <div class="header-top">
+<div class="logo">
 
-        <div class="menu-icon">
-            ☰
-        </div>
+<div class="logo-circle">🤰</div>
 
-        <div class="header-right">
-
-            <div class="notif-icon">
-                🔔
-            </div>
-
-            <div class="user-icon"
-                 onclick="bukaProfilBumil()">
-                👤
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="welcome">
-
-        <p class="halo">
-            Halo,
-        </p>
-
-        <h1>
-            SIP BUMILNYA
-        </h1>
-
-        <p>
-            Sistem Informasi Persiapan Ibu Hamil dan Bayinya
-        </p>
-
-    </div>
+<div class="logo-text">
+<h1>SIP BUMILNYA</h1>
+<p>Sistem Informasi Persiapan Ibu Hamil dan Bayinya</p>
 </div>
+
+</div>
+
+<div style="display:flex;gap:10px;">
+<button class="header-btn" onclick="bukaProfilBumil()">🤰 Profil Bumil</button>
+<button class="header-btn" onclick="bukaLogin()">Login Admin</button>
+</div>
+
+</div>
+
 <!-- =========================
      HERO
 ========================= -->
@@ -1344,29 +938,36 @@ Password Salah
 <!-- LEFT -->
 <div>
 
+<h2>
+Monitoring
+<span>Ibu Hamil</span>
+dan Bayi Desa
+</h2>
+
+<p>
+Platform digital kesehatan desa untuk pendataan ibu hamil,
+bayi, risiko tinggi, dan pelayanan posyandu modern berbasis data.
+</p>
+
+<div class="hero-buttons">
+
+<button
+class="btn-primary"
+onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeNF72miW4m7Y4iRNvPY21pOj8SvDLtIqDbdBD60cylcL_AnQ/viewform','_blank')">
+Input Data Bumil
+</button>
+
+<button
+class="btn-outline"
+onclick="document.getElementById('menuUtama').scrollIntoView()">
+Dashboard Posyandu
+</button>
+
+</div>
+
 <!-- SEARCH -->
 <div class="search-box">
 
-
-<div class="ringkas-card">
-    <div style="font-size:34px">👶</div>
-    <div class="angka" id="totalBayiHero">83</div>
-    <div class="label">Bayi</div>
-</div>
-
-<div class="ringkas-card">
-    <div style="font-size:34px">🚨</div>
-    <div class="angka" id="resikoHero">1</div>
-    <div class="label">Risiko Tinggi</div>
-</div>
-
-<div class="ringkas-card">
-    <div style="font-size:34px">📅</div>
-    <div class="angka" id="jadwalHero">0</div>
-    <div class="label">Jadwal</div>
-</div>
-
-</div>
 <h3>🔍 Cari Data Bumil</h3>
 
 <div class="search-flex">
@@ -1390,7 +991,7 @@ Cari
 </div>
 
 <!-- RIGHT -->
-<div class="dashboard" style="display:none;">
+<div class="dashboard">
 
 <div class="stats">
 
@@ -1448,114 +1049,199 @@ Cari
 
 <div class="menu-grid">
 
-    <!-- Data Bumil -->
-    <div class="menu-card">
-        <div class="icon">🤰</div>
-        <h3>Data Ibu Hamil</h3>
-        <p>Pendataan ibu hamil desa.</p>
+<div class="menu-card">
 
-        <button onclick="cekAksesAdmin('bumil')">
-            🔒 Admin Only
-        </button>
-    </div>
+<div class="icon">🤰</div>
 
-    <!-- Data Bayi -->
-    <div class="menu-card">
-        <div class="icon">👶</div>
-        <h3>Data Bayi</h3>
-        <p>Informasi identitas bayi.</p>
+<h3>🔒 Data Ibu Hamil</h3>
 
-        <button onclick="cekAksesAdmin('bayi')">
-            🔒 Admin Only
-        </button>
+<p>
+Pendataan lengkap ibu hamil desa.
+</p>
+<div class="stat-item">
 
-        <button class="btn-cek"
-        onclick="bukaCekIdentitas()">
-            🔍 Cek Identitas Bayi
-        </button>
+<div class="stat-icon">🤰</div>
 
-    </div>
+<div class="stat-info">
 
-    <!-- Jadwal -->
-    <div class="menu-card">
+<div class="stat-angka" id="jumlahBumil">0</div>
 
-        <div class="icon">📅</div>
-
-        <h3>Jadwal Posyandu</h3>
-
-        <p>Jadwal pelayanan kesehatan.</p>
-
-        <button onclick="bukaJadwal()">
-            Buka Menu
-        </button>
-
-    </div>
-
-    <!-- Grafik -->
-    <div class="menu-card"
-    onclick="bukaGrafikStunting()">
-
-        <div class="icon">📊</div>
-
-        <h3>Grafik Stunting</h3>
-
-        <p>Monitoring stunting balita.</p>
-
-    </div>
-
-    <!-- Risiko -->
-    <div class="menu-card">
-
-        <div class="icon">🚨</div>
-
-        <h3>Risiko Tinggi</h3>
-
-        <p>Monitoring ibu hamil risiko tinggi.</p>
-
-        <button onclick="cekAksesAdmin('risikoTinggi')">
-
-            🔒 Admin Only
-
-        </button>
-
-    </div>
-
-    <!-- Relawan -->
-    <div class="menu-card">
-
-        <div class="icon">🩸</div>
-
-        <h3>Relawan Donor Darah</h3>
-
-        <p>Hubungi relawan donor darah.</p>
-
-        <button onclick="bukaRelawan()">
-
-            Buka Menu
-
-        </button>
-
-    </div>
-
-    <!-- Kontak -->
-    <div class="menu-card">
-
-        <div class="icon">☎️</div>
-
-        <h3>Kontak Bidan</h3>
-
-        <p>Hubungi bidan desa.</p>
-
-        <button class="kontak-btn"
-        onclick="window.open('https://wa.me/6285246320106')">
-
-            👩‍⚕️ Bidan Desa
-
-        </button>
-
-    </div>
+<div class="stat-text">Total Bumil</div>
 
 </div>
+
+</div>
+
+<div class="stat-item">
+
+<div class="stat-icon">👶</div>
+
+<div class="stat-info">
+
+<div class="stat-angka" id="jumlahMelahirkan">0</div>
+
+<div class="stat-text">Sudah Melahirkan</div>
+
+</div>
+
+</div>
+
+<div class="stat-item">
+
+<div class="stat-icon">⏳</div>
+
+<div class="stat-info">
+
+<div class="stat-angka" id="jumlahBelum">0</div>
+
+<div class="stat-text">Belum Melahirkan</div>
+
+</div>
+
+</div>
+<button onclick="cekAksesAdmin('bumil')">
+🔒 Admin Only
+</button>
+
+</div>
+
+<div class="menu-card">
+
+<div class="icon">👶</div>
+
+<h3>🔒 Data Bayi</h3>
+
+<p>
+Informasi Hak Identitas Anak Setelah Lahir.
+</p>
+
+<!-- Statistik Bayi -->
+
+<div class="bumil-mini-stat">
+
+<div class="mini-item">
+📄
+<span id="miniKK">0</span>
+<small>KK</small>
+</div>
+
+<div class="mini-item">
+📜
+<span id="miniAkta">0</span>
+<small>Akta</small>
+</div>
+
+<div class="mini-item">
+🟢
+<span id="miniKIA">0</span>
+<small>KIA</small>
+</div>
+
+<div class="mini-item">
+💳
+<span id="miniBPJS">0</span>
+<small>BPJS</small>
+</div>
+
+</div>
+
+<button onclick="cekAksesAdmin('bayi')">
+🔒 Admin Only
+</button>
+   
+<button class="btn-cek"
+onclick="bukaCekIdentitas()">
+
+🔍 Cek Kelengkapan Identitas Bayi anda
+
+</button>
+</div>
+
+<div class="menu-card">
+
+<div class="icon">🍲</div>
+
+<h3>🔒 Intervensi Gizi (PMT)</h3>
+
+<p>
+Jadwal pemberian makanan tambahan untuk bumil KEK & stunting.
+</p>
+
+<button onclick="cekAksesAdmin('pmt')">
+🔒 Admin Only
+</button>
+
+</div>
+  </div>
+<div class="menu-card" onclick="bukaLayananAdm()">
+    <div class="menu-icon">📋</div>
+    <h3>Layanan Adm</h3>
+    <p>KK, Akta, KIA & BPJS</p>
+</div>
+  
+</div>
+<div class="menu-card">
+<div class="icon">📅</div>
+<h3>Jadwal Posyandu</h3>
+<p>Informasi jadwal pelayanan kesehatan desa.</p>
+
+<button onclick="bukaJadwal()">
+Buka Menu
+</button>
+</div>
+
+<div class="menu-card">
+<div class="icon">🚨</div>
+<h3>🔒 Risiko Tinggi</h3>
+<p>Monitoring ibu hamil risiko tinggi.</p>
+
+<button onclick="cekAksesAdmin('risikoTinggi')">
+🔒 Risiko Tinggi
+</button>
+</div>
+
+<div class="menu-card">
+<div class="icon">📊</div>
+<h3>Grafik Stunting</h3>
+<p>Grafik dan statistik kesehatan desa.</p>
+
+<button onclick="alert('Menu Grafik segera tersedia')">
+Buka Menu
+</button>
+</div>
+
+<div class="menu-card">
+<div class="icon">☎️</div>
+<h3>Kontak Bidan dan Kader KPM</h3>
+<p>Hubungi bidan desa dan Kader KPM secara langsung.</p>
+
+<button class="kontak-btn"
+onclick="window.open('https://wa.me/6285246320106')">
+👩‍⚕️ Bidan Desa
+</button>
+
+<button class="kontak-btn"
+onclick="window.open('https://wa.me/6285245277071')">
+👨‍💼 KPM 1
+</button>
+
+<button class="kontak-btn"
+onclick="window.open('https://wa.me/6285651291572')">
+👨‍💼 KPM 2
+</button>
+
+</div>
+ <!-- RELAWAN -->
+  <div class="menu-card">
+  <div class="icon">🩸</div>
+  <h3>Relawan Donor Darah</h3>
+  <p>Hubungi No Hp relawan pendonor darah jika memerlukan.</p>
+
+  <button onclick="bukaRelawan()">Buka Menu</button>
+</div>
+
+</div>
+
 </section>
 
 <!-- =========================
@@ -3985,25 +3671,7 @@ popup.remove();
     document.getElementById("cekIdentitasModal").style.display="none";
 
 }
-let slideIndex=0;
 
-setInterval(function(){
-
-const slides=document.querySelectorAll(".banner-slide");
-
-slides.forEach(s=>s.classList.remove("active"));
-
-slideIndex++;
-
-if(slideIndex>=slides.length){
-
-slideIndex=0;
-
-}
-
-slides[slideIndex].classList.add("active");
-
-},4000);
 </script>
 
 <!-- =========================
@@ -4032,37 +3700,7 @@ placeholder="Masukkan NIK Bayi atau Nama Bayi">
   </div>
 
 </div>
-<!-- =========================
-     BOTTOM NAVIGATION
-========================= -->
 
-<div class="bottom-nav">
-
-    <div class="nav-item active"
-         onclick="window.scrollTo({top:0,behavior:'smooth'})">
-        <div class="nav-icon">🏠</div>
-        <span>Beranda</span>
-    </div>
-
-    <div class="nav-item"
-         onclick="document.getElementById('menuUtama').scrollIntoView({behavior:'smooth'})">
-        <div class="nav-icon">🩺</div>
-        <span>Layanan</span>
-    </div>
-
-    <div class="nav-item"
-         onclick="bukaJadwal()">
-        <div class="nav-icon">📅</div>
-        <span>Posyandu</span>
-    </div>
-
-    <div class="nav-item"
-         onclick="bukaProfilBumil()">
-        <div class="nav-icon">👤</div>
-        <span>Profil</span>
-    </div>
-
-</div>
 </body>
 
 </html>
