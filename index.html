@@ -127,6 +127,9 @@ body{
 background:#050505;
 color:white;
 overflow-x:hidden;
+
+padding-bottom:90px;
+
 }
 
 /* =========================
@@ -1147,6 +1150,81 @@ opacity:1;
 transform:translateX(0);
 
 }
+
+}
+/* =========================
+   BOTTOM NAVIGATION
+========================= */
+
+.bottom-nav{
+
+position:fixed;
+
+bottom:0;
+
+left:0;
+
+width:100%;
+
+height:75px;
+
+background:#ffffff;
+
+display:flex;
+
+justify-content:space-around;
+
+align-items:center;
+
+box-shadow:0 -5px 20px rgba(0,0,0,.15);
+
+z-index:9999;
+
+border-top-left-radius:22px;
+
+border-top-right-radius:22px;
+
+}
+
+.nav-item{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+cursor:pointer;
+
+font-size:13px;
+
+color:#777;
+
+transition:.3s;
+
+}
+
+.nav-item.active{
+
+color:#00b894;
+
+font-weight:bold;
+
+}
+
+.nav-item:hover{
+
+transform:translateY(-4px);
+
+color:#00b894;
+
+}
+
+.nav-icon{
+
+font-size:26px;
+
+margin-bottom:4px;
 
 }
 </style>
@@ -3989,7 +4067,37 @@ placeholder="Masukkan NIK Bayi atau Nama Bayi">
   </div>
 
 </div>
+<!-- =========================
+     BOTTOM NAVIGATION
+========================= -->
 
+<div class="bottom-nav">
+
+    <div class="nav-item active"
+         onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <div class="nav-icon">🏠</div>
+        <span>Beranda</span>
+    </div>
+
+    <div class="nav-item"
+         onclick="document.getElementById('menuUtama').scrollIntoView({behavior:'smooth'})">
+        <div class="nav-icon">🩺</div>
+        <span>Layanan</span>
+    </div>
+
+    <div class="nav-item"
+         onclick="bukaJadwal()">
+        <div class="nav-icon">📅</div>
+        <span>Posyandu</span>
+    </div>
+
+    <div class="nav-item"
+         onclick="bukaProfilBumil()">
+        <div class="nav-icon">👤</div>
+        <span>Profil</span>
+    </div>
+
+</div>
 </body>
 
 </html>
