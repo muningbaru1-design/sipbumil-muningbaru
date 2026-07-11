@@ -1072,6 +1072,83 @@ text-align:center;
 margin-bottom:15px;
 
 }
+.banner-slider{
+
+max-width:1400px;
+
+margin:25px auto;
+
+overflow:hidden;
+
+border-radius:25px;
+
+position:relative;
+
+}
+
+.banner-slide{
+
+display:none;
+
+height:220px;
+
+padding:40px;
+
+border-radius:25px;
+
+background:linear-gradient(135deg,#00d9b8,#00b5ff);
+
+color:white;
+
+align-items:center;
+
+justify-content:flex-start;
+
+}
+
+.banner-slide.active{
+
+display:flex;
+
+animation:fade .6s;
+
+}
+
+.banner-slide h2{
+
+font-size:36px;
+
+margin-bottom:10px;
+
+}
+
+.banner-slide p{
+
+font-size:18px;
+
+opacity:.95;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+transform:translateX(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateX(0);
+
+}
+
+}
 </style>
 
 </head>
@@ -1185,7 +1262,30 @@ Password Salah
     </div>
 
 </div>
+<section class="banner-slider">
 
+<div class="banner-slide active">
+    <div>
+        <h2>🤰 SIP BUMILNYA</h2>
+        <p>Pelayanan Kesehatan Ibu Hamil Terintegrasi</p>
+    </div>
+</div>
+
+<div class="banner-slide">
+    <div>
+        <h2>📅 Jadwal Posyandu</h2>
+        <p>Cek Jadwal Posyandu Terbaru</p>
+    </div>
+</div>
+
+<div class="banner-slide">
+    <div>
+        <h2>👶 Bayi Sehat</h2>
+        <p>Pantau Pertumbuhan Bayi Anda</p>
+    </div>
+</div>
+
+</section>
 <!-- =========================
      HERO
 ========================= -->
@@ -3842,7 +3942,25 @@ popup.remove();
     document.getElementById("cekIdentitasModal").style.display="none";
 
 }
+let slideIndex=0;
 
+setInterval(function(){
+
+const slides=document.querySelectorAll(".banner-slide");
+
+slides.forEach(s=>s.classList.remove("active"));
+
+slideIndex++;
+
+if(slideIndex>=slides.length){
+
+slideIndex=0;
+
+}
+
+slides[slideIndex].classList.add("active");
+
+},4000);
 </script>
 
 <!-- =========================
