@@ -1565,7 +1565,32 @@ onclick="window.open('https://wa.me/6285651291572')">
 <p>© 2026 Desa Muning Baru</p>
 
 </div>
+/* =========================
+   LOGIN AWAL
+========================= */
 
+const PASSWORD_UMUM = "MUNBAR2026";
+
+function loginAwal(){
+
+const password =
+document.getElementById("passwordMasuk").value;
+
+if(password === PASSWORD_UMUM){
+
+document.getElementById("loginAwal").style.display = "none";
+
+}else{
+
+document.getElementById("loginAwalError").style.display = "block";
+
+document.getElementById("passwordMasuk").value = "";
+
+document.getElementById("passwordMasuk").focus();
+
+}
+
+}
 <!-- =========================
      LOGIN MODAL
 ========================= -->
